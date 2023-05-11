@@ -8,7 +8,7 @@ from functions import api_gn_bullet_data, api_tech_bullet_data, api_fg_bullet_da
 #Gets latest price
 btc_price, eth_price, btc_per, eth_per, btc_mcap, eth_mcap, crypto_mcap = market_data()
 
-strl.set_page_config(layout="wide", page_title="HomeV2 - BTC: " + str(btc_price), page_icon = "💰")
+strl.set_page_config(layout="wide", page_title="Home - BTC: " + str(btc_price), page_icon = "💰")
 
 #Imports the data - Should be secret
 df_thresholds = pd.read_csv("thresholds.csv")
