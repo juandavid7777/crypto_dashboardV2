@@ -16,11 +16,12 @@ strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyK
 strl.markdown("""---""")
 strl.caption("Customized indicator powered by Glassnode")
 
-aws_api_url = "https://90ivl6cxgj.execute-api.ap-southeast-1.amazonaws.com/test_stage/metric1"
+aws_api_url = strl.secrets["aws_api_url"]
+api_key = strl.secrets["aws_api_token"]
 metric = "Metadata"
 price_bool = False
 normalize_bool = False
-api_key = strl.secrets["aws_api_token"]
+
 
 df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
 
