@@ -74,6 +74,7 @@ df['Confluence risk'] = df[selected_cols_list].mean(axis=1)
 
 with col_graphs:
 
+    strl.write(df.tail())
     last_cfrisk = df['Confluence risk'].iloc[-1]
 
     strl.header("Latest value: " + str(round(last_cfrisk,2)*100) + "%")
