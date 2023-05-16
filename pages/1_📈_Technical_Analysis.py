@@ -30,7 +30,7 @@ strl.write(df_metadata)
 
 #Calls all data
 metric = "All"
-price_bool = False
+price_bool = True
 normalize_bool = False
 df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
 
