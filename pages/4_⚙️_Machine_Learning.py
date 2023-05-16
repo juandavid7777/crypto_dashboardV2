@@ -77,7 +77,7 @@ with col_graphs:
     strl.write(df.tail())
     last_cfrisk = df['Confluence risk'].iloc[-1]
 
-    strl.header("Latest value: " + str(round(last_cfrisk,2)*100) + "%")
+    strl.header("Latest value: " + str(round(last_cfrisk,4)*100) + "%")
 
     # Plots
     df_plot = df.iloc[:-1]
