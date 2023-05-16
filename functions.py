@@ -952,6 +952,7 @@ def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, mod_type):
     return fig
 
 # ===========FUNCTIONS V2=========================
+@strl.cache_data
 def aws_crypto_api(url, metric, price_bool, normalize_bool, api_key):
     
     params = (("metric",metric),
@@ -965,6 +966,7 @@ def aws_crypto_api(url, metric, price_bool, normalize_bool, api_key):
 
     return pd.read_json(r_content[metric], orient ='index')
 
+@strl.cache_data
 def plot_graphsV2(df_data, df_meta, colored = False):
 
      # Runs functions in loops
