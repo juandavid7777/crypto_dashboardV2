@@ -594,7 +594,7 @@ def colored_metric(df, metric_name, metric_format):
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     fig.add_trace(go.Scatter(
-        x=df['Date'],
+        x=df.index,
         y=df["close"],
         mode = 'markers',
         name = 'Price',
@@ -641,7 +641,7 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
     # Create figure with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     fig.add_trace(go.Candlestick(
-            x=df['Date'],
+            x=df.index,
             open=df['open'],
             high=df['high'],
             low=df['low'],
@@ -650,7 +650,7 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
             ))
 
     fig.add_trace(go.Scatter(
-        x=df['Date'],
+        x=df.index,
         y=df[metric_name],
         mode = 'lines',
         name = metric_name,
@@ -964,3 +964,23 @@ def aws_crypto_api(url, metric, price_bool, normalize_bool, api_key):
     r_content = r.json()
 
     return pd.read_json(r_content[metric], orient ='index')
+
+def plot_graphsV2(df_data, df_meta, colored = False):
+
+     # Runs functions in loops
+    for i, metric in enumerate(df_meta["metric_name"]):
+
+        df_plot = df_data[["open","high","low","close", metric]]
+
+        # Defines ranges to be used
+        if df_meta.iloc[i]["custom_limit"] == True:
+            range_vals = [df_meta.iloc[i]["min"], df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_meta.iloc[i]["max"]]
+
+        else:
+            range_vals = [df_plot[metric].min(), df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_plot[metric].max()]
+
+        if colored == True:
+            strl.plotly_chart(colored_metric(df_plot, metric, df_meta.iloc[i]["format"]))
+
+        else:
+            strl.plotly_chart(bounded_metric(df_plot, metric, range_vals, df_meta.iloc[i]["format"], log_scale = df_meta.iloc[i]["log_scale"] ))

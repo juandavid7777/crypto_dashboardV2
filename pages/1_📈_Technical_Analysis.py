@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import streamlit as strl
 
-from functions import  plot_graphs, aws_crypto_api
+from functions import  aws_crypto_api, plot_graphsV2
 
 
 strl.set_page_config(layout="wide", page_title="BTC metrics - Technical", page_icon = "📈")
@@ -39,13 +39,13 @@ strl.write(df_data.head())
 #Filters metadata to select metrics
 df_meta = df_metadata[df_metadata["type"].isin(["Technical"])]
 
-# #Plots selected metrics
-# col_bounded, col_colored= strl.columns(2)
+#Plots selected metrics
+col_bounded, col_colored= strl.columns(2)
 
-# with col_bounded:
-#     strl.subheader("Oscillators thresholds")
-#     plot_graphs(df_meta, colored = False)
+with col_bounded:
+    strl.subheader("Oscillators thresholds")
+    plot_graphsV2(df_data, df_meta, colored = False)
 
-# with col_colored:
-#     strl.subheader("Colored distribution")
-#     plot_graphs(df_meta, colored = True)
+with col_colored:
+    strl.subheader("Colored distribution")
+    plot_graphsV2(df_data, df_meta, colored = True)
