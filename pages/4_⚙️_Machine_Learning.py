@@ -74,13 +74,14 @@ df['Confluence risk'] = df[selected_cols_list].mean(axis=1)
 
 with col_graphs:
 
-    strl.write(df.tail())
     last_cfrisk = df['Confluence risk'].iloc[-1]
 
     strl.header("Latest value: " + str(round(last_cfrisk,4)*100) + "%")
 
     # Plots
-    df_plot = df
+    df_plot = df.set_index("Date")
+    strl.write(df.tail())
+    
     strl.plotly_chart(colored_metric(df_plot, "Confluence risk", ".1%"), use_container_width=True)
     strl.plotly_chart(bounded_metric(df_plot,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)
 
