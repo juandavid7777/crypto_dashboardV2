@@ -80,7 +80,7 @@ with col_graphs:
     strl.header("Latest value: " + str(round(last_cfrisk,4)*100) + "%")
 
     # Plots
-    df_plot = df.iloc[:-1]
+    df_plot = df
     strl.plotly_chart(colored_metric(df_plot, "Confluence risk", ".1%"), use_container_width=True)
     strl.plotly_chart(bounded_metric(df_plot,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)
 
