@@ -17,7 +17,7 @@ strl.markdown("""---""")
 strl.caption("Customized indicator powered by Glassnode")
 
 aws_api_url = "https://90ivl6cxgj.execute-api.ap-southeast-1.amazonaws.com/test_stage/metric1"
-metric = "All"
+metric = "Metadata"
 price_bool = False
 normalize_bool = False
 api_key = strl.secrets["aws_api_token"]
