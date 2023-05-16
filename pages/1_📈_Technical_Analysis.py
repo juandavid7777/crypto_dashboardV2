@@ -39,13 +39,13 @@ strl.write(df_metadata.head())
 #Filters metadata to select metrics
 df_meta = df_metadata[df_metadata["type"].isin(["Technical"])]
 
-#Plots selected metrics
-col_bounded, col_colored= strl.columns(2)
+# #Plots selected metrics
+# col_bounded, col_colored= strl.columns(2)
 
-with col_bounded:
-    strl.subheader("Oscillators thresholds")
-    plot_graphs(df_meta, colored = False)
+# with col_bounded:
+#     strl.subheader("Oscillators thresholds")
+#     plot_graphs(df_meta, colored = False)
 
-with col_colored:
-    strl.subheader("Colored distribution")
-    plot_graphs(df_meta, colored = True)
+# with col_colored:
+#     strl.subheader("Colored distribution")
+#     plot_graphs(df_meta, colored = True)
