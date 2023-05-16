@@ -26,15 +26,11 @@ price_bool = False
 normalize_bool = False
 df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
 
-strl.write(df_metadata)
-
 #Calls all data
 metric = "All"
 price_bool = True
 normalize_bool = False
 df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
-
-strl.write(df_data.head())
 
 #Filters metadata to select metrics
 df_meta = df_metadata[df_metadata["type"].isin(["Technical"])]
