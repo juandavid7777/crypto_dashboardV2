@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import streamlit as strl
 
-from functions import  plot_graphs
+from functions import  plot_graphs, aws_crypto_api
 
 
 strl.set_page_config(layout="wide", page_title="BTC metrics - Technical", page_icon = "📈")
@@ -15,6 +15,16 @@ strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyK
 # Summary
 strl.markdown("""---""")
 strl.caption("Customized indicator powered by Glassnode")
+
+aws_api_url = "https://90ivl6cxgj.execute-api.ap-southeast-1.amazonaws.com/test_stage/metric1"
+metric = "All"
+price_bool = False
+normalize_bool = False
+api_key = strl.secrets["aws_api_token"]
+
+df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
+
+strl.write(df_metadata)
 
 df_thresholds = pd.read_csv("thresholds.csv")
 df_meta = df_thresholds[df_thresholds["type"].isin(["Technical"])]
