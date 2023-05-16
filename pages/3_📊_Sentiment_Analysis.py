@@ -3,7 +3,7 @@ import numpy as np
 import streamlit as strl
 
 
-from functions import plot_graphs
+from functions import plot_graphsV2, aws_crypto_api
 
 strl.set_page_config(layout="wide", page_title="BTC metrics - Sentiment", page_icon = "📊")
 
@@ -16,17 +16,34 @@ strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyK
 strl.markdown("""---""")
 strl.caption("Powered by Alternative.me")
 
-df_thresholds = pd.read_csv("thresholds.csv")
-df_meta = df_thresholds[df_thresholds["type"].isin(["Sentiment"])]
+#Sets API general parameters
+aws_api_url = strl.secrets["aws_api_url"]
+api_key = strl.secrets["aws_api_token"]
 
+#Calls metadata
+metric = "Metadata"
+price_bool = False
+normalize_bool = False
+df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
+
+#Calls all data
+metric = "All"
+price_bool = True
+normalize_bool = False
+df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
+
+#Filters metadata to select metrics
+df_meta = df_metadata[df_metadata["type"].isin(["Sentiment"])]
+
+#Plots selected metrics
 col_bounded, col_colored= strl.columns(2)
 
 with col_bounded:
     strl.subheader("Oscillators thresholds")
-    plot_graphs(df_meta, colored = False)
+    plot_graphsV2(df_data, df_meta, colored = False)
 
 with col_colored:
     strl.subheader("Colored distribution")
-    plot_graphs(df_meta, colored = True)
+    plot_graphsV2(df_data, df_meta, colored = True)
 
 

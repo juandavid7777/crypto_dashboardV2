@@ -2,8 +2,8 @@ import pandas as pd
 import numpy as np
 import streamlit as strl
 
-from functions import  aws_crypto_api, plot_graphsV2
 
+from functions import plot_graphsV2, aws_crypto_api
 
 strl.set_page_config(layout="wide", page_title="BTC metrics - Technical", page_icon = "📈")
 
