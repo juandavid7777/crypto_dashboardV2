@@ -950,3 +950,17 @@ def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, mod_type):
     fig.update_yaxes(secondary_y=True, showgrid=False, visible = False)
     
     return fig
+
+# ===========FUNCTIONS V2=========================
+def aws_crypto_api(url, metric, price_bool, normalize_bool, api_key):
+    
+    params = (("metric",metric),
+          ("price_bool", price_bool),
+          ("normalize_bool",normalize_bool),
+          ("api_key", api_key))
+
+    #Generates data requests and extracts the content
+    r = requests.get(url, params)
+    r_content = r.json()
+
+    return pd.read_json(r_content[metric], orient ='index')
