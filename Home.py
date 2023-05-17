@@ -4,7 +4,6 @@ import streamlit as strl
 
 from functions import bullet_fig_metric, market_data, aws_crypto_api
 
-
 #Gets latest price data
 btc_price, eth_price, btc_per, eth_per, btc_mcap, eth_mcap, crypto_mcap = market_data()
 

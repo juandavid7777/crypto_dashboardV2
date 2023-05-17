@@ -3,9 +3,9 @@ import numpy as np
 import streamlit as strl
 from datetime import date, timedelta, datetime
 
+from functions import aws_crypto_api, colored_metric, bounded_metric, bull_bear_classifier, ML_date_finder, ML_XY_dataselector, ML_model_traintest, ML_model_predict, ML_bull_bear_plot 
 
-from functions import api_btc_hist_price, api_gn_hist_data, api_tech_hist_data, api_fg_hist_data
-from functions import unified_df, colored_metric, bounded_metric, bull_bear_classifier, ML_date_finder, ML_XY_dataselector, ML_model_traintest, ML_model_predict, ML_bull_bear_plot 
+#Sets page configuration
 strl.set_page_config(layout="wide", page_title="BTC metrics - Machine Learning", page_icon = "⚙️")
 
 # Title
@@ -17,12 +17,21 @@ strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyK
 strl.markdown("""---""")
 strl.caption("Customized indicator powered by Coingecko, CryptoQuant, Glassnode and Alternative.me")
 
-# Defines metadata------------------------------------------------------------------------
-df_thresholds = pd.read_csv("thresholds.csv")
-df_meta = df_thresholds[df_thresholds["type"].isin(["Technical", "Onchain", "Sentiment"])]
+#Sets API general parameters
+aws_api_url = strl.secrets["aws_api_url"]
+api_key = strl.secrets["aws_api_token"]
 
-#Downloads data
-df = unified_df(df_meta)
+#Calls metadata
+metric = "Metadata"
+price_bool = False
+normalize_bool = False
+df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
+
+#Calls all data
+metric = "All"
+price_bool = True
+normalize_bool = False
+df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
 
 #Creates columns and sets buttons
 col_buttons, col_graphs = strl.columns([1, 3])
@@ -70,17 +79,17 @@ for metric in dict_var_bool:
         selected_cols_list.extend([metric])
 
 #Estimates average risk of selected columns
-df['Confluence risk'] = df[selected_cols_list].mean(axis=1)
+df_data['Confluence risk'] = df_data[selected_cols_list].mean(axis=1)
 
 with col_graphs:
 
-    last_cfrisk = df['Confluence risk'].iloc[-1]
+    last_cfrisk = df_data['Confluence risk'].iloc[-1]
 
     strl.header("Latest value: " + str(round(last_cfrisk,4)*100) + "%")
 
     # Plots
-    df_plot = df
-    strl.write(df.tail())
+    df_plot = df_data
+    strl.write(df_data.tail())
     
     strl.plotly_chart(colored_metric(df_plot, "Confluence risk", ".1%"), use_container_width=True)
     strl.plotly_chart(bounded_metric(df_plot,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)

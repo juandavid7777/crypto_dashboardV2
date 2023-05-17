@@ -251,51 +251,6 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
     return fig
 
 @strl.cache_data
-def unified_df(df_meta):
-
-    #Historic price
-    df_price = api_btc_hist_price()
-
-    # Runs functions in loops
-    for i, metric in enumerate(df_meta["metric_name"]):
-
-        # Defines the source of data to be used
-        if df_meta.iloc[i]["type"] == "Onchain":
-            df_metric = api_gn_hist_data(metric, df_meta.iloc[i]["api_id"])
-        elif df_meta.iloc[i]["type"] == "Technical":
-            df_metric = api_tech_hist_data(metric, df_meta.iloc[i]["api_id"])
-        else:
-            df_metric = api_fg_hist_data(metric, df_meta.iloc[i]["api_id"])
-
-        # Defines ranges to be used
-        min_val = df_metric[metric].min()
-        max_val = df_metric[metric].max()
-        range_vals = [min_val, df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], max_val ]
-        
-        #Log normalization
-        log_scale = df_meta.iloc[i]["log_scale"]
-        if log_scale == True:
-            df_metric[metric] = np.log(df_metric[metric])
-            min_val = np.log(min_val)
-            max_val = np.log(max_val)
-        
-        #Normalizes
-        df_metric[metric] = (df_metric[metric] - min_val)/(max_val-min_val)
-
-        #merges data
-        df_price = df_price.merge(df_metric, how = "outer", left_index=True, right_index=True)
-        df = df_price.reset_index()
-        
-        print(metric + " added to database")
-    
-    #Sets dataframe
-    df = df.set_index("Date")
-    df = df.ffill(axis=0)
-    
-    return df
-
-
-@strl.cache_data
 def bull_bear_classifier(df,bull_bear_map):
     
     #Initial conditions
