@@ -673,11 +673,13 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
         xaxis_title= "Date",
         yaxis_title= "USD/BTC",
         yaxis_type="log",
-        yaxis2_title=metric_name,
+        # yaxis2_title=metric_name,
         yaxis2_type=log_scale_val,
         xaxis_rangeslider_visible=False,
         hovermode="x unified", 
     )
+
+    fig.update_yaxes(title_text=metric_name, secondary_y=True)
 
     return fig
 
