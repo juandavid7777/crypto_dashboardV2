@@ -679,7 +679,7 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
         hovermode="x unified", 
     )
 
-    fig.update_yaxes(title_text=metric_name, secondary_y=True)
+    fig.update_yaxes(title_text="hello", secondary_y=True)
 
     return fig
 
