@@ -139,7 +139,7 @@ with col_onchain:
         strl.plotly_chart(fig, use_container_width=True)
 
 # Sentiment
-with col_onchain:
+with col_sent:
    strl.subheader("Sentiment")
    
    #Runs functions in loops
@@ -172,8 +172,6 @@ with col_onchain:
                     )
         
         strl.plotly_chart(fig, use_container_width=True)
-
-
 
 strl.markdown("""---""")
 strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
