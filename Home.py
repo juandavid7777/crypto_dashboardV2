@@ -16,7 +16,7 @@ strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyK
 
 # Summary
 strl.markdown("""---""")
-strl.caption("Powered by CoinGecko")
+strl.caption("Powered by CoinGecko and Python Analytics")
 strl.header("Market summary")
 
 col_mcap, col_per, col_price = strl.columns(3)
