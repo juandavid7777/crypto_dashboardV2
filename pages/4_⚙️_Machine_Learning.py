@@ -177,16 +177,12 @@ with col_MLinputs:
                                     max_value = ts_end
                                     )
     
+    #Changes datetime input into string with correct format
     mid_date = ts_mid.strftime("%Y-%m-%d")
     
     model_type = strl.selectbox('Machine learning model type',
                                 ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
                    
-strl.write(type(df_classified.index))
-strl.write(df_classified)
-strl.write(selected_variables)
-strl.write(start_date, mid_date, end_date)
-
 #Splits the data
 X_train, y_train, X_test, y_test, split_dates_list = ML_XY_dataselector(df_classified, selected_variables, "bull_bear", start_date, mid_date, end_date)
 
