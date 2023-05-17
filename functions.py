@@ -612,9 +612,12 @@ def colored_metric(df, metric_name, metric_format):
         xaxis_title= "Date",
         yaxis_title= "USD/BTC",
         yaxis_type="log",
+        coloraxis_colorbar=dict(title="Your Title"),
         xaxis_rangeslider_visible=False,
         hovermode="x unified",
     )
+
+
     
     return fig
 
@@ -673,7 +676,6 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
         xaxis_title= "Date",
         yaxis_title= "USD/BTC",
         yaxis_type="log",
-        # yaxis2_title=metric_name,
         yaxis2_type=log_scale_val,
         xaxis_rangeslider_visible=False,
         hovermode="x unified", 
