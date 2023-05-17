@@ -92,6 +92,7 @@ with col_graphs:
 
 
 strl.markdown("""---""")
+
 # Machine learning--------------------------------------------------------------    
 #Creates columns and sets buttons
 col_MLinputs, col_MLgraphs = strl.columns([1, 3])
@@ -157,7 +158,7 @@ bull_bear_map = ["17 07 2010 bot bull",
                 ]
 
     #Maps the bear bull periods in the data frame (Y variable)
-df_classified = bull_bear_classifier(df,bull_bear_map)
+df_classified = bull_bear_classifier(df_data,bull_bear_map)
 
     #Defines analysis dates
 start_date = ML_date_finder(df_classified, selected_variables)
