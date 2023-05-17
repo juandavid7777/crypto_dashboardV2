@@ -253,7 +253,7 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
 
 
 # ===========MACHINE LEARNING FUNCTIONS=========================
-@strl.cache_data
+
 def bull_bear_classifier(df,bull_bear_map):
     
     #Initial conditions
@@ -274,7 +274,6 @@ def bull_bear_classifier(df,bull_bear_map):
             
     return df
 
-@strl.cache_data
 def ML_date_finder(df, selected_Xvariables):
     #Finds initial possible date with current variable selection
     start_date = df.index[0]
@@ -286,7 +285,6 @@ def ML_date_finder(df, selected_Xvariables):
 
     return start_date
 
-@strl.cache_data
 def ML_XY_dataselector(df, selected_Xvariables, Yvariable, start_date, mid_date, end_date):
 
     #Defines dates to slice data
