@@ -179,12 +179,7 @@ with col_MLinputs:
     
     model_type = strl.selectbox('Machine learning model type',
                                 ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
-
-
-                
-                
-
-                    
+                   
 strl.write(type(df_classified.index))
 strl.write(df_classified)
 
