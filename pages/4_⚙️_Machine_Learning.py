@@ -171,11 +171,13 @@ ts_mid_init = ts_start + (ts_end-ts_start)*3/5
     #Time slider for input
 with col_MLinputs:
     strl.markdown("""---""")    
-    mid_date = strl.slider("Training/Test split date",
+    ts_mid = strl.slider("Training/Test split date",
                                     value = ts_mid_init,
                                     min_value = ts_start,
                                     max_value = ts_end
                                     )
+    
+    mid_date = ts_mid.strftime("%Y/%m/%d")
     
     model_type = strl.selectbox('Machine learning model type',
                                 ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
