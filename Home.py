@@ -45,7 +45,6 @@ with col_price:
 
 #Adds metrics in columns
 strl.markdown("""---""")
-strl.caption("Powered by Coingecko, CryptoQuant, Glassnode and Alternative.me")
 
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
