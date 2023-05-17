@@ -76,12 +76,13 @@ with col_tech:
    #Runs functions in loops
    df_meta = df_metadata[df_metadata["type"].isin(["Technical"])]
    strl.write(df_meta)
+
    for i, metric in enumerate(df_metadata["metric_name"]):
         # Defines the source of data to be used
 
         time_shift = 90 #days
 
-        val = df_data.iloc[-1][metric] 
+        val = df_data.iloc[-2][metric] 
         prev_val =  df_data.iloc[-time_shift][metric] 
         min_val = df_data[metric].min()
         max_val = df_data[metric].max()
