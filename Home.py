@@ -67,6 +67,8 @@ df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_ke
 strl.header("Metrics")
 col_tech, col_onchain, col_sent = strl.columns(3)
 
+strl.write(df_metadata)
+
 # Technical
 with col_tech:
    strl.subheader("Technical")
@@ -81,7 +83,7 @@ with col_tech:
         val = df_data.iloc[-1][metric] 
         prev_val =  df_data.iloc[-time_shift][metric] 
         min_val = df_data[metric].min()
-        max_val =df_data[metric].max()
+        max_val = df_data[metric].max()
        
         # Defines ranges to be used
         if df_meta.iloc[i]["custom_limit"] == True:
