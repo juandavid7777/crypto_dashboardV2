@@ -11,7 +11,6 @@ strl.set_page_config(layout="wide", page_title="BTC metrics - Machine Learning",
 # Title
 strl.image("ML.jpg", use_column_width = True)
 strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
-# strl.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Sentiment</b>', unsafe_allow_html=True)
 
 # Summary
 strl.markdown("""---""")
@@ -83,16 +82,13 @@ df_data['Confluence risk'] = df_data[selected_cols_list].mean(axis=1)
 
 with col_graphs:
 
+    #reports latest value
     last_cfrisk = df_data['Confluence risk'].iloc[-1]
-
     strl.header("Latest value: " + str(round(last_cfrisk,4)*100) + "%")
 
-    # Plots
-    df_plot = df_data
-    strl.write(df_data.tail())
-    
-    strl.plotly_chart(colored_metric(df_plot, "Confluence risk", ".1%"), use_container_width=True)
-    strl.plotly_chart(bounded_metric(df_plot,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)
+    # Plots   
+    strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%"), use_container_width=True)
+    strl.plotly_chart(bounded_metric(df_data,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)
 
 
 strl.markdown("""---""")
