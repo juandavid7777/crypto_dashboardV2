@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import streamlit as strl
 
-from functions import api_gn_bullet_data, api_tech_bullet_data, api_fg_bullet_data, bullet_fig_metric, market_data
+from functions import api_gn_bullet_data, api_tech_bullet_data, api_fg_bullet_data, bullet_fig_metric, market_data, aws_crypto_api
 
 
 #Gets latest price
@@ -46,6 +46,24 @@ with col_price:
 #Adds metrics in columns
 strl.markdown("""---""")
 strl.caption("Powered by Coingecko, CryptoQuant, Glassnode and Alternative.me")
+
+#Sets API general parameters
+aws_api_url = strl.secrets["aws_api_url"]
+api_key = strl.secrets["aws_api_token"]
+
+#Calls metadata
+metric = "Metadata"
+price_bool = False
+normalize_bool = False
+df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
+
+#Calls all data
+metric = "All"
+price_bool = True
+normalize_bool = False
+df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
+
+#Plots bullet data metrics
 strl.header("Metrics")
 col_tech, col_onchain, col_sent = strl.columns(3)
 
@@ -54,30 +72,31 @@ with col_tech:
    strl.subheader("Technical")
    
    #Runs functions in loops
-   df = df_thresholds[df_thresholds["type"].isin(["Technical"])]
-   for i, metric in enumerate(df["metric_name"]):
+   df_meta = df_metadata[df_metadata["type"].isin(["Technical"])]
+   for i, metric in enumerate(df_metadata["metric_name"]):
         # Defines the source of data to be used
-        if df.iloc[i]["type"] == "Onchain":
-            val, prev_val, min_val, max_val = api_gn_bullet_data(metric, df.iloc[i]["api_id"])
-        elif df.iloc[i]["type"] == "Technical":
-            val, prev_val, min_val, max_val = api_tech_bullet_data(metric, df.iloc[i]["api_id"])
-        else:
-            val, prev_val, min_val, max_val = api_fg_bullet_data(metric, df.iloc[i]["api_id"])
-        
+
+        time_shift = 90 #days
+
+        val = df_data.iloc[-1][metric] 
+        prev_val =  df_data.iloc[-time_shift][metric] 
+        min_val = df_data[metric].min()
+        max_val =df_data[metric].max()
+       
         # Defines ranges to be used
-        if df.iloc[i]["custom_limit"] == True:
-            range_vals = [df.iloc[i]["min"], df.iloc[i]["low"], df.iloc[i]["high"], df.iloc[i]["max"]]
+        if df_meta.iloc[i]["custom_limit"] == True:
+            range_vals = [df_meta.iloc[i]["min"], df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_meta.iloc[i]["max"]]
             
         else:
-            range_vals = [min_val, df.iloc[i]["low"], df.iloc[i]["high"], max_val]
+            range_vals = [min_val, df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], max_val]
 
         # Plots data
         fig = bullet_fig_metric(value_in = val,
                     previous_val = prev_val,
                     title_text = metric,
                     ranges = range_vals,
-                    format_num = df.iloc[i]["format"],
-                    log_scale = df.iloc[i]["log_scale"]
+                    format_num = df_meta.iloc[i]["format"],
+                    log_scale = df_meta.iloc[i]["log_scale"]
                     )
         
         strl.plotly_chart(fig, use_container_width=True)
