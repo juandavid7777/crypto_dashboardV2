@@ -63,11 +63,12 @@ price_bool = True
 normalize_bool = False
 df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
 
+
+strl.write(df_data.tail())
+
 #Plots bullet data metrics
 strl.header("Metrics")
 col_tech, col_onchain, col_sent = strl.columns(3)
-
-strl.write(df_data.tail())
 
 # Technical
 with col_tech:
