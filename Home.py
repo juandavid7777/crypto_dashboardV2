@@ -67,7 +67,7 @@ df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_ke
 strl.header("Metrics")
 col_tech, col_onchain, col_sent = strl.columns(3)
 
-strl.write(df_metadata)
+
 
 # Technical
 with col_tech:
@@ -75,6 +75,7 @@ with col_tech:
    
    #Runs functions in loops
    df_meta = df_metadata[df_metadata["type"].isin(["Technical"])]
+   strl.write(df_meta)
    for i, metric in enumerate(df_metadata["metric_name"]):
         # Defines the source of data to be used
 
