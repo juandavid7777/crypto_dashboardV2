@@ -5,12 +5,12 @@ import streamlit as strl
 
 from functions import plot_graphsV2, aws_crypto_api
 
+#Sets page configuration
 strl.set_page_config(layout="wide", page_title="BTC metrics - Technical", page_icon = "📈")
 
 # Title
 strl.image("technical_strip.png", use_column_width = True)
 strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
-# strl.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Technical</b>', unsafe_allow_html=True)
 
 # Summary
 strl.markdown("""---""")

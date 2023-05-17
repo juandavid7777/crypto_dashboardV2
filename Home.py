@@ -2,20 +2,18 @@ import pandas as pd
 import numpy as np
 import streamlit as strl
 
-from functions import api_gn_bullet_data, api_tech_bullet_data, api_fg_bullet_data, bullet_fig_metric, market_data, aws_crypto_api
+from functions import bullet_fig_metric, market_data, aws_crypto_api
 
 
-#Gets latest price
+#Gets latest price data
 btc_price, eth_price, btc_per, eth_per, btc_mcap, eth_mcap, crypto_mcap = market_data()
 
+#Sets page configuration
 strl.set_page_config(layout="wide", page_title="Home - BTC: " + str(btc_price), page_icon = "💰")
-
-#Imports the data - Should be secret
-df_thresholds = pd.read_csv("thresholds.csv")
 
 # Title
 strl.image("bitcoin_strip.png", use_column_width = True)
-# strl.markdown('<b style="color:darkgoldenrod ; font-size: 44px">BITCOIN metrics</b>', unsafe_allow_html=True)
+strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
 
 # Summary
 strl.markdown("""---""")
@@ -39,9 +37,6 @@ with col_price:
     strl.subheader("Price")
     strl.write("BTC/USD ", btc_price)
     strl.write(" ETH/USD ", eth_price)
-    # strl.write("")
-
-
 
 #Adds metrics in columns
 strl.markdown("""---""")
