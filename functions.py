@@ -679,7 +679,7 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
         hovermode="x unified", 
     )
 
-    fig.update_yaxes(title_text="hello", secondary_y=True)
+    fig.update_yaxes(title_text=metric_name, secondary_y=True)
 
     return fig
 
@@ -969,7 +969,6 @@ def aws_crypto_api(url, metric, price_bool, normalize_bool, api_key):
 
     return pd.read_json(r_content[metric], orient ='index')
 
-@strl.cache_data
 def plot_graphsV2(df_data, df_meta, colored = False):
 
      # Runs functions in loops
