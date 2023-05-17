@@ -107,7 +107,7 @@ with col_tech:
 
 
 # Onchain
-with col_tech:
+with col_onchain:
    strl.subheader("Onchain")
    
    #Runs functions in loops
