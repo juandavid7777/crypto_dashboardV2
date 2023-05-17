@@ -177,7 +177,7 @@ with col_MLinputs:
                                     max_value = ts_end
                                     )
     
-    mid_date = ts_mid.strftime("%Y/%m/%d")
+    mid_date = ts_mid.strftime("%Y-%m-%d")
     
     model_type = strl.selectbox('Machine learning model type',
                                 ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
