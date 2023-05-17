@@ -77,7 +77,7 @@ with col_tech:
    df_meta = df_metadata[df_metadata["type"].isin(["Technical"])]
    strl.write(df_meta)
 
-   for i, metric in enumerate(df_metadata["metric_name"]):
+   for i, metric in enumerate(df_meta["metric_name"]):
         # Defines the source of data to be used
 
         time_shift = 90 #days
