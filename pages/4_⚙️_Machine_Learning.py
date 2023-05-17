@@ -14,7 +14,7 @@ strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyK
 
 # Summary
 strl.markdown("""---""")
-strl.caption("Customized indicator powered by Coingecko, CryptoQuant, Glassnode and Alternative.me")
+strl.caption("Customized indicator powered by Python")
 
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
