@@ -585,7 +585,6 @@ def api_tech_hist_data(metric, api_ID):
     return df
 
 
-@strl.cache_data
 def colored_metric(df, metric_name, metric_format):
 
     fig = go.Figure()
@@ -621,7 +620,6 @@ def colored_metric(df, metric_name, metric_format):
     
     return fig
 
-@strl.cache_data
 def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale = False):
 
     min_lim = range_vals[0]
