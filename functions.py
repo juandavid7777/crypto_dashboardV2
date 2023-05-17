@@ -289,10 +289,10 @@ def ML_XY_dataselector(df, selected_Xvariables, Yvariable, start_date, mid_date,
 
     #Defines dates to slice data
     X_train = df.loc[start_date:mid_date][selected_Xvariables].values
-    y_train = df.loc[start_date:mid_date][[Yvariable]].values
+    y_train = df.loc[start_date:mid_date][Yvariable].values
 
     X_test = df.loc[mid_date:end_date][selected_Xvariables].values
-    y_test = df.loc[mid_date:end_date][[Yvariable]].values
+    y_test = df.loc[mid_date:end_date][Yvariable].values
     
     return X_train, y_train, X_test, y_test, [start_date, mid_date, end_date]
 
