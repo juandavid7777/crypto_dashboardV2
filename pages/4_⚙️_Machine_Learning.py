@@ -167,8 +167,8 @@ df_classified = bull_bear_classifier(df_data,bull_bear_map)
 start_date = ML_date_finder(df_classified, selected_variables)
 end_date = "2021-07-20" # Comes from the max variable mapped in the classification
 
-ts_start = datetime.strptime(start_date,'%Y-%m-%d')
-ts_end = datetime.strptime(end_date,'%Y-%m-%d')
+ts_start = datetime.datetime.strptime(start_date,'%Y-%m-%d')
+ts_end = datetime.datetime.strptime(end_date,'%Y-%m-%d')
 ts_mid_init = ts_start + (ts_end-ts_start)*3/5
 
     #Time slider for input
