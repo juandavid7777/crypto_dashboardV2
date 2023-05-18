@@ -12,8 +12,7 @@ strl.set_page_config(layout="wide", page_title="BTC metrics - Machine Learning",
 
 # Title
 strl.image("ML.jpg", use_column_width = True)
-strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
-strl.caption("https://bmc.link/juandavid7E")
+strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34 or buy me a beer https://bmc.link/juandavid7E" )
 
 # Summary
 strl.markdown("""---""")

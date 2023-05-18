@@ -12,12 +12,12 @@ strl.set_page_config(layout="wide", page_title="BTC metrics - Sentiment", page_i
 
 # Title
 strl.image("sentiment_strip.png", use_column_width = True)
-strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34 or buy me a beer https://bmc.link/juandavid7E" )
 
 # Summary
 strl.markdown("""---""")
 strl.caption("Indicator powered by Alternative.me and Python Analytics")
-strl.caption("https://bmc.link/juandavid7E")
+
 
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
