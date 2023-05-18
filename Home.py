@@ -22,7 +22,7 @@ strl.image("bitcoin_strip.png", use_column_width = True)
 
 # Donations
 strl.write("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Stay tunned, and keep accumulating!")
-col1, col2, col3, col4 = strl.columns([1, 1, 2,8])
+col1, col2, col3, col4 = strl.columns([1.5, 1.5, 2,8])
 
 with col1:
     badge(type="twitter", name="barbosa83")
