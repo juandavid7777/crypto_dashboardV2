@@ -17,6 +17,7 @@ strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyK
 # Summary
 strl.markdown("""---""")
 strl.caption("Indicator powered by Alternative.me and Python Analytics")
+strl.caption("https://bmc.link/juandavid7E")
 
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]

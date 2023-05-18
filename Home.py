@@ -16,6 +16,7 @@ strl.set_page_config(layout="wide", page_title="Home - BTC: " + str(btc_price), 
 # Title
 strl.image("bitcoin_strip.png", use_column_width = True)
 strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+strl.caption("https://bmc.link/juandavid7E")
 
 # Summary
 strl.markdown("""---""")
@@ -172,4 +173,6 @@ with col_sent:
 
 strl.markdown("""---""")
 strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+strl.caption("https://bmc.link/juandavid7E")
 strl.caption("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Your donation will support our research and pave the way for innovative solutions. (BTC address: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34). Stay tunned, and keep accumulating!")
+
