@@ -35,7 +35,7 @@ button(username="juandavid7E",
        text = "Buy me a beer",
        bg_color = '#40DCA5',
        emoji = "🍺",
-       floating=True, width=110)
+       floating=True, width=220)
 
 # Summary
 strl.write("---")
