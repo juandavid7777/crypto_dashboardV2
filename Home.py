@@ -186,4 +186,3 @@ button(username="juandavid7E",
 
 badge(type="buymeacoffee", name="juandavid7E")
 badge(type="twitter", name="barbosa83")
-badge(type="github", name="juandavid7777/crypto_dashboardV2")
