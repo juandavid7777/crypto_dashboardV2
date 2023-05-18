@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import streamlit as strl
 
-from streamlit.components.v1 import html
 from streamlit_extras.buy_me_a_coffee import button
 from streamlit_extras.badges import badge
 
@@ -192,7 +191,7 @@ with col_sent:
 
 #Final comments
 strl.markdown("""---""")
-strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions")
+strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions.")
 
 col1, col2, col3, col4 = strl.columns([1, 1, 4, 6])
 
