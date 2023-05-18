@@ -240,5 +240,7 @@ strl.caption("Unlock the potential of data science and bitcoin analysis to creat
 #         )
 
 button(username="juandavid7E",
-       bg_color = '#FFDD00',
+       text = "Buy me a beer",
+       bg_color = '#40DCA5',
+       emoji = "🍺",
        floating=False, width=221)
