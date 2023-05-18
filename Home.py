@@ -4,6 +4,7 @@ import streamlit as strl
 
 from streamlit.components.v1 import html
 from streamlit_extras.buy_me_a_coffee import button
+from streamlit_extras.badges import badge
 
 from datetime import date, timedelta
 import datetime
@@ -177,70 +178,12 @@ strl.markdown("""---""")
 strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34 or buy me a beer https://bmc.link/juandavid7E" )
 strl.caption("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Your donation will support our research and pave the way for innovative solutions. (BTC address: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34). Stay tunned, and keep accumulating!")
 
-# button = """
-# <a href="https://www.buymeacoffee.com/juandavid7E"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=juandavid7E&button_colour=40DCA5&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
-# """
-
-# html(button, height=70, width=220)
-
-# strl.markdown(
-#     """
-#     <style>
-#         iframe[width="220"] {
-#             position: fixed;
-#             bottom: 60px;
-#             right: 40px;
-#         }
-#     </style>
-#     """,
-#     unsafe_allow_html=True,
-# )
-
-# @extra
-# def button(
-#     username: "juandavid7E",
-#     floating: bool = True,
-#     text: str = "Buy me a beer",
-#     emoji: str = "🍺",
-#     bg_color: str = "#40DCA5",
-#     font: Font = "Cookie",
-#     font_color: str = "#000000",
-#     coffee_color: str = "#000000",
-#     width: int = 220,
-# ):
-#     button = f"""
-#         <script type="text/javascript"
-#             src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
-#             data-name="bmc-button"
-#             data-slug="{username}"
-#             data-color="{bg_color}"
-#             data-emoji="{emoji}"
-#             data-font="{font}"
-#             data-text="{text}"
-#             data-outline-color="#000000"
-#             data-font-color="{font_color}"
-#             data-coffee-color="{coffee_color}" >
-#         </script>
-#     """
-
-#     html(button, height=70, width=width)
-
-#     if floating:
-#         strl.markdown(
-#             f"""
-#             <style>
-#                 iframe[width="{width}"] {{
-#                     position: fixed;
-#                     bottom: 60px;
-#                     right: 40px;
-#                 }}
-#             </style>
-#             """,
-#             unsafe_allow_html=True,
-#         )
-
 button(username="juandavid7E",
        text = "Buy me a beer",
        bg_color = '#40DCA5',
        emoji = "🍺",
        floating=False, width=221)
+
+badge(type="buymeacoffee", name="juandavid7E")
+badge(type="twitter", name="barbosa83")
+badge(type="github", name="juandavid7777/crypto_dashboardV2")
