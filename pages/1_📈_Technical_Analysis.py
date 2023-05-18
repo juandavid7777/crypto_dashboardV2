@@ -22,7 +22,9 @@ strl.caption("Customized indicator powered by Python Analytics")
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
 api_key = strl.secrets["aws_api_token"]
-date_today = datetime.now().strftime("%Y-%m-%d")
+date_today = datetime.now() #.strftime("%Y-%m-%d")
+
+strl.write(date_today)
 
 #Calls metadata
 metric = "Metadata"
