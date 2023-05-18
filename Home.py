@@ -21,7 +21,8 @@ strl.set_page_config(layout="wide", page_title="Home - BTC: " + str(btc_price), 
 strl.image("bitcoin_strip.png", use_column_width = True)
 
 # Donations
-strl.caption("Have you found this useful? Consider donating ₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+strl.caption("Have you found this useful? Consider donating")
+strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
 badge(type="buymeacoffee", name="juandavid7E")
 badge(type="twitter", name="barbosa83")
 
