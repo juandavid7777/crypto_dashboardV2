@@ -191,25 +191,16 @@ with col_sent:
         strl.plotly_chart(fig, use_container_width=True)
 
 #Final comments
-strl.markdown("""---""")
-strl.write("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Your donation will support our research and pave the way for innovative solutions. (BTC address: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34). Stay tunned, and keep accumulating!")
-
-# Donations
 strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions")
-col1, col2, col3, col4 = strl.columns([2, 1, 1,8])
+
+col1, col2, col3, col4 = strl.columns([1, 1, 2,8])
 
 with col1:
-    strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+    badge(type="twitter", name="barbosa83")
 with col2:
     badge(type="buymeacoffee", name="juandavid7E")
 with col3:
-    badge(type="twitter", name="barbosa83")
-
-button(username="juandavid7E",
-       text = "Buy me a beer",
-       bg_color = '#40DCA5',
-       emoji = "🍺",
-       floating=True, width=221)
+    strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
 
 
 
