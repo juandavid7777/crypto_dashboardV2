@@ -35,7 +35,7 @@ button(username="juandavid7E",
        text = "Buy me a beer",
        bg_color = '#40DCA5',
        emoji = "🍺",
-       floating=True, width=221)
+       floating=True, width=110)
 
 # Summary
 strl.write("---")
@@ -191,6 +191,7 @@ with col_sent:
         strl.plotly_chart(fig, use_container_width=True)
 
 #Final comments
+strl.markdown("""---""")
 strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions")
 
 col1, col2, col3, col4 = strl.columns([1, 1, 2,8])
