@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import streamlit as strl
 
+from datetime import date, timedelta
+import datetime
+
 from functions import bullet_fig_metric, market_data, aws_crypto_api
 
 #Gets latest price data
@@ -43,18 +46,19 @@ strl.markdown("""---""")
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
 api_key = strl.secrets["aws_api_token"]
+date_today = datetime.now().strftime("%Y-%m-%d")
 
 #Calls metadata
 metric = "Metadata"
 price_bool = False
 normalize_bool = False
-df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
+df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key, date_today)
 
 #Calls all data
 metric = "All"
 price_bool = True
 normalize_bool = False
-df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
+df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key,date_today)
 
 #Plots bullet data metrics
 strl.header("Metrics")

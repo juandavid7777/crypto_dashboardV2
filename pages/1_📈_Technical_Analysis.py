@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import streamlit as strl
 
+from datetime import date, timedelta
+import datetime
+
 
 from functions import plot_graphsV2, aws_crypto_api
 
@@ -19,18 +22,19 @@ strl.caption("Customized indicator powered by Python Analytics")
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
 api_key = strl.secrets["aws_api_token"]
+date_today = datetime.now().strftime("%Y-%m-%d")
 
 #Calls metadata
 metric = "Metadata"
 price_bool = False
 normalize_bool = False
-df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
+df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key, date_today)
 
 #Calls all data
 metric = "All"
 price_bool = True
 normalize_bool = False
-df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key)
+df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key,date_today)
 
 #Filters metadata to select metrics
 df_meta = df_metadata[df_metadata["type"].isin(["Technical"])]
