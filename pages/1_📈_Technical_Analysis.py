@@ -5,7 +5,6 @@ import streamlit as strl
 from datetime import date, timedelta
 import datetime
 
-
 from functions import plot_graphsV2, aws_crypto_api
 
 #Sets page configuration
