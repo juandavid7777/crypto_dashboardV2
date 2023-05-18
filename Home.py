@@ -21,7 +21,7 @@ strl.set_page_config(layout="wide", page_title="Home - BTC: " + str(btc_price), 
 strl.image("bitcoin_strip.png", use_column_width = True)
 
 # Donations
-strl.write("Have you found this useful? Consider donating")
+strl.write("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Stay tunned, and keep accumulating!")
 col1, col2, col3, col4 = strl.columns([2, 1, 1,8])
 
 with col1:
@@ -192,10 +192,10 @@ with col_sent:
 
 #Final comments
 strl.markdown("""---""")
-strl.caption("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Your donation will support our research and pave the way for innovative solutions. (BTC address: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34). Stay tunned, and keep accumulating!")
+strl.write("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Your donation will support our research and pave the way for innovative solutions. (BTC address: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34). Stay tunned, and keep accumulating!")
 
 # Donations
-strl.write("Have you found this useful? Consider donating")
+strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions")
 col1, col2, col3, col4 = strl.columns([2, 1, 1,8])
 
 with col1:
