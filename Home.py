@@ -194,7 +194,7 @@ with col_sent:
 strl.markdown("""---""")
 strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions")
 
-col1, col2, col3, col4 = strl.columns([1, 1, 2,8])
+col1, col2, col3, col4 = strl.columns([1, 1, 4, 6])
 
 with col1:
     badge(type="twitter", name="barbosa83")
