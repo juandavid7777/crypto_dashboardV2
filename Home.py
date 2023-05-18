@@ -175,14 +175,15 @@ with col_sent:
         strl.plotly_chart(fig, use_container_width=True)
 
 strl.markdown("""---""")
-strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34 or buy me a beer https://bmc.link/juandavid7E" )
 strl.caption("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Your donation will support our research and pave the way for innovative solutions. (BTC address: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34). Stay tunned, and keep accumulating!")
+strl.caption("Have you found this useful? Consider donating ₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+badge(type="buymeacoffee", name="juandavid7E")
+badge(type="twitter", name="barbosa83")
 
 button(username="juandavid7E",
        text = "Buy me a beer",
        bg_color = '#40DCA5',
        emoji = "🍺",
-       floating=False, width=221)
+       floating=True, width=221)
 
-badge(type="buymeacoffee", name="juandavid7E")
-badge(type="twitter", name="barbosa83")
+
