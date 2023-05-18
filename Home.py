@@ -22,9 +22,14 @@ strl.image("bitcoin_strip.png", use_column_width = True)
 
 # Donations
 strl.caption("Have you found this useful? Consider donating")
-strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
-badge(type="buymeacoffee", name="juandavid7E")
-badge(type="twitter", name="barbosa83")
+col1, col2, col3 = strl.columns(3)
+
+with col1:
+    strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+with col2:
+    badge(type="buymeacoffee", name="juandavid7E")
+with col3:
+    badge(type="twitter", name="barbosa83")
 
 button(username="juandavid7E",
        text = "Buy me a beer",
