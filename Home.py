@@ -38,7 +38,7 @@ button(username="juandavid7E",
        floating=True, width=221)
 
 # Summary
-strl.markdown("---")
+strl.write("---")
 strl.caption("Powered by CoinGecko and Python Analytics")
 strl.header("Market summary")
 
