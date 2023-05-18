@@ -196,45 +196,49 @@ strl.caption("Unlock the potential of data science and bitcoin analysis to creat
 #     unsafe_allow_html=True,
 # )
 
-@extra
-def button(
-    username: "juandavid7E",
-    floating: bool = True,
-    text: str = "Buy me a beer",
-    emoji: str = "🍺",
-    bg_color: str = "#40DCA5",
-    font: Font = "Cookie",
-    font_color: str = "#000000",
-    coffee_color: str = "#000000",
-    width: int = 220,
-):
-    button = f"""
-        <script type="text/javascript"
-            src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
-            data-name="bmc-button"
-            data-slug="{username}"
-            data-color="{bg_color}"
-            data-emoji="{emoji}"
-            data-font="{font}"
-            data-text="{text}"
-            data-outline-color="#000000"
-            data-font-color="{font_color}"
-            data-coffee-color="{coffee_color}" >
-        </script>
-    """
+# @extra
+# def button(
+#     username: "juandavid7E",
+#     floating: bool = True,
+#     text: str = "Buy me a beer",
+#     emoji: str = "🍺",
+#     bg_color: str = "#40DCA5",
+#     font: Font = "Cookie",
+#     font_color: str = "#000000",
+#     coffee_color: str = "#000000",
+#     width: int = 220,
+# ):
+#     button = f"""
+#         <script type="text/javascript"
+#             src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js"
+#             data-name="bmc-button"
+#             data-slug="{username}"
+#             data-color="{bg_color}"
+#             data-emoji="{emoji}"
+#             data-font="{font}"
+#             data-text="{text}"
+#             data-outline-color="#000000"
+#             data-font-color="{font_color}"
+#             data-coffee-color="{coffee_color}" >
+#         </script>
+#     """
 
-    html(button, height=70, width=width)
+#     html(button, height=70, width=width)
 
-    if floating:
-        strl.markdown(
-            f"""
-            <style>
-                iframe[width="{width}"] {{
-                    position: fixed;
-                    bottom: 60px;
-                    right: 40px;
-                }}
-            </style>
-            """,
-            unsafe_allow_html=True,
-        )
+#     if floating:
+#         strl.markdown(
+#             f"""
+#             <style>
+#                 iframe[width="{width}"] {{
+#                     position: fixed;
+#                     bottom: 60px;
+#                     right: 40px;
+#                 }}
+#             </style>
+#             """,
+#             unsafe_allow_html=True,
+#         )
+
+button(username="juandavid7E",
+    #    bg_color: str = '#FFDD00',
+       floating=False, width=221)
