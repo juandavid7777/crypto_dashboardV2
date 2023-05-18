@@ -26,6 +26,7 @@ date_today = datetime.now() #.strftime("%Y-%m-%d")
 
 strl.write(date_today)
 
+
 #Calls metadata
 metric = "Metadata"
 price_bool = False
