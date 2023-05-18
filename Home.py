@@ -19,7 +19,17 @@ strl.set_page_config(layout="wide", page_title="Home - BTC: " + str(btc_price), 
 
 # Title
 strl.image("bitcoin_strip.png", use_column_width = True)
-strl.caption("Have you found this useful? Consider donating ₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34"), badge(type="buymeacoffee", name="juandavid7E"), badge(type="twitter", name="barbosa83")
+
+# Donations
+strl.caption("Have you found this useful? Consider donating ₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+badge(type="buymeacoffee", name="juandavid7E")
+badge(type="twitter", name="barbosa83")
+
+button(username="juandavid7E",
+       text = "Buy me a beer",
+       bg_color = '#40DCA5',
+       emoji = "🍺",
+       floating=True, width=221)
 
 # Summary
 strl.markdown("""---""")
@@ -180,10 +190,6 @@ strl.caption("Have you found this useful? Consider donating ₿: 3EbH7JPSTGqSzyK
 badge(type="buymeacoffee", name="juandavid7E")
 badge(type="twitter", name="barbosa83")
 
-button(username="juandavid7E",
-       text = "Buy me a beer",
-       bg_color = '#40DCA5',
-       emoji = "🍺",
-       floating=True, width=221)
+
 
 
