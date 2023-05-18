@@ -21,8 +21,8 @@ strl.set_page_config(layout="wide", page_title="Home - BTC: " + str(btc_price), 
 strl.image("bitcoin_strip.png", use_column_width = True)
 
 # Donations
-strl.caption("Have you found this useful? Consider donating")
-col1, col2, col3 = strl.columns(3)
+strl.write("Have you found this useful? Consider donating")
+col1, col2, col3, col4 = strl.columns([1, 1, 1,4])
 
 with col1:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
