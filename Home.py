@@ -39,8 +39,8 @@ button(username="juandavid7E",
 
 # Summary
 strl.write("---")
-strl.caption("Powered by CoinGecko and Python Analytics")
 strl.header("Market summary")
+strl.caption("Powered by CoinGecko and Python Analytics")
 
 col_mcap, col_per, col_price = strl.columns(3)
 
@@ -190,11 +190,26 @@ with col_sent:
         
         strl.plotly_chart(fig, use_container_width=True)
 
+#Final comments
 strl.markdown("""---""")
 strl.caption("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Your donation will support our research and pave the way for innovative solutions. (BTC address: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34). Stay tunned, and keep accumulating!")
-strl.caption("Have you found this useful? Consider donating ₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
-badge(type="buymeacoffee", name="juandavid7E")
-badge(type="twitter", name="barbosa83")
+
+# Donations
+strl.write("Have you found this useful? Consider donating")
+col1, col2, col3, col4 = strl.columns([2, 1, 1,8])
+
+with col1:
+    strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+with col2:
+    badge(type="buymeacoffee", name="juandavid7E")
+with col3:
+    badge(type="twitter", name="barbosa83")
+
+button(username="juandavid7E",
+       text = "Buy me a beer",
+       bg_color = '#40DCA5',
+       emoji = "🍺",
+       floating=True, width=221)
 
 
 
