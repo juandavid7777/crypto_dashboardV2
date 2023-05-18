@@ -2,6 +2,8 @@ import pandas as pd
 import numpy as np
 import streamlit as strl
 
+from streamlit.components.v1 import html
+
 from datetime import date, timedelta
 import datetime
 
@@ -174,7 +176,21 @@ strl.markdown("""---""")
 strl.write("Have you found this useful? Consider donating - BTC: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34 or buy me a beer https://bmc.link/juandavid7E" )
 strl.caption("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Your donation will support our research and pave the way for innovative solutions. (BTC address: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34). Stay tunned, and keep accumulating!")
 
-strl.markdown("""
+button = """
 <a href="https://www.buymeacoffee.com/juandavid7E"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=juandavid7E&button_colour=40DCA5&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00" /></a>
 """
+
+html(button, height=70, width=220)
+
+strl.markdown(
+    """
+    <style>
+        iframe[width="220"] {
+            position: fixed;
+            bottom: 60px;
+            right: 40px;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
