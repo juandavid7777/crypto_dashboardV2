@@ -31,7 +31,7 @@ with col2:
 with col3:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
 
-colored_header(color_name="yellow-80")
+colored_header(label = "", description = "", color_name="yellow-80")
 
 # Summary
 # strl.write("---")
