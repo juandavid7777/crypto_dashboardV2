@@ -199,7 +199,7 @@ with col3:
 
 button(username="juandavid7E",
        text = "Buy me a coffee",
-       bg_color = '#40DCA5',
+       bg_color = '#FFDD00',
     #    emoji = "🍺",
        floating=False, width=220)
 
