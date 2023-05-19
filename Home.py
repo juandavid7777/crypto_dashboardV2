@@ -4,6 +4,7 @@ import streamlit as strl
 
 from streamlit_extras.buy_me_a_coffee import button
 from streamlit_extras.badges import badge
+from streamlit_extras.colored_header import colored_header
 
 from datetime import date, timedelta
 import datetime
@@ -30,8 +31,10 @@ with col2:
 with col3:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
 
+colored_header(color_name="yellow-80")
+
 # Summary
-strl.write("---")
+# strl.write("---")
 strl.header("Market summary")
 strl.caption("Powered by CoinGecko and Python Analytics")
 
