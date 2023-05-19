@@ -64,7 +64,7 @@ with col_colored:
     plot_graphsV2(df_data, df_meta, colored = True)
 
 #Final comments
-strl.markdown("""---""")
+colored_header(label = "", description = "", color_name="yellow-80")
 strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions.")
 
 col1, col2, col3, col4 = strl.columns([1.2, 1.2, 4, 5.6])
