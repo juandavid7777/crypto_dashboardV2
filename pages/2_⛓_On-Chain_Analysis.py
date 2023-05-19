@@ -18,7 +18,7 @@ strl.image("onchain_strip.png", use_column_width = True)
 
 # Donations
 strl.write("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Stay tunned, and keep accumulating!")
-col1, col2, col3, col4 = strl.columns([1, 1, 4, 6])
+col1, col2, col3, col4 = strl.columns([1.2, 1.2, 4, 5.6])
 
 with col1:
     badge(type="twitter", name="barbosa83")
@@ -72,7 +72,7 @@ with col_colored:
 strl.markdown("""---""")
 strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions.")
 
-col1, col2, col3, col4 = strl.columns([1, 1, 4, 6])
+col1, col2, col3, col4 = strl.columns([1.2, 1.2, 4, 5.6])
 
 with col1:
     badge(type="twitter", name="barbosa83")
