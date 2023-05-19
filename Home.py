@@ -30,12 +30,6 @@ with col2:
 with col3:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
 
-button(username="juandavid7E",
-       text = "Buy me a coffee",
-       bg_color = '#40DCA5',
-    #    emoji = "🍺",
-       floating=True, width=220)
-
 # Summary
 strl.write("---")
 strl.header("Market summary")
@@ -201,6 +195,12 @@ with col2:
     badge(type="buymeacoffee", name="juandavid7E")
 with col3:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+
+button(username="juandavid7E",
+       text = "Buy me a coffee",
+       bg_color = '#40DCA5',
+    #    emoji = "🍺",
+       floating=False, width=220)
 
 
 

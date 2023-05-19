@@ -27,12 +27,6 @@ with col2:
 with col3:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
 
-button(username="juandavid7E",
-       text = "Buy me a coffee",
-       bg_color = '#40DCA5',
-    #    emoji = "🍺",
-       floating=True, width=220)
-
 # Summary
 strl.markdown("""---""")
 strl.caption("Indicator powered by Alternative.me and Python Analytics")
