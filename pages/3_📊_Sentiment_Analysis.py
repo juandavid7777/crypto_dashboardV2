@@ -68,7 +68,7 @@ with col_colored:
 colored_header(label = "", description = "", color_name="yellow-80")
 strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions.")
 
-col1, col2, col3, col4 = strl.columns([1.2, 1.2, 4, 5.6])
+col1, col2, col3, col4 = strl.columns([1.5, 1.5, 5, 4])
 
 with col1:
     badge(type="twitter", name="barbosa83")
