@@ -217,7 +217,7 @@ df_new = ML_model_predict(model, df_classified, selected_variables, start_date)
 with col_MLgraphs:
 
     #Reports accuracy
-    strl.header("Mapping accuracy: " + str(round((accuracy*100), 2))  + "%")
+    strl.header("Mapping accuracy: " + str(round((accuracy*100), 1))  + "%")
 
     #Plots prediction
     strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, model_type), use_container_width=True)
