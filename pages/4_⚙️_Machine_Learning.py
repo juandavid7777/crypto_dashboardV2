@@ -101,7 +101,7 @@ with col_graphs:
 
     #reports latest value
     last_cfrisk = df_data['Confluence risk'].iloc[-1]
-    strl.header("Latest value: " + str(round(last_cfrisk,4)*100) + "%")
+    strl.header("Latest value: " + str(round(last_cfrisk*100,2)) + "%")
 
     # Plots   
     strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%"), use_container_width=True)
@@ -217,7 +217,7 @@ df_new = ML_model_predict(model, df_classified, selected_variables, start_date)
 with col_MLgraphs:
 
     #Reports accuracy
-    strl.header("Mapping accuracy: ", round((accuracy*100), 1), "%")
+    strl.header("Mapping accuracy: " + str(round((accuracy*100), 1)), " %")
 
     #Plots prediction
     strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, model_type), use_container_width=True)
