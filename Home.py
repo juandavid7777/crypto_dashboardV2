@@ -31,6 +31,8 @@ with col2:
 with col3:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
 
+strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable price cycles since its inception. These cycles often exhibit patterns influenced by various factors. One approach to understanding and predicting these cycles is by utilizing the concept of Bitcoin halving. Building on this idea, a comprehensive analysis of nine metrics has been conducted, encompassing technical, on-chain, and sentiment indicators. By incorporating information from multiple sources, this data-driven methodology aims to identify repeating patterns and predict the market’s trend.")
+
 # Summary
 colored_header(label = "", description = "", color_name="yellow-80")
 strl.header("Market summary")
