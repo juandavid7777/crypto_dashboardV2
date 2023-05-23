@@ -21,7 +21,7 @@ strl.set_page_config(layout="wide", page_title="Home - BTC: " + str(btc_price), 
 strl.image("bitcoin_strip.png", use_column_width = True)
 
 # Donations
-strl.subheader("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Stay tunned, and keep accumulating!")
+strl.subheader("Unlock the potential of data science and Bitcoin analysis to create a brighter financial future for all. Stay tunned, and keep accumulating!")
 col1, col2, col3, col4 = strl.columns([1.5, 1.5, 5, 4])
 
 with col1:
