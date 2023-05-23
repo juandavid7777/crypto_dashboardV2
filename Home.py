@@ -38,9 +38,6 @@ colored_header(label = "", description = "", color_name="yellow-80")
 strl.header("Market summary")
 strl.caption("Powered by CoinGecko and Python Analytics")
 
-strl.write("The selected oscillating metrics consist of two technical indicators derived purely from price movements, five on-chain indicators based on wallet movements within the blockchain, and two sentiment indicators utilizing information extracted from social media platforms. Future work will add new metrics that follow an oscillating cyclic pattern that relates to the Bitcoin repeating dynamics. Common cyclic peaks, valleys and mid-cycle areas can be identified in individual metrics, however, a convergence approach should be implemented to reduce the risk when classifying the market trend.")
-strl.caption("Bullet figures below show the current value of the metric and the cycle area where has been mapped. For a historic visualization of each metric, check the Technical, On-chain and Sentiment sections.")
-
 col_mcap, col_per, col_price = strl.columns(3)
 
 with col_mcap:
@@ -81,6 +78,10 @@ df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_ke
 
 #Plots bullet data metrics
 strl.header("Metrics")
+
+strl.write("The selected oscillating metrics consist of two technical indicators derived purely from price movements, five on-chain indicators based on wallet movements within the blockchain, and two sentiment indicators utilizing information extracted from social media platforms. Future work will add new metrics that follow an oscillating cyclic pattern that relates to the Bitcoin repeating dynamics. Common cyclic peaks, valleys and mid-cycle areas can be identified in individual metrics, however, a convergence approach should be implemented to reduce the risk when classifying the market trend.")
+strl.caption("Bullet figures below show the current value of the metric and the cycle area where has been mapped. For a historic visualization of each metric, check the Technical, On-chain and Sentiment sections.")
+
 col_tech, col_onchain, col_sent = strl.columns(3)
 
 # Technical
