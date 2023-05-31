@@ -238,8 +238,9 @@ with col_MLgraphs:
     strl.write(mid_date)
     strl.write(end_date)
 
-    df_soft_vote = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7)
+    df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7)
 
+    strl.write(df_accuracy)
     strl.write(df_soft_vote)
 
     strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = 0.8))
