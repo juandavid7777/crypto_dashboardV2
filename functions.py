@@ -542,7 +542,7 @@ def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date,
 def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
 
     #Creates copy of trend  
-    df_in["bull_bear_pred_cat"] =  df_in["bull_bear_pred"]
+    df_in["bull_bear_pred_cat"] = df_in["bull_bear_pred"]
 
 
     #Encodes bull bear
