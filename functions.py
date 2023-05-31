@@ -647,7 +647,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                             x=df.index, y=df["bar_vote"]*100, 
                             mode = 'lines', 
                             name = "Confidence vote",
-                            marker=dict(size=0.011,color = "#99ccff"),
+                            marker=dict(size=0.011,color = "#202020"),
                             opacity=0.5,
                             customdata=df["bull_bear_pred_cat"],
                             hovertemplate='Trend assessment: %{customdata}<extra></extra>'
@@ -682,7 +682,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
     
     fig.add_hline(y=conf_threshold*100, line_width=1.5, line_dash="dot", line_color="orange", secondary_y=True)
     fig.add_annotation(y=conf_threshold*0.85,
-                       x=0,
+                       x=0.1,
                        xref='paper',
                        yref='y',
                        showarrow=False,
