@@ -605,6 +605,11 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
 
        
     #Soft vote line mapping
+    fig.add_hline(y=conf_threshold*100, line_width=1, line_dash="dash", line_color="orange", secondary_y=True)
+    # fig.add_annotation(y=conf_threshold, xanchor = "left",
+    #                    y = 1, yref = "paper", yanchor = "top", secondary_y=True,
+    #                    showarrow=False, textangle = 90, text="Conf. Threshold")
+
     df["bull_conf"] = df.apply(lambda x: x["bar_vote"] if ((x["bull_bear_pred"] == 1) & (x["bar_vote"] > conf_threshold)) else 0, axis = 1)
     df["bear_conf"] = df.apply(lambda x: x["bar_vote"] if ((x["bull_bear_pred"] == 0) & (x["bar_vote"] > conf_threshold)) else 0, axis = 1)
     df["uncertain"] = df.apply(lambda x: x["bar_vote"] if (x["bar_vote"] <= conf_threshold) else 0, axis = 1)
@@ -680,10 +685,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
                        showarrow=False, textangle = 90, text="Unclassified data")
     
-    fig.add_hline(y=conf_threshold*100, line_width=0.5, line_dash="dash", line_color="orange", secondary_y=True)
-    # fig.add_annotation(y=conf_threshold, xanchor = "left",
-    #                    y = 1, yref = "paper", yanchor = "top", secondary_y=True,
-    #                    showarrow=False, textangle = 90, text="Conf. Threshold")
+    
     
     #Updates figure
     fig.update_layout(
