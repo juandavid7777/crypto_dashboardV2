@@ -139,7 +139,7 @@ with col_MLinputs:
     mid_date = ts_mid.strftime("%Y-%m-%d")
 
 with col_MLgraphs:
-    strl.subheader("Single classification model")   
+    strl.subheader("Single model classification")   
     model_type = strl.selectbox('Machine learning model type',
                                 ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
                    
