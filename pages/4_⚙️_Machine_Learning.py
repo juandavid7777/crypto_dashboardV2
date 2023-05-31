@@ -235,7 +235,7 @@ with col_MLgraphs:
     df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7)
 
     #Plots soft vote
-    strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = 0.8))
+    strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = 0.8), use_container_width=True)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
