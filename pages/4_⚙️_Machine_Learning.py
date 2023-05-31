@@ -171,7 +171,7 @@ with col_MLgraphs:
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"],
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', "Logistic regression"])
     
-    conf_threshold = strl.number_input('Discard confidence (%)', min_value = 50, max_value = 100, value = 80, help = "Confidence threshold defines the value under which the vote is discarded due to reduce consensus in voting. Defines areas where the algorithm accuracy is too low according to our preferences to take any action.")
+    conf_threshold = strl.number_input('Confidence threshold (%)', min_value = 50, max_value = 100, value = 80, help = "Confidence threshold defines the value under which the vote is discarded due to reduce consensus in voting. Defines areas where the algorithm accuracy is too low according to our preferences to take any action.")
 
     rolling_window = strl.number_input('Days in rolling window', min_value = 1, max_value = 90, value = 7, help = "Time window where all the votes are averaged together. Bigger windows show smoother data, but suffer from a higher lag from when the change of trend was called out.")
     
