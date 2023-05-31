@@ -545,8 +545,14 @@ def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date,
 def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
 
     #Creates copy of trend  
+    df_in["bull_bear_cat"] = df_in["bull_bear"]
     df_in["bull_bear_pred_cat"] = df_in["bull_bear_pred"]
 
+
+    y_test = df.loc[start_date:end_date][["bull_bear"]].values
+    y_pred = df.loc[start_date:end_date][["bull_bear_pred"]].values
+
+    soft_vote_accuracy = metrics.accuracy_score(y_test, y_pred)
 
     #Encodes bull bear
     cleanup_nums = {"bull_bear":     {"bull": 1, "bear": 0, 'Unclassificed':0.5 },
@@ -676,7 +682,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
     
     #Updates figure
     fig.update_layout(
-        title = "Machine learning soft vote bull/bear classification",
+        title = "Soft vote accuracy: " + str(soft_vote_accuracy),
         xaxis_title= "Date",
         yaxis_title= "USD/BTC",
         yaxis_type="log",
