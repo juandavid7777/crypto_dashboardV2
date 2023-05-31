@@ -682,7 +682,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
     
     fig.add_hline(y=conf_threshold*100, line_width=1.5, line_dash="dot", line_color="orange", secondary_y=True)
     fig.add_annotation(y=conf_threshold,
-                       x=0.8,
+                       x=0,
                        xref='paper',
                        yref='y',
                        showarrow=False,
