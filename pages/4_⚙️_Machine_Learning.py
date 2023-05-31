@@ -222,7 +222,7 @@ with col_MLgraphs:
     #Plots prediction
     strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, model_type), use_container_width=True)
 
-strl.expander("Select voting algorithms", expanded=True):
+    strl.subheader("Select voting algorithms")
     strl.write("The chart above shows some numbers I picked for you. I rolled actual dice for these, so they're *guaranteed* to be random.")
     
     #Soft vote estimation
