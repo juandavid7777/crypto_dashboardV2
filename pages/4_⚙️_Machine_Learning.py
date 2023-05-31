@@ -224,12 +224,12 @@ with col_MLgraphs:
 
     #Soft vote estimation
     model_type_list = ['Random Forest',
-                   "Decision tree",
-                   'Support Vector Machine',
-                   'K-NN',
-#                    'Naive Bayes',
-                   "Logistic regression",
-                  ]
+                       "Decision tree",
+                       'Support Vector Machine',
+                       'K-NN',
+                       'Naive Bayes',
+                       "Logistic regression",
+                       ]
 
     df_soft_vote = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7)
 
