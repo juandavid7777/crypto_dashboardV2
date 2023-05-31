@@ -4,12 +4,12 @@ import streamlit as strl
 
 from streamlit_extras.buy_me_a_coffee import button
 from streamlit_extras.badges import badge
-from streamlit_extras.colored_header import colored_header
+from streamlit_extras.colored_header import colored_header 
 
 from datetime import date, timedelta
 import datetime
 
-from functions import bullet_fig_metric, market_data, aws_crypto_api
+from functions import bullet_fig_metric, market_data, aws_crypto_api, colored_metric, bounded_metric
 
 #Gets latest price data
 btc_price, eth_price, btc_per, eth_per, btc_mcap, eth_mcap, crypto_mcap = market_data()
@@ -189,6 +189,70 @@ with col_sent:
                     )
         
         strl.plotly_chart(fig, use_container_width=True)
+
+#Calls all data
+metric = "All"
+price_bool = True
+normalize_bool = True
+df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key,date_today)
+
+#Creates columns and sets buttons
+col_buttons, col_graphs = strl.columns([1, 3])
+
+with col_buttons:
+
+    strl.header("Confluence risk")
+
+    #Creates metrics buttons to select
+        #Technical
+    strl.subheader("Technical")
+    var_timechannel = strl.checkbox('Time channel', value = True)
+    var_MAlograt = strl.checkbox('MA log rat', value = True)
+
+        #Onchain
+    strl.subheader("On-chain")
+    var_nupl = strl.checkbox('NUPL', value = True)
+    var_mvrvz = strl.checkbox('MVRV-Z', value = True)
+    var_puellmultiple = strl.checkbox('Puell Multiple', value = True)
+    var_thermocap = strl.checkbox('Thermocap rat.', value = True)
+    var_supplyprofit = strl.checkbox('Supply in profit', value = True)
+
+        #Sentiment
+    strl.subheader("Sentiment")
+    var_fg = strl.checkbox('Fear and Greed', value = True)
+    var_fgMA = strl.checkbox('Fear and Greed MA', value = True)
+
+#Defines metrics to create average
+dict_var_bool = {"NUPL":var_nupl,
+                 'MVRV-Z':var_mvrvz,
+                 'Puell Multiple':var_puellmultiple,
+                 'Thermocap rat.':var_thermocap,
+                 'Supply in profit':var_supplyprofit,
+                 'Time channel':var_timechannel,
+                 'MA log rat':var_MAlograt,
+                 'Fear and Greed':var_fg,
+                 'Fear and Greed MA':var_fgMA
+                 }
+
+#Creates a list of variables that are selected true
+selected_cols_list = []
+for metric in dict_var_bool:
+
+    if dict_var_bool[metric] == True:
+        selected_cols_list.extend([metric])
+
+#Estimates average risk of selected columns
+df_data['Confluence risk'] = df_data[selected_cols_list].mean(axis=1)
+
+with col_graphs:
+
+    #reports latest value
+    last_cfrisk = df_data['Confluence risk'].iloc[-1]
+    strl.header("Latest value: " + str(round(last_cfrisk*100,2)) + "%")
+
+    # Plots   
+    strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%"), use_container_width=True)
+    strl.plotly_chart(bounded_metric(df_data,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
