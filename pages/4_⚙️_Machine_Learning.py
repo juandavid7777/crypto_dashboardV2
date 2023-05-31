@@ -186,8 +186,8 @@ ts_end = datetime.datetime.strptime(end_date,'%Y-%m-%d')
 ts_mid_init = ts_start + (ts_end-ts_start)*3/5
 
     #Time slider for input
-with col_MLinputs:
-    strl.markdown("""---""")    
+with col_MLgraphs:
+    strl.subheader("Select single classification model")    
     ts_mid = strl.slider("Training/Test split date",
                                     value = ts_mid_init,
                                     min_value = ts_start,
@@ -210,7 +210,6 @@ end_date = split_dates_list[2]
 #Trains the model
 model, accuracy, accuracy_all = ML_model_traintest(X_train, y_train, X_test, y_test, mod_type = model_type)
 
-
 # Uses the model with new data to predict 
 df_new = ML_model_predict(model, df_classified, selected_variables, start_date)
 
@@ -222,9 +221,9 @@ with col_MLgraphs:
     #Plots prediction
     strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, model_type), use_container_width=True)
 
+    #Soft voting area
     strl.subheader("Select voting algorithms")
-    strl.write("The chart above shows some numbers I picked for you. I rolled actual dice for these, so they're *guaranteed* to be random.")
-    
+       
     #Soft vote estimation
     model_type_list = ['Random Forest',
                        "Decision tree",
