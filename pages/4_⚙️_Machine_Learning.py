@@ -225,16 +225,12 @@ with col_MLgraphs:
 
     strl.markdown("""---""")
     #Soft voting area ============================
-    strl.subheader("Select voting algorithms")
+    strl.subheader("Select voting models")
        
     #Soft vote estimation
-    model_type_list = ['Random Forest',
-                       "Decision tree",
-                       'Support Vector Machine',
-                       'K-NN',
-                    #    'Naive Bayes',
-                       "Logistic regression",
-                       ]
+    model_type_list = strl.multiselect('Choose models for soft voting',
+                                       ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"],
+                                       ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"])
 
     #Creates soft vote df
     df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7)
