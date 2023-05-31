@@ -228,7 +228,7 @@ with col_MLgraphs:
     strl.subheader("Soft voting algorithm")
        
     #Soft vote estimation
-    model_type_list = strl.multiselect('Select models for soft voting',
+    model_type_list = strl.multiselect('Select voting models',
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"],
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"])
 
