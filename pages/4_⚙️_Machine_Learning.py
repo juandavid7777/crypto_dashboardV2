@@ -208,7 +208,7 @@ mid_date = split_dates_list[1]
 end_date = split_dates_list[2]
 
 #Trains the model
-model, accuracy = ML_model_traintest(X_train, y_train, X_test, y_test, mod_type = model_type)
+model, accuracy, accuracy_all = ML_model_traintest(X_train, y_train, X_test, y_test, mod_type = model_type)
 
 
 # Uses the model with new data to predict 

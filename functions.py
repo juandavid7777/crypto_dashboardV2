@@ -330,11 +330,16 @@ def ML_model_traintest(X_train, y_train, X_test, y_test, mod_type = "Random Fore
 
     # Use the forest's predict method on the test data
     y_pred = model.predict(X_test)# Calculate the absolute errors
+
+    #Uses model to predict in all data
+    X_all = np.append(X_train,X_test, axis=0)    
+    y_pred_all = model.predict(X_all)
     
     # Model Accuracy, how often is the classifier correct?
     accuracy = metrics.accuracy_score(y_test, y_pred)
+    accuracy_all = metrics.accuracy_score(np.append(y_train,y_test), y_pred_all)
     
-    return model, accuracy
+    return model, accuracy, accuracy_all
 
 def ML_model_predict(model, df, selected_variables, start_date):
     
