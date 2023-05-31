@@ -297,8 +297,7 @@ def ML_XY_dataselector(df, selected_Xvariables, Yvariable, start_date, mid_date,
     
     return X_train, y_train, X_test, y_test, [start_date, mid_date, end_date]
 
-@strl.cache_resource
-def ML_model_traintest(X_train, y_train, X_test, y_test, mod_type = "rfc"):
+def ML_model_traintest(X_train, y_train, X_test, y_test, mod_type = "Random Forest"):
 
     if mod_type == 'Random Forest':
 
