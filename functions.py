@@ -647,7 +647,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                             x=df.index, y=df["bar_vote"]*100, 
                             mode = 'lines', 
                             name = "Confidence vote",
-                            marker=dict(size=0.011,color = "black"),
+                            marker=dict(size=0.011,color = "white"),
                             opacity=0.5,
                             customdata=df["bull_bear_pred_cat"],
                             hovertemplate='Trend assessment: %{customdata}<extra></extra>'
@@ -698,6 +698,4 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                      tickvals=[0, 10, 20, 30, 40, 50, 60, 70, 80, 90,100], 
                      gridcolor = '#bdbdbd')
 
-
-    
     return fig
