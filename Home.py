@@ -190,6 +190,8 @@ with col_sent:
         
         strl.plotly_chart(fig, use_container_width=True)
 
+strl.markdown("""----""")
+
 #Calls all data
 metric = "All"
 price_bool = True
