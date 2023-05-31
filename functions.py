@@ -354,7 +354,7 @@ def ML_model_predict(model, df, selected_variables, start_date, model_name = "bu
     
     return df_new
 
-def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, mod_type):
+def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title"):
     
     #Encodes bull bear
     cleanup_nums = {"bull_bear":     {"bull": 1, "bear": 0, 'Unclassificed':0.5 },
@@ -437,7 +437,7 @@ def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, mod_type):
     
     #Updates figure
     fig.update_layout(
-        title = mod_type + " bull/bear classification",
+        title = title,
         xaxis_title= "Date",
         yaxis_title= "USD/BTC",
         # yaxis2_title = "Bull-Bear",
