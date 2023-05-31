@@ -231,9 +231,11 @@ with col_MLgraphs:
     model_type_list = strl.multiselect('Select voting models',
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"],
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"])
+    
+    rolling_window = strl.number_input('Days in rolling window', min_value = 1, max_value = 90, value = 7)
 
     #Creates soft vote df
-    df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7)
+    df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = rolling_window)
 
     #Plots soft vote
     strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = 0.8), use_container_width=True)
