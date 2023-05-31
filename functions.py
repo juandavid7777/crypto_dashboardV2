@@ -483,3 +483,208 @@ def plot_graphsV2(df_data, df_meta, colored = False):
 
         else:
             strl.plotly_chart(bounded_metric(df_plot, metric, range_vals, df_meta.iloc[i]["format"], log_scale = df_meta.iloc[i]["log_scale"] ))
+
+
+#Function for soft voting ML
+def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7):
+
+    #Intiate dataframe accuracies
+    df_accuracy = pd.DataFrame()
+    cleanup_nums = {}
+
+    for i, model_type in enumerate(model_type_list):
+
+        #Splits the data
+        X_train, y_train, X_test, y_test, split_dates_list = ML_XY_dataselector(df_classified, selected_variables, "bull_bear", start_date, mid_date, end_date)
+
+        start_date = split_dates_list[0]
+        mid_date = split_dates_list[1]
+        end_date = split_dates_list[2]
+
+        #Trains the model
+        model, accuracy_test, accuracy_all = ML_model_traintest(X_train, y_train, X_test, y_test, mod_type = model_type)
+
+
+        # Uses the model with new data to predict 
+        df_classified = ML_model_predict(model,
+                                        df_classified,
+                                        selected_variables,
+                                        start_date,
+                                        model_type
+                                        )
+        
+        df_temp = pd.DataFrame({"Model":[model_type],
+                                "Test acc.": [accuracy_test],
+                                "Total acc.": [accuracy_all],                            
+                              })
+        
+        cleanup_nums[model_type] = {'bull': accuracy_test, 'bear': -accuracy_test}
+        df_accuracy = df_accuracy.append(df_temp, ignore_index=True)
+        
+    # Numeric classification    
+    df_allclassified = df_classified.replace(cleanup_nums)
+    df_allclassified['soft_vote'] = df_allclassified[model_type_list].mean(axis=1)
+
+    # Define entry points
+    df_allclassified["rolling_vote"] = df_allclassified['soft_vote'].rolling(rolling_vote_window).mean()
+    df_allclassified["bull_bear_pred"] = df_allclassified.apply(lambda x: "bull" if x["rolling_vote"]>0 else "bear", axis = 1)
+
+    #Defines bar graphs and bull bear trend
+    df_allclassified["bar_vote"] = (abs(df_allclassified["rolling_vote"])/2)+0.5
+
+    return df_allclassified, df_accuracy
+
+
+def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
+
+    #Creates copy of trend  
+    df_in["bull_bear_pred_cat"] =  df_in["bull_bear_pred"]
+
+
+    #Encodes bull bear
+    cleanup_nums = {"bull_bear":     {"bull": 1, "bear": 0, 'Unclassificed':0.5 },
+                    "bull_bear_pred": {"bull": 1, "bear": 0}
+                   }
+
+    df = df_in.replace(cleanup_nums)
+
+    # Creates horizontal line y = 1 to define bulish and bearish zones
+    df["hor"] = 1
+
+    #Defines error
+    df["error"] = df.apply(lambda x: 0.25 if x["bull_bear"] != x["bull_bear_pred"] else 0, axis = 1 )
+    df["error"].loc[end_date:] = 0
+
+    #Plotting
+    fig = go.Figure()
+
+    # Create figure with secondary y-axis
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+    #Scale for defining max of the bull ebar areas
+    scaling =  df['high'].max()
+
+    # Adds bear bull prediction
+    fig.add_trace(go.Scatter(
+                            x=df.index, y=df["bull_bear_pred"]*scaling, 
+                            mode = 'markers', 
+                            name = "Bullish period", 
+                            marker=dict(size=0.1,color = "green", opacity = 0.01),
+                            fill='tozeroy',
+                            fillcolor='rgba(60,179,113,0.2)',
+                            opacity=0,
+                            hoverinfo='skip' 
+                            ),secondary_y=False)
+    
+    
+    
+    # Adds horizontal line and fills in teh are with red
+    fig.add_trace(go.Scatter(
+                            x=df.index, y=df["hor"]*scaling, 
+                            mode = 'markers', 
+                            name = "Bearish period", 
+                            marker=dict(size=0.1,color = "red", opacity = 0.01),
+                            fill='tonexty',
+                            fillcolor='rgba(255,0,0,0.2)',
+                            opacity=0,
+                            hoverinfo='skip'
+                            ),secondary_y=False)
+
+       
+    #Soft vote line mapping
+    df["bull_conf"] = df.apply(lambda x: x["bar_vote"] if ((x["bull_bear_pred"] == 1) & (x["bar_vote"] > conf_threshold)) else 0, axis = 1)
+    df["bear_conf"] = df.apply(lambda x: x["bar_vote"] if ((x["bull_bear_pred"] == 0) & (x["bar_vote"] > conf_threshold)) else 0, axis = 1)
+    df["uncertain"] = df.apply(lambda x: x["bar_vote"] if (x["bar_vote"] <= conf_threshold) else 0, axis = 1)
+
+    fig.add_trace(go.Scatter(
+            x=df.index,
+            y=df["uncertain"]*100,
+            mode='lines',
+            line=dict(width=0.01, color='orange'),
+            stackgroup='one',
+            opacity=0,
+            name='Mid uncertainity',
+            hovertemplate='Uncertain area confidence: %{y:.1f}%<extra></extra>'
+        ),secondary_y=True)
+
+    fig.add_trace(go.Scatter(
+        x=df.index,
+        y=df["bear_conf"]*100,
+        mode='lines',
+        line=dict(width=0.01, color='red'),
+        stackgroup='one',
+        opacity=0,
+        name='Bearish confidence',
+        hovertemplate='Bear Confidence: %{y:.1f}%<extra></extra>'
+    ),secondary_y=True)
+
+    fig.add_trace(go.Scatter(
+        x=df.index,
+        y=df["bull_conf"]*100,
+        mode='lines',
+        line=dict(width=0.01, color='green'),
+        stackgroup='one',
+        opacity=0,
+        name="Bullish confidence",
+        hovertemplate='Bull Confidence: %{y:.1f}%<extra></extra>'
+    ),secondary_y=True)
+
+    # Adds lines for confidence
+    fig.add_trace(go.Scatter(
+                            x=df.index, y=df["bar_vote"]*100, 
+                            mode = 'lines', 
+                            name = "Confidence vote",
+                            marker=dict(size=0.011,color = "black"),
+                            opacity=0.5,
+                            customdata=df["bull_bear_pred_cat"],
+                            hovertemplate='Trend assessment: %{customdata}<extra></extra>'
+                            ),secondary_y=True)
+    
+    #Adds prices
+    fig.add_trace(go.Candlestick(
+            x=df.index,
+            open=df['open'],
+            high=df['high'],
+            low=df['low'],
+            close=df['close'],
+            name = "BTC price"
+            ))
+
+   
+    #Adds vertical line in the split data time
+    fig.add_vline(x=start_date, line_width=2, line_dash="dash", line_color="grey")
+    fig.add_annotation(x=start_date, xanchor = "left",
+                       y = 1, yref = "paper", yanchor = "top", secondary_y=True,
+                       showarrow=False, textangle = 90,  text="Training data")
+
+    fig.add_vline(x=mid_date, line_width=2, line_dash="dash", line_color="grey")
+    fig.add_annotation(x=mid_date, xanchor = "left",
+                       y = 1, yref = "paper", yanchor = "top", secondary_y=True,
+                       showarrow=False, textangle = 90,  text="Test data")
+
+    fig.add_vline(x=end_date, line_width=2, line_dash="dash", line_color="grey")
+    fig.add_annotation(x=end_date, xanchor = "left",
+                       y = 1, yref = "paper", yanchor = "top", secondary_y=True,
+                       showarrow=False, textangle = 90, text="Unclassified data")
+    
+    #Updates figure
+    fig.update_layout(
+        title = "Machine learning soft vote bull/bear classification",
+        xaxis_title= "Date",
+        yaxis_title= "USD/BTC",
+        yaxis_type="log",
+        xaxis_rangeslider_visible=False,
+        hovermode="x unified",
+    )
+
+    fig.update_yaxes(secondary_y=True, 
+                     title_text= "Trend confidence (%)", 
+                     showgrid=True, 
+                     visible = True, 
+                     range = [50,400], 
+                     tickvals=[0, 10, 20, 30, 40, 50, 60, 70, 80, 90,100], 
+                     gridcolor = '#bdbdbd')
+
+
+    
+    return fig

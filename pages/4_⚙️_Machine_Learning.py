@@ -9,7 +9,7 @@ from streamlit_extras.colored_header import colored_header
 from datetime import date, timedelta
 import datetime
 
-from functions import aws_crypto_api, colored_metric, bounded_metric, bull_bear_classifier, ML_date_finder, ML_XY_dataselector, ML_model_traintest, ML_model_predict, ML_bull_bear_plot 
+from functions import aws_crypto_api, colored_metric, bounded_metric, bull_bear_classifier, ML_date_finder, ML_XY_dataselector, ML_model_traintest, ML_model_predict, ML_bull_bear_plot, soft_vote_ML, soft_vote_plot 
 
 #Sets page configuration
 strl.set_page_config(layout="wide", page_title="BTC metrics - Machine Learning", page_icon = "⚙️")
@@ -221,6 +221,19 @@ with col_MLgraphs:
 
     #Plots prediction
     strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, model_type), use_container_width=True)
+
+    #Soft vote estimation
+    model_type_list = ['Random Forest',
+                   "Decision tree",
+                   'Support Vector Machine',
+                   'K-NN',
+#                    'Naive Bayes',
+                   "Logistic regression",
+                  ]
+
+    df_soft_vote = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7)
+
+    strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = 0.8))
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
