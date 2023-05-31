@@ -232,6 +232,12 @@ with col_MLgraphs:
                        ]
 
     strl.write(df_classified)
+    strl.write(selected_variables)
+    strl.write(model_type_list)
+    strl.write(start_date)
+    strl.write(mid_date)
+    strl.write(end_date)
+
 
     df_soft_vote = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7)
 
