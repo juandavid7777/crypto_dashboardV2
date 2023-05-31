@@ -548,7 +548,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
     df_in["bull_bear_cat"] = df_in["bull_bear"]
     df_in["bull_bear_pred_cat"] = df_in["bull_bear_pred"]
 
-
+    #Finds accuracy
     y_test = df_in.loc[start_date:end_date][["bull_bear"]].values
     y_pred = df_in.loc[start_date:end_date][["bull_bear_pred"]].values
 
@@ -682,12 +682,13 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
     
     fig.add_hline(y=conf_threshold*100, line_width=1.5, line_dash="dot", line_color="orange", secondary_y=True)
     fig.add_annotation(y=conf_threshold,
-                       x=0.9,
+                       x=0.8,
                        xref='paper',
                        yref='y',
                        showarrow=False,
                        textangle = 0,
-                       text="Conf. Threshold", 
+                       text="Conf. Threshold",
+                       font=dict(color='orange'),  # Set the color of the text to orange
                        secondary_y=True)
     
     #Updates figure
