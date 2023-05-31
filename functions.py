@@ -688,7 +688,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                        showarrow=False,
                        textangle = 0,
                        text="Conf. Threshold: " + str(conf_threshold*100) + "%",
-                    #    font=dict(color='orange'),  # Set the color of the text to orange
+                       font=dict(color='#ffaf1a'),  # Set the color of the text to orange
                        secondary_y=True)
     
     #Updates figure
