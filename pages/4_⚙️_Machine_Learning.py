@@ -112,11 +112,11 @@ strl.markdown("""---""")
 
 # Machine learning--------------------------------------------------------------    
 #Creates columns and sets buttons
+strl.header("Machine learning")
 col_MLinputs, col_MLgraphs = strl.columns([1, 3])
 
 with col_MLinputs:
-
-    strl.header("Machine learning")
+    strl.subheader("Select features:")
     
     #Creates metrics buttons to select
         #Technical
@@ -187,7 +187,7 @@ ts_mid_init = ts_start + (ts_end-ts_start)*3/5
 
     #Time slider for input
 with col_MLinputs:
-    strl.subheader("Select single classification model")    
+    strl.subheader("Select date to split data")    
     ts_mid = strl.slider("Training/Test split date",
                                     value = ts_mid_init,
                                     min_value = ts_start,
@@ -197,7 +197,8 @@ with col_MLinputs:
     #Changes datetime input into string with correct format
     mid_date = ts_mid.strftime("%Y-%m-%d")
 
-with col_MLgraphs:   
+with col_MLgraphs:
+    strl.subheader("Select single classification model")   
     model_type = strl.selectbox('Machine learning model type',
                                 ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
                    
