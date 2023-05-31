@@ -685,7 +685,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                      title_text= "Trend confidence (%)", 
                      showgrid=True, 
                      visible = True, 
-                     range = [50,400], 
+                     range = [50,300], 
                      tickvals=[0, 10, 20, 30, 40, 50, 60, 70, 80, 90,100], 
                      gridcolor = '#bdbdbd')
 
