@@ -186,7 +186,7 @@ ts_end = datetime.datetime.strptime(end_date,'%Y-%m-%d')
 ts_mid_init = ts_start + (ts_end-ts_start)*3/5
 
     #Time slider for input
-with col_MLgraphs:
+with col_MLinputs:
     strl.subheader("Select single classification model")    
     ts_mid = strl.slider("Training/Test split date",
                                     value = ts_mid_init,
@@ -196,7 +196,8 @@ with col_MLgraphs:
     
     #Changes datetime input into string with correct format
     mid_date = ts_mid.strftime("%Y-%m-%d")
-    
+
+with col_MLgraphs:   
     model_type = strl.selectbox('Machine learning model type',
                                 ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
                    
