@@ -354,6 +354,7 @@ def ML_model_predict(model, df, selected_variables, start_date, model_name = "bu
     
     return df_new
 
+@strl.cache_data
 def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title"):
     
     #Encodes bull bear
@@ -540,7 +541,7 @@ def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date,
 
     return df_allclassified, df_accuracy
 
-
+@strl.cache_data
 def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
 
     #Creates copy of trend  
