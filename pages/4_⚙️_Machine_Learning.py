@@ -227,7 +227,7 @@ with col_MLgraphs:
                        "Decision tree",
                        'Support Vector Machine',
                        'K-NN',
-                       'Naive Bayes',
+                    #    'Naive Bayes',
                        "Logistic regression",
                        ]
 
