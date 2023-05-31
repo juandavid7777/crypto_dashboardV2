@@ -682,7 +682,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
     
     #Updates figure
     fig.update_layout(
-        title = "Soft vote accuracy: " + str(soft_vote_accuracy),
+        title = "Soft vote accuracy: " + str(round((soft_vote_accuracy*100), 2)) + " %",
         xaxis_title= "Date",
         yaxis_title= "USD/BTC",
         yaxis_type="log",
