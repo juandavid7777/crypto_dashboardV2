@@ -681,9 +681,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                        showarrow=False, textangle = 90, text="Unclassified data")
     
     fig.add_hline(y=conf_threshold*100, line_width=1.5, line_dash="dot", line_color="orange", secondary_y=True)
-    fig.add_annotation(y=conf_threshold*100, xanchor = "left",
-                       x = 1, xref = "paper", xanchor = "left", secondary_y=True,
-                       showarrow=False, textangle = 0, text="Conf. Threshold")
+    fig.add_annotation(y=conf_threshold*100, xanchor = "right", showarrow=False, textangle = 0, text="Conf. Threshold")
     
     #Updates figure
     fig.update_layout(
