@@ -341,7 +341,7 @@ def ML_model_traintest(X_train, y_train, X_test, y_test, mod_type = "Random Fore
     
     return model, accuracy, accuracy_all
 
-def ML_model_predict(model, df, selected_variables, start_date):
+def ML_model_predict(model, df, selected_variables, start_date, model_name = "bull_bear_pred"):
     
     #Finds today date to define the las available data on time series data frame
     # last_val_date = (date.today() -  timedelta(days=1)).strftime('%Y-%m-%d') #Debugged code
@@ -349,7 +349,7 @@ def ML_model_predict(model, df, selected_variables, start_date):
     #Slices dataframe
     X_new  = df.loc[start_date:][selected_variables].iloc[:-1].values
     df_new = df.loc[start_date:].iloc[:-1]
-    df_new["bull_bear_pred"] = model.predict(X_new)
+    df_new[model_name] = model.predict(X_new)
     
     return df_new
 
