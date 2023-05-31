@@ -549,8 +549,8 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
     df_in["bull_bear_pred_cat"] = df_in["bull_bear_pred"]
 
 
-    y_test = df.loc[start_date:end_date][["bull_bear"]].values
-    y_pred = df.loc[start_date:end_date][["bull_bear_pred"]].values
+    y_test = df_in.loc[start_date:end_date][["bull_bear"]].values
+    y_pred = df_in.loc[start_date:end_date][["bull_bear_pred"]].values
 
     soft_vote_accuracy = metrics.accuracy_score(y_test, y_pred)
 
