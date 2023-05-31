@@ -171,9 +171,10 @@ with col_MLgraphs:
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"],
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', "Logistic regression"])
     
-    rolling_window = strl.number_input('Days in rolling window', min_value = 1, max_value = 90, value = 7, help = "Time window where all the votes are averaged together. Bigger windows show smoother data, but suffer from a higher lag from when the change of trend was called out.")
     conf_threshold = strl.number_input('Discard confidence (%)', min_value = 50, max_value = 100, value = 80, step = 5, help = "Time window where all the votes are averaged together. Bigger windows show smoother data, but suffer from a higher lag from when the change of trend was called out.")
 
+    rolling_window = strl.number_input('Days in rolling window', min_value = 1, max_value = 90, value = 7, help = "Time window where all the votes are averaged together. Bigger windows show smoother data, but suffer from a higher lag from when the change of trend was called out.")
+    
 
     #Creates soft vote df
     df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = rolling_window)
