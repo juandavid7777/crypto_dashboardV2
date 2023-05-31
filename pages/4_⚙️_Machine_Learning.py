@@ -222,6 +222,7 @@ with col_MLgraphs:
     #Plots prediction
     strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, model_type), use_container_width=True)
 
+    strl.expander("Select voting algorithms", expanded=False)
     #Soft vote estimation
     model_type_list = ['Random Forest',
                        "Decision tree",
