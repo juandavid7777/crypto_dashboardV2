@@ -137,6 +137,8 @@ with col_MLinputs:
     varML_fg = strl.checkbox('Fear and Greed', key = 'Fear and Greedl_ML', value = False)
     varML_fgMA = strl.checkbox('Fear and Greed MA', key = 'Fear and Greed MA_ML', value = False)
 
+    strl.divider()
+
 #Defines metrics to create average
 dict_varML_bool = {"NUPL":varML_nupl,
                  'MVRV-Z':varML_mvrvz,
