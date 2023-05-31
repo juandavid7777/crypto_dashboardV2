@@ -230,7 +230,7 @@ with col_MLgraphs:
     #Soft vote estimation
     model_type_list = strl.multiselect('Select voting models',
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"],
-                                       ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"])
+                                       ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', "Logistic regression"])
     
     rolling_window = strl.number_input('Days in rolling window', min_value = 1, max_value = 90, value = 7)
 
