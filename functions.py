@@ -370,15 +370,18 @@ def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, mod_type):
 
     # Create figure with secondary y-axis
     fig = make_subplots(specs=[[{"secondary_y": True}]])
-    fig.add_trace(go.Candlestick(
-            x=df.index,
-            open=df['open'],
-            high=df['high'],
-            low=df['low'],
-            close=df['close'],
-            name = "BTC price"
-            )) 
 
+    # Adds bars for error
+    fig.add_trace(go.Bar(
+                            x=df.index, y=df["error"], 
+                            # mode = 'lines', 
+                            name = "Classification error",
+                            marker_color= "orange" 
+                            # marker=dict(size=1,color = "orange"),
+                            # fill='tonexty',
+                            # opacity=0
+                            ),secondary_y=True)
+    
     # Adds bear bull prediction   
     fig.add_trace(go.Scatter(
                             x=df.index, y=df["bull_bear_pred"], 
@@ -401,16 +404,15 @@ def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, mod_type):
                             opacity=0,
                             ),secondary_y=True)
 
-    # Adds bars for error
-    fig.add_trace(go.Bar(
-                            x=df.index, y=df["error"], 
-                            # mode = 'lines', 
-                            name = "Classification error",
-                            marker_color= "orange" 
-                            # marker=dict(size=1,color = "orange"),
-                            # fill='tonexty',
-                            # opacity=0
-                            ),secondary_y=True)
+    
+    fig.add_trace(go.Candlestick(
+            x=df.index,
+            open=df['open'],
+            high=df['high'],
+            low=df['low'],
+            close=df['close'],
+            name = "BTC price"
+            )) 
     
     #Adds vertical line in the split data time
     fig.add_vline(x=start_date, line_width=2, line_dash="dash", line_color="grey")
