@@ -231,6 +231,8 @@ with col_MLgraphs:
                        "Logistic regression",
                        ]
 
+    strl.write(df_classified)
+
     df_soft_vote = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7)
 
     strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = 0.8))
