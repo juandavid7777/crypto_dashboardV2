@@ -200,7 +200,7 @@ with col_MLinputs:
     mid_date = ts_mid.strftime("%Y-%m-%d")
 
 with col_MLgraphs:
-    strl.subheader("Select single classification model")   
+    strl.subheader("Single classification model")   
     model_type = strl.selectbox('Machine learning model type',
                                 ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
                    
@@ -219,13 +219,14 @@ df_new = ML_model_predict(model, df_classified, selected_variables, start_date)
 
 with col_MLgraphs:
 
-    #Reports accuracy
-    strl.header("Mapping accuracy: " + str(round((accuracy*100), 2)) + " %")
-
     #Plots prediction
     strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, model_type), use_container_width=True)
 
-    #Soft voting area
+    #Reports accuracy
+    strl.write("Mapping accuracy: " + str(round((accuracy*100), 2)) + " %")
+
+    strl.markdown("""---""")
+    #Soft voting area ============================
     strl.subheader("Select voting algorithms")
        
     #Soft vote estimation
