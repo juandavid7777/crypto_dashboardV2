@@ -120,12 +120,12 @@ with col_MLinputs:
     
     #Creates metrics buttons to select
         #Technical
-    strl.subheader("Technical")
+    strl.write("Technical")
     varML_timechannel = strl.checkbox('Time channel', key = 'Time channel_ML', value = True)
     varML_MAlograt = strl.checkbox('MA log rat', key = 'MA log rat_ML', value = True)
 
         #Onchain
-    strl.subheader("On-chain")
+    strl.write("On-chain")
     varML_nupl = strl.checkbox('NUPL', key = 'NUPL_ML', value = True)
     varML_mvrvz = strl.checkbox('MVRV-Z', key = 'MVRV-Z_ML', value = True)
     varML_puellmultiple = strl.checkbox('Puell Multiple', key = 'Puell Multiple_ML', value = True)
@@ -133,7 +133,7 @@ with col_MLinputs:
     varML_supplyprofit = strl.checkbox('Supply in profit', key = 'Supply in profit_ML', value = True)
 
         #Sentiment
-    strl.subheader("Sentiment")
+    strl.write("Sentiment")
     varML_fg = strl.checkbox('Fear and Greed', key = 'Fear and Greedl_ML', value = False)
     varML_fgMA = strl.checkbox('Fear and Greed MA', key = 'Fear and Greed MA_ML', value = False)
 
