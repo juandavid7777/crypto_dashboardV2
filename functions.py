@@ -680,6 +680,11 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
                        showarrow=False, textangle = 90, text="Unclassified data")
     
+    fig.add_hline(y=conf_threshold, line_width=2, line_dash="dash", line_color="orange")
+    fig.add_annotation(y=conf_threshold, xanchor = "left",
+                       y = 1, yref = "paper", yanchor = "top", secondary_y=True,
+                       showarrow=False, textangle = 90, text="Conf. Threshold")
+    
     #Updates figure
     fig.update_layout(
         title = "Soft vote accuracy: " + str(round((soft_vote_accuracy*100), 2)) + " %",
