@@ -297,6 +297,7 @@ def ML_XY_dataselector(df, selected_Xvariables, Yvariable, start_date, mid_date,
     
     return X_train, y_train, X_test, y_test, [start_date, mid_date, end_date]
 
+@strl.cache_resource
 def ML_model_traintest(X_train, y_train, X_test, y_test, mod_type = "Random Forest"):
 
     if mod_type == 'Random Forest':
@@ -490,6 +491,7 @@ def plot_graphsV2(df_data, df_meta, colored = False):
 
 
 #Function for soft voting ML
+@strl.cache_data
 def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = 7):
 
     #Intiate dataframe accuracies
