@@ -265,7 +265,7 @@ with col_graphs:
                     )
         
     strl.plotly_chart(fig_conf_bullet, use_container_width=True)
-    strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%"), use_container_width=True)
+    strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%", color_map = "viridis"), use_container_width=True)
     
 strl.markdown("""----""")
 #Defines expander container

@@ -155,7 +155,7 @@ def market_data():
 
     return round(btc_price,1), round(eth_price, 1), round(btc_per,1), round(eth_per, 1), round(btc_mcap,1), round(eth_mcap,1), round(crypto_mcap,1)
 
-def colored_metric(df, metric_name, metric_format):
+def colored_metric(df, metric_name, metric_format, color_map = "jet"):
 
     fig = go.Figure()
 
@@ -172,7 +172,7 @@ def colored_metric(df, metric_name, metric_format):
                 '$%{y:'+'.1f'+'}',
                 metric_name + ': %{customdata:' + metric_format + '}',
             ]),
-        marker=dict(size=3,color = df[metric_name],showscale=True, colorscale= "jet", colorbar=dict(title = metric_name),) #[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]) #colorscale='Jet'
+        marker=dict(size=3,color = df[metric_name],showscale=True, colorscale= color_map, colorbar=dict(title = metric_name),) #[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]) #colorscale='Jet'
         ),secondary_y=False)
 
     #Defines figure properties
