@@ -15,7 +15,7 @@ from functions import bullet_fig_metric, market_data, aws_crypto_api, colored_me
 strl.set_page_config(layout="wide", page_title="₿itcointrends", page_icon = "🚀")
 
 #Gets latest price data
-date_today = datetime.datetime.now().strftime("%Y-%m-%d")
+date_today = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 btc_price, eth_price, btc_per, eth_per, btc_mcap, eth_mcap, crypto_mcap = market_data(date_today = date_today)
 
 # Title
