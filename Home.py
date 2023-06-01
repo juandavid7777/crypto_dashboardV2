@@ -12,7 +12,7 @@ import datetime
 from functions import bullet_fig_metric, market_data, aws_crypto_api, colored_metric, bounded_metric
 
 # Sets page configuration
-strl.set_page_config(layout="wide", page_title="₿itcointrends", page_icon = "💰")
+strl.set_page_config(layout="wide", page_title="₿itcointrends", page_icon = "₿")
 
 #Gets latest price data
 date_today = datetime.datetime.now().strftime("%Y-%m-%d")
