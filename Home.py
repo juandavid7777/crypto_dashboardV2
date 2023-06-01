@@ -265,7 +265,7 @@ with col_graphs:
                     )
         
     strl.plotly_chart(fig_conf_bullet, use_container_width=True)
-    custom_cmap = [[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"]]
+    custom_cmap = [[0,"greenyellow"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"lightcoral"]]
     strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%", color_map = custom_cmap), use_container_width=True)
     
 strl.markdown("""----""")
