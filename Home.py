@@ -271,7 +271,7 @@ with col_graphs:
 strl.markdown("""----""")
 #Defines expander container
 strl.subheader("Historic confluence risk values")
-expander_plots = strl.expander(label='Expand history', expanded=True)
+expander_plots = strl.expander(label='Expand history', expanded=False)
 with expander_plots:
 
     # Plots confluence risk  
