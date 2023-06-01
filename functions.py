@@ -112,6 +112,7 @@ def bullet_fig_metric(value_in,
 
     return fig
 
+@strl.cache_data
 def market_data():
     
     base_url = "https://api.coingecko.com/api/v3"
