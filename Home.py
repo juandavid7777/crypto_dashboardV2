@@ -252,7 +252,7 @@ with col_graphs:
 
     #reports latest value
     last_cfrisk = df_data['Confluence risk'].iloc[-1]
-    strl.header("Latest value: " + str(round(last_cfrisk*100,2)) + "%")
+    strl.write("Latest value: " , round(last_cfrisk*100,2) , "%")
 
     # Plots   
     strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%"), use_container_width=True)
