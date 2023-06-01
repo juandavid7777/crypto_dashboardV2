@@ -260,13 +260,13 @@ with col_graphs:
                     previous_val = prev_val_cfrisk,
                     title_text = "Confluence risk",
                     ranges = [0, 0.25, 0.75, 1],
-                    format_num = ",.2%",
+                    format_num = ",.1%",
                     log_scale = False
                     )
         
     strl.plotly_chart(fig_conf_bullet, use_container_width=True)
+    strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%"), use_container_width=True)
     
-
 strl.markdown("""----""")
 #Defines expander container
 strl.subheader("Historic confluence risk values")
@@ -274,7 +274,6 @@ expander_plots = strl.expander(label='Expand history', expanded=True)
 with expander_plots:
 
     # Plots confluence risk  
-    strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%"), use_container_width=True)
     strl.plotly_chart(bounded_metric(df_data,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)
 
 #Final comments
