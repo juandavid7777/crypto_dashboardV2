@@ -264,7 +264,7 @@ with col_graphs:
                     log_scale = False
                     )
         
-    strl.plotly_chart(fig_conf_bullet use_container_width=True)
+    strl.plotly_chart(fig_conf_bullet, use_container_width=True)
     
 
 strl.markdown("""----""")
