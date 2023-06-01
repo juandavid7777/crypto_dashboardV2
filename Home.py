@@ -252,7 +252,20 @@ with col_graphs:
 
     #reports latest value
     last_cfrisk = df_data['Confluence risk'].iloc[-1]
-    strl.write("Latest value: " , round(last_cfrisk*100,2) , "%")
+    prev_val_cfrisk = df_data['Confluence risk'].iloc[-90]
+
+    # strl.write("Latest value: " , round(last_cfrisk*100,2) , "%")
+
+    fig_conf_bullet = bullet_fig_metric(value_in = last_cfrisk ,
+                    previous_val = prev_val_cfrisk,
+                    title_text = "Confluence risk",
+                    ranges = [0, 0.25, 0.75, 1],
+                    format_num = ",.2%",
+                    log_scale = False
+                    )
+        
+    strl.plotly_chart(fig_conf_bullet use_container_width=True)
+    
 
 strl.markdown("""----""")
 #Defines expander container
