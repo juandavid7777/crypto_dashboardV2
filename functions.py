@@ -172,7 +172,7 @@ def colored_metric(df, metric_name, metric_format, color_map = "jet"):
                 '$%{y:'+'.1f'+'}',
                 metric_name + ': %{customdata:' + metric_format + '}',
             ]),
-        marker=dict(size=3,color = df[metric_name],showscale=True, colorbar=dict(title = metric_name),color_continuous_scale=["red", "green", "blue"])#, colorscale= color_map), #[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]) #colorscale='Jet'
+        marker=dict(size=3,color = df[metric_name],showscale=True, colorbar=dict(title = metric_name), colorscale= color_map), #[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]) #colorscale='Jet'
         # color_continuous_scale=["red", "green", "blue"]
         ),secondary_y=False)
 
