@@ -254,8 +254,10 @@ with col_graphs:
     last_cfrisk = df_data['Confluence risk'].iloc[-1]
     strl.write("Latest value: " , round(last_cfrisk*100,2) , "%")
 
+strl.markdown("""----""")
+#Defines expander container
 strl.subheader("Historic confluence risk values")
-expander_plots = strl.expander(label='Exand history', expanded=True)
+expander_plots = strl.expander(label='Expand history', expanded=True)
 with expander_plots:
 
     # Plots confluence risk  
