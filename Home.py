@@ -12,7 +12,7 @@ import datetime
 from functions import bullet_fig_metric, market_data, aws_crypto_api, colored_metric, bounded_metric
 
 #Gets latest price data
-btc_price, eth_price, btc_per, eth_per, btc_mcap, eth_mcap, crypto_mcap = market_data()
+btc_price, eth_price, btc_per, eth_per, btc_mcap, eth_mcap, crypto_mcap = market_data(date_today = datetime.datetime.now().strftime("%Y-%m-%d"))
 
 #Sets page configuration
 strl.set_page_config(layout="wide", page_title="Home - BTC: " + str(btc_price), page_icon = "💰")
