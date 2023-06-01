@@ -255,7 +255,7 @@ with col_graphs:
     strl.write("Latest value: " , round(last_cfrisk*100,2) , "%")
 
 strl.subheader("Historic confluence risk values")
-expander_plots = strl.expander(label='Exand history', expanded=False)
+expander_plots = strl.expander(label='Exand history', expanded=True)
 with expander_plots:
 
     # Plots confluence risk  
