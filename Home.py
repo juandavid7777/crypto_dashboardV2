@@ -200,7 +200,8 @@ df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_ke
 
 #Confluence risk area
 strl.header("Confluence risk")
-strl.write("In order to prevent favoring any single metric and ensure a balanced approach, we have adopted a linear weight method. Each metric is first normalized on a scale of 0 to 1, allowing for fair comparison across different ranges. Subsequently, an average of all the normalized metrics is calculated to obtain a confluence risk value. This confluence metric serves as a powerful tool to filter out extraneous fluctuations and provide a comprehensive assessment of the current price of Bitcoin within the repeating cycle. By considering multiple metrics collectively, we can effectively map out a generalized risk estimation within the current Bitcoin cycle.")
+strl.write("In order to prevent favoring any single metric and ensure a balanced approach, we have adopted a linear weight method. Each metric is first normalized on a scale of 0 to 1, allowing for fair comparison across different ranges. Subsequently, an average of all the normalized metrics is calculated to obtain a confluence risk value. This confluence metric serves as a powerful tool to filter out extraneous fluctuations and provide a comprehensive mapping of the generalized risk of Bitcoin within the market cycle.")
+
 #Creates columns and sets buttons
 col_buttons, col_graphs = strl.columns([1, 3])
 
