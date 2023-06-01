@@ -33,7 +33,7 @@ with col3:
 
 strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable price cycles since its inception. These cycles often exhibit patterns influenced by various factors. One approach to understand and predict these cycles is by utilizing the concept of Bitcoin halving which defines a repetitive fundamental change which results in a reiteration of certain market dynamics. Building on this idea, a comprehensive analysis of nine metrics has been conducted, encompassing technical, on-chain, and sentiment indicators. By incorporating information from multiple sources, we implement a data-driven Machine Learning methodology to identify repeating patterns and map the market’s trend within the current cycle.")
 
-# Summary
+# Summary market
 colored_header(label = "", description = "", color_name="yellow-80")
 strl.header("Market summary")
 strl.caption("Powered by CoinGecko and Python Analytics")
@@ -75,6 +75,10 @@ metric = "All"
 price_bool = True
 normalize_bool = False
 df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key,date_today)
+
+my_expander = strl.expander(label='Expand me', expanded=True)
+with my_expander:
+    clicked = strl.button('Click me!')
 
 #Plots bullet data metrics
 strl.header("Metrics")
@@ -258,9 +262,7 @@ with col_graphs:
     strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%"), use_container_width=True)
     strl.plotly_chart(bounded_metric(df_data,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)
 
-my_expander = strl.expander(label='Expand me', expanded=True)
-with my_expander:
-    clicked = strl.button('Click me!')
+
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
 strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions.")
