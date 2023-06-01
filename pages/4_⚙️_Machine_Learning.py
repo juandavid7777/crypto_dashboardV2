@@ -139,7 +139,7 @@ with col_MLinputs:
     mid_date = ts_mid.strftime("%Y-%m-%d")
 
 with col_MLgraphs:
-    strl.subheader("Single classification model")   
+    strl.subheader("Single model classification")   
     model_type = strl.selectbox('Machine learning model type',
                                 ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
                    
@@ -171,13 +171,16 @@ with col_MLgraphs:
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"],
                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', "Logistic regression"])
     
-    rolling_window = strl.number_input('Days in rolling window', min_value = 1, max_value = 90, value = 7, help = "Time window where all the votes are averaged together. Bigger windows show smoother data, but suffer from a higher lag from when the change of trend was called out.")
+    conf_threshold = strl.number_input('Confidence threshold (%)', min_value = 50, max_value = 100, value = 80, help = "Defines the value under which the vote is discarded due to reduced consensus in all the voting models. It defines an area where the algorithm accuracy is too low to take any action according to our chosen preferences.")
+
+    rolling_window = strl.number_input('Days in rolling window', min_value = 1, max_value = 90, value = 7, help = "Defines the time window where all the votes are averaged together. Bigger windows will show smoother data, but will suffer from a bigger time lag from the market events.")
+    
 
     #Creates soft vote df
     df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = rolling_window)
 
     #Plots soft vote
-    strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = 0.8), use_container_width=True)
+    strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100), use_container_width=True)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")

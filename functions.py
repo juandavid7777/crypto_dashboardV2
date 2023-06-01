@@ -545,8 +545,14 @@ def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date,
 def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
 
     #Creates copy of trend  
+    df_in["bull_bear_cat"] = df_in["bull_bear"]
     df_in["bull_bear_pred_cat"] = df_in["bull_bear_pred"]
 
+    #Finds accuracy
+    y_test = df_in.loc[start_date:end_date][["bull_bear"]].values
+    y_pred = df_in.loc[start_date:end_date][["bull_bear_pred"]].values
+
+    soft_vote_accuracy = metrics.accuracy_score(y_test, y_pred)
 
     #Encodes bull bear
     cleanup_nums = {"bull_bear":     {"bull": 1, "bear": 0, 'Unclassificed':0.5 },
@@ -641,7 +647,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                             x=df.index, y=df["bar_vote"]*100, 
                             mode = 'lines', 
                             name = "Confidence vote",
-                            marker=dict(size=0.011,color = "black"),
+                            marker=dict(size=0.011,color = "#202020"),
                             opacity=0.5,
                             customdata=df["bull_bear_pred_cat"],
                             hovertemplate='Trend assessment: %{customdata}<extra></extra>'
@@ -659,24 +665,35 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
 
    
     #Adds vertical line in the split data time
-    fig.add_vline(x=start_date, line_width=2, line_dash="dash", line_color="grey")
+    fig.add_vline(x=start_date, line_width=2, line_dash="dashdot", line_color="grey")
     fig.add_annotation(x=start_date, xanchor = "left",
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
                        showarrow=False, textangle = 90,  text="Training data")
 
-    fig.add_vline(x=mid_date, line_width=2, line_dash="dash", line_color="grey")
+    fig.add_vline(x=mid_date, line_width=2, line_dash="dashdot", line_color="grey")
     fig.add_annotation(x=mid_date, xanchor = "left",
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
                        showarrow=False, textangle = 90,  text="Test data")
 
-    fig.add_vline(x=end_date, line_width=2, line_dash="dash", line_color="grey")
+    fig.add_vline(x=end_date, line_width=2, line_dash="dashdot", line_color="grey")
     fig.add_annotation(x=end_date, xanchor = "left",
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
                        showarrow=False, textangle = 90, text="Unclassified data")
     
+    fig.add_hline(y=conf_threshold*100, line_width=1.5, line_dash="dot", line_color="orange", secondary_y=True)
+    fig.add_annotation(y=conf_threshold*0.87,
+                       x=0.05,
+                       xref='paper',
+                       yref='y',
+                       showarrow=False,
+                       textangle = 0,
+                       text="Conf. Threshold: " + str(conf_threshold*100) + "%",
+                       font=dict(color='#ffaf1a'),  # Set the color of the text to orange
+                       secondary_y=True)
+    
     #Updates figure
     fig.update_layout(
-        title = "Machine learning soft vote bull/bear classification",
+        title = "Soft vote accuracy: " + str(round((soft_vote_accuracy*100), 2)) + " %",
         xaxis_title= "Date",
         yaxis_title= "USD/BTC",
         yaxis_type="log",
@@ -692,6 +709,4 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                      tickvals=[0, 10, 20, 30, 40, 50, 60, 70, 80, 90,100], 
                      gridcolor = '#bdbdbd')
 
-
-    
     return fig
