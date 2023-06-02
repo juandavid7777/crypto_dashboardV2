@@ -277,7 +277,7 @@ with col_graphs:
 
         #Plotly colored chart
         custom_cmap = [[0,"lawngreen"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"crimson"]]
-        strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%", color_map = custom_cmap), use_container_width=True)
+        strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%", color_map = custom_cmap), use_container_width=False)
         
     #Defines expander container
     expander_bplots = strl.expander(label='Expand bounded confluence risk history', expanded=False)
