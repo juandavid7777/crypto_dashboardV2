@@ -266,12 +266,16 @@ with col_graphs:
                     )
         
     strl.plotly_chart(fig_conf_bullet, use_container_width=True)
-    custom_cmap = [[0,"lawngreen"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"crimson"]]
-    strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%", color_map = custom_cmap), use_container_width=True)
-    
+
     #Defines expander container
-    expander_plots = strl.expander(label='Expand confluence risk history', expanded=False)
-    with expander_plots:
+    expander_cplots = strl.expander(label='Expand colored confluence risk history', expanded=True)
+    with expander_cplots:
+        custom_cmap = [[0,"lawngreen"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"crimson"]]
+        strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%", color_map = custom_cmap), use_container_width=True)
+        
+    #Defines expander container
+    expander_bplots = strl.expander(label='Expand bouned confluence risk history', expanded=False)
+    with expander_bplots:
 
         # Plots confluence risk  
         strl.plotly_chart(bounded_metric(df_data,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)
