@@ -186,6 +186,7 @@ def colored_metric(df, metric_name, metric_format, color_map = "jet"):
         coloraxis_colorbar=dict(title="Your Title"),
         xaxis_rangeslider_visible=False,
         hovermode="x unified",
+        autosize=True,
     )
 
     return fig
@@ -246,7 +247,8 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
         yaxis_type="log",
         yaxis2_type=log_scale_val,
         xaxis_rangeslider_visible=False,
-        hovermode="x unified", 
+        hovermode="x unified",
+        autosize=True, 
     )
 
     #Adds secodnary title
