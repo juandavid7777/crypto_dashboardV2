@@ -144,7 +144,7 @@ with col_MLgraphs:
     expander_MLSingleModel = strl.expander(label='Classify with single model vote', expanded=False)
     with expander_MLSingleModel:   
         model_type = strl.selectbox('Machine learning model type',
-                                    ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
+                                    ('Random Forest', "Decision Tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic Regression", "Neural Network"))
                    
 #Splits the data
 X_train, y_train, X_test, y_test, split_dates_list = ML_XY_dataselector(df_classified, selected_variables, "bull_bear", start_date, mid_date, end_date)
@@ -174,13 +174,13 @@ with col_MLgraphs:
     with expander_soft_vote:  
         #Soft vote estimation
         model_type_list = strl.multiselect('Select voting models',
-                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"],
-                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', "Logistic regression"])
+                                        ['Random Forest', "Decision Tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic Regression", "Neural Network"],
+                                        ['Random Forest', "Decision Tree", 'Support Vector Machine', 'K-NN', "Logistic Regression", "Neural Network"])
         
         conf_threshold = strl.number_input('Confidence threshold for acceptance (%)', min_value = 50, max_value = 100, value = 80, help = "Defines the value under which the vote is discarded due to reduced consensus in all the voting models. It defines an area where the algorithm accuracy is too low to take any action according to our chosen preferences.")
 
         rolling_window = strl.number_input('Days in rolling voting window', min_value = 1, max_value = 90, value = 7, help = "Defines the time window where all the votes are averaged together. Bigger windows will show smoother data, but will suffer from a bigger time lag from the market events.")
-        
+        strl.caption("Number of votes on a single day is equal to the votes for all the models for each day in the rolling window: nos.models x nos.daysWindow = " + str(len(model_type_list)* rolling_window) + " votes.")
 
         #Creates soft vote df
         df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = rolling_window)

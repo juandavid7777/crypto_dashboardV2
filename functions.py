@@ -23,6 +23,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.neural_network import MLPClassifier
 from sklearn import metrics, svm
 
 
@@ -321,13 +322,17 @@ def ML_model_traintest(X_train, y_train, X_test, y_test, mod_type = "Random Fore
         #Naive Bayes
         model = GaussianNB()
 
-    elif mod_type == "Logistic regression":
+    elif mod_type == "Logistic Regression":
         #Logistic regression
         model = LogisticRegression()
 
-    else:
+    elif mod_type == "Decision Tree":
         #Decision tree
         model = DecisionTreeClassifier()
+
+    else:
+        #Neural Network
+        model = MLPClassifier()
 
 
     # Fits data
