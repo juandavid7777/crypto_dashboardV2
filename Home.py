@@ -212,24 +212,28 @@ col_buttons, col_graphs = strl.columns([1, 3])
 
 with col_buttons:
 
-    #Creates metrics buttons to select
-        #Technical
-    strl.subheader("Technical")
-    var_timechannel = strl.checkbox('Time channel', value = True)
-    var_MAlograt = strl.checkbox('MA log rat', value = True)
+    #Defines expander container
+    expander_metrics_cfrisk = strl.expander(label='Metrics for confluence risk', expanded=True)
+    with expander_metrics_cfrisk:
 
-        #Onchain
-    strl.subheader("On-chain")
-    var_nupl = strl.checkbox('NUPL', value = True)
-    var_mvrvz = strl.checkbox('MVRV-Z', value = True)
-    var_puellmultiple = strl.checkbox('Puell Multiple', value = True)
-    var_thermocap = strl.checkbox('Thermocap rat.', value = True)
-    var_supplyprofit = strl.checkbox('Supply in profit', value = True)
+        #Creates metrics buttons to select
+            #Technical
+        strl.subheader("Technical")
+        var_timechannel = strl.checkbox('Time channel', value = True)
+        var_MAlograt = strl.checkbox('MA log rat', value = True)
 
-        #Sentiment
-    strl.subheader("Sentiment")
-    var_fg = strl.checkbox('Fear and Greed', value = True)
-    var_fgMA = strl.checkbox('Fear and Greed MA', value = True)
+            #Onchain
+        strl.subheader("On-chain")
+        var_nupl = strl.checkbox('NUPL', value = True)
+        var_mvrvz = strl.checkbox('MVRV-Z', value = True)
+        var_puellmultiple = strl.checkbox('Puell Multiple', value = True)
+        var_thermocap = strl.checkbox('Thermocap rat.', value = True)
+        var_supplyprofit = strl.checkbox('Supply in profit', value = True)
+
+            #Sentiment
+        strl.subheader("Sentiment")
+        var_fg = strl.checkbox('Fear and Greed', value = True)
+        var_fgMA = strl.checkbox('Fear and Greed MA', value = True)
 
 #Defines metrics to create average
 dict_var_bool = {"NUPL":var_nupl,
