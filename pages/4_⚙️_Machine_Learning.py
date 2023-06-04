@@ -139,9 +139,12 @@ with col_MLinputs:
     mid_date = ts_mid.strftime("%Y-%m-%d")
 
 with col_MLgraphs:
-    strl.subheader("Single model classification")   
-    model_type = strl.selectbox('Machine learning model type',
-                                ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
+    # strl.subheader("Single model classification")
+
+    expander_MLSingleModel = strl.expander(label='Classify with single model vote', expanded=False)
+    with expander_MLSingleModel:   
+        model_type = strl.selectbox('Machine learning model type',
+                                    ('Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"))
                    
 #Splits the data
 X_train, y_train, X_test, y_test, split_dates_list = ML_XY_dataselector(df_classified, selected_variables, "bull_bear", start_date, mid_date, end_date)
@@ -158,29 +161,32 @@ df_new = ML_model_predict(model, df_classified, selected_variables, start_date)
 
 with col_MLgraphs:
 
-    #Plots prediction
-    title = model_type + " accuracy: " + str(round((accuracy*100), 2)) + " %"
-    strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, title), use_container_width=True)
+    with expander_MLSingleModel:
+        #Plots prediction
+        title = model_type + " confidence: " + str(round((accuracy*100), 2)) + " %"
+        strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, title), use_container_width=True)
 
-    strl.markdown("""---""")
+    # strl.markdown("""---""")
     #Soft voting area ============================
-    strl.subheader("Soft voting algorithm")
-       
-    #Soft vote estimation
-    model_type_list = strl.multiselect('Select voting models',
-                                       ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"],
-                                       ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', "Logistic regression"])
-    
-    conf_threshold = strl.number_input('Confidence threshold (%)', min_value = 50, max_value = 100, value = 80, help = "Defines the value under which the vote is discarded due to reduced consensus in all the voting models. It defines an area where the algorithm accuracy is too low to take any action according to our chosen preferences.")
+    # strl.subheader("Soft voting algorithm")
 
-    rolling_window = strl.number_input('Days in rolling window', min_value = 1, max_value = 90, value = 7, help = "Defines the time window where all the votes are averaged together. Bigger windows will show smoother data, but will suffer from a bigger time lag from the market events.")
-    
+    expander_soft_vote= strl.expander(label='Classify with multiple models vote', expanded=True)
+    with expander_soft_vote:  
+        #Soft vote estimation
+        model_type_list = strl.multiselect('Select voting models',
+                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', 'Naive Bayes', "Logistic regression"],
+                                        ['Random Forest', "Decision tree", 'Support Vector Machine', 'K-NN', "Logistic regression"])
+        
+        conf_threshold = strl.number_input('Confidence threshold for acceptance (%)', min_value = 50, max_value = 100, value = 80, help = "Defines the value under which the vote is discarded due to reduced consensus in all the voting models. It defines an area where the algorithm accuracy is too low to take any action according to our chosen preferences.")
 
-    #Creates soft vote df
-    df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = rolling_window)
+        rolling_window = strl.number_input('Days in rolling voting window', min_value = 1, max_value = 90, value = 7, help = "Defines the time window where all the votes are averaged together. Bigger windows will show smoother data, but will suffer from a bigger time lag from the market events.")
+        
 
-    #Plots soft vote
-    strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100), use_container_width=True)
+        #Creates soft vote df
+        df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = rolling_window)
+
+        #Plots soft vote
+        strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100), use_container_width=True)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")

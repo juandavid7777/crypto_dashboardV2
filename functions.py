@@ -360,6 +360,8 @@ def ML_model_predict(model, df, selected_variables, start_date, model_name = "bu
 
 @strl.cache_data
 def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title"):
+
+    df_in["bull_bear_cat"] = df_in["bull_bear_pred"]
     
     #Encodes bull bear
     cleanup_nums = {"bull_bear":     {"bull": 1, "bear": 0, 'Unclassificed':0.5 },
@@ -442,7 +444,7 @@ def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title"):
     
     #Updates figure
     fig.update_layout(
-        title = title,
+        title = title + " - " + df_in["bull_bear_cat"].iloc[-1] + " trend",
         xaxis_title= "Date",
         yaxis_title= "USD/BTC",
         # yaxis2_title = "Bull-Bear",
@@ -697,7 +699,7 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
     
     #Updates figure
     fig.update_layout(
-        title = "Soft vote accuracy: " + str(round((soft_vote_accuracy*100), 2)) + " %",
+        title = "Multi-vote confidence: " + str(round((soft_vote_accuracy*100), 2)) + " % - " + df["bull_bear_pred_cat"].iloc[-1] + " trend",
         xaxis_title= "Date",
         yaxis_title= "USD/BTC",
         yaxis_type="log",
