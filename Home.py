@@ -1,15 +1,19 @@
 import pandas as pd
 import numpy as np
 import streamlit as strl
+import streamlit_authenticator as stauth
 
 from streamlit_extras.buy_me_a_coffee import button
 from streamlit_extras.badges import badge
 from streamlit_extras.colored_header import colored_header 
 
+import yaml
+
 from datetime import date, timedelta
 import datetime
 
 from functions import bullet_fig_metric, market_data, aws_crypto_api, colored_metric, bounded_metric
+from functions_auth import credentials_email, load_config, save_config, auth_connected, auth_disconnected, sidebar_auth
 
 # Sets page configuration
 strl.set_page_config(layout="wide", page_title="₿itcointrends", page_icon = "🚀")
@@ -60,6 +64,17 @@ with col_price:
 #Adds metrics in columns
 strl.markdown("""---""")
 
+# Load the config.yaml file
+config = load_config()
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
 api_key = strl.secrets["aws_api_token"]
@@ -87,12 +102,12 @@ col_tech, col_onchain, col_sent = strl.columns(3)
 
 # Technical
 with col_tech:
-   strl.subheader("Technical")
-   
-   #Runs functions in loops
-   df_meta = df_metadata[df_metadata["type"].isin(["Technical"])]
+    strl.subheader("Technical")
 
-   for i, metric in enumerate(df_meta["metric_name"]):
+    #Runs functions in loops
+    df_meta = df_metadata[df_metadata["type"].isin(["Technical"])]
+
+    for i, metric in enumerate(df_meta["metric_name"]):
         # Defines the source of data to be used
 
         time_shift = 90 #days
@@ -101,7 +116,7 @@ with col_tech:
         prev_val =  df_data.iloc[-time_shift][metric] 
         min_val = df_data[metric].min()
         max_val = df_data[metric].max()
-       
+    
         # Defines ranges to be used
         if df_meta.iloc[i]["custom_limit"] == True:
             range_vals = [df_meta.iloc[i]["min"], df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_meta.iloc[i]["max"]]
@@ -123,12 +138,12 @@ with col_tech:
 
 # Onchain
 with col_onchain:
-   strl.subheader("Onchain")
-   
-   #Runs functions in loops
-   df_meta = df_metadata[df_metadata["type"].isin(["Onchain"])]
+    strl.subheader("Onchain")
 
-   for i, metric in enumerate(df_meta["metric_name"]):
+    #Runs functions in loops
+    df_meta = df_metadata[df_metadata["type"].isin(["Onchain"])]
+
+    for i, metric in enumerate(df_meta["metric_name"]):
         # Defines the source of data to be used
 
         time_shift = 90 #days
@@ -137,7 +152,7 @@ with col_onchain:
         prev_val =  df_data.iloc[-time_shift][metric] 
         min_val = df_data[metric].min()
         max_val = df_data[metric].max()
-       
+    
         # Defines ranges to be used
         if df_meta.iloc[i]["custom_limit"] == True:
             range_vals = [df_meta.iloc[i]["min"], df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_meta.iloc[i]["max"]]
@@ -158,12 +173,12 @@ with col_onchain:
 
 # Sentiment
 with col_sent:
-   strl.subheader("Sentiment")
-   
-   #Runs functions in loops
-   df_meta = df_metadata[df_metadata["type"].isin(["Sentiment"])]
+    strl.subheader("Sentiment")
 
-   for i, metric in enumerate(df_meta["metric_name"]):
+    #Runs functions in loops
+    df_meta = df_metadata[df_metadata["type"].isin(["Sentiment"])]
+
+    for i, metric in enumerate(df_meta["metric_name"]):
         # Defines the source of data to be used
 
         time_shift = 90 #days
@@ -172,7 +187,7 @@ with col_sent:
         prev_val =  df_data.iloc[-time_shift][metric] 
         min_val = df_data[metric].min()
         max_val = df_data[metric].max()
-       
+    
         # Defines ranges to be used
         if df_meta.iloc[i]["custom_limit"] == True:
             range_vals = [df_meta.iloc[i]["min"], df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_meta.iloc[i]["max"]]
@@ -193,102 +208,107 @@ with col_sent:
 
 strl.markdown("""----""")
 
-#Defines expander container
-# expander_confluence_risk = strl.expander(label='Confluence risk analysis', expanded=False)
-# with expander_confluence_risk:
+#Basic session rendering if connected
+if strl.session_state["authentication_status"]:
+    
+    #Calls all data
+    metric = "All"
+    price_bool = True
+    normalize_bool = True
+    df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key,date_today)
 
-#Calls all data
-metric = "All"
-price_bool = True
-normalize_bool = True
-df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key,date_today)
+    #Confluence risk area
+    strl.header("Confluence risk")
+    strl.write("In order to prevent favoring any single metric and ensure a balanced approach, we have adopted a linear weight method. Each metric is first normalized on a scale of 0 to 1, allowing for fair comparison across different ranges. Subsequently, an average of all the normalized metrics is calculated to obtain a confluence risk value. This confluence metric serves as a powerful tool to filter out extraneous fluctuations and provide a comprehensive mapping of the generalized risk of Bitcoin within the market cycle.")
 
-#Confluence risk area
-strl.header("Confluence risk")
-strl.write("In order to prevent favoring any single metric and ensure a balanced approach, we have adopted a linear weight method. Each metric is first normalized on a scale of 0 to 1, allowing for fair comparison across different ranges. Subsequently, an average of all the normalized metrics is calculated to obtain a confluence risk value. This confluence metric serves as a powerful tool to filter out extraneous fluctuations and provide a comprehensive mapping of the generalized risk of Bitcoin within the market cycle.")
+    #Creates columns and sets buttons
+    col_buttons, col_graphs = strl.columns([1, 3])
 
-#Creates columns and sets buttons
-col_buttons, col_graphs = strl.columns([1, 3])
+    with col_buttons:
 
-with col_buttons:
+        #Defines expander container
+        expander_metrics_cfrisk = strl.expander(label='Metrics for confluence risk', expanded=True)
+        with expander_metrics_cfrisk:
 
-    #Defines expander container
-    expander_metrics_cfrisk = strl.expander(label='Metrics for confluence risk', expanded=True)
-    with expander_metrics_cfrisk:
+            #Creates metrics buttons to select
+                #Technical
+            strl.subheader("Technical")
+            var_timechannel = strl.checkbox('Time channel', value = True)
+            var_MAlograt = strl.checkbox('MA log rat', value = True)
 
-        #Creates metrics buttons to select
-            #Technical
-        strl.subheader("Technical")
-        var_timechannel = strl.checkbox('Time channel', value = True)
-        var_MAlograt = strl.checkbox('MA log rat', value = True)
+                #Onchain
+            strl.subheader("On-chain")
+            var_nupl = strl.checkbox('NUPL', value = True)
+            var_mvrvz = strl.checkbox('MVRV-Z', value = True)
+            var_puellmultiple = strl.checkbox('Puell Multiple', value = True)
+            var_thermocap = strl.checkbox('Thermocap rat.', value = True)
+            var_supplyprofit = strl.checkbox('Supply in profit', value = True)
 
-            #Onchain
-        strl.subheader("On-chain")
-        var_nupl = strl.checkbox('NUPL', value = True)
-        var_mvrvz = strl.checkbox('MVRV-Z', value = True)
-        var_puellmultiple = strl.checkbox('Puell Multiple', value = True)
-        var_thermocap = strl.checkbox('Thermocap rat.', value = True)
-        var_supplyprofit = strl.checkbox('Supply in profit', value = True)
+                #Sentiment
+            strl.subheader("Sentiment")
+            var_fg = strl.checkbox('Fear and Greed', value = True)
+            var_fgMA = strl.checkbox('Fear and Greed MA', value = True)
 
-            #Sentiment
-        strl.subheader("Sentiment")
-        var_fg = strl.checkbox('Fear and Greed', value = True)
-        var_fgMA = strl.checkbox('Fear and Greed MA', value = True)
+    #Defines metrics to create average
+    dict_var_bool = {"NUPL":var_nupl,
+                    'MVRV-Z':var_mvrvz,
+                    'Puell Multiple':var_puellmultiple,
+                    'Thermocap rat.':var_thermocap,
+                    'Supply in profit':var_supplyprofit,
+                    'Time channel':var_timechannel,
+                    'MA log rat':var_MAlograt,
+                    'Fear and Greed':var_fg,
+                    'Fear and Greed MA':var_fgMA
+                    }
 
-#Defines metrics to create average
-dict_var_bool = {"NUPL":var_nupl,
-                'MVRV-Z':var_mvrvz,
-                'Puell Multiple':var_puellmultiple,
-                'Thermocap rat.':var_thermocap,
-                'Supply in profit':var_supplyprofit,
-                'Time channel':var_timechannel,
-                'MA log rat':var_MAlograt,
-                'Fear and Greed':var_fg,
-                'Fear and Greed MA':var_fgMA
-                }
+    #Creates a list of variables that are selected true
+    selected_cols_list = []
+    for metric in dict_var_bool:
 
-#Creates a list of variables that are selected true
-selected_cols_list = []
-for metric in dict_var_bool:
+        if dict_var_bool[metric] == True:
+            selected_cols_list.extend([metric])
 
-    if dict_var_bool[metric] == True:
-        selected_cols_list.extend([metric])
+    #Estimates average risk of selected columns
+    df_data['Confluence risk'] = df_data[selected_cols_list].mean(axis=1)
 
-#Estimates average risk of selected columns
-df_data['Confluence risk'] = df_data[selected_cols_list].mean(axis=1)
+    with col_graphs:
 
-with col_graphs:
+        #reports latest value
+        last_cfrisk = df_data['Confluence risk'].iloc[-1]
+        prev_val_cfrisk = df_data['Confluence risk'].iloc[-90]
 
-    #reports latest value
-    last_cfrisk = df_data['Confluence risk'].iloc[-1]
-    prev_val_cfrisk = df_data['Confluence risk'].iloc[-90]
+        # strl.write("Latest value: " , round(last_cfrisk*100,2) , "%")
 
-    # strl.write("Latest value: " , round(last_cfrisk*100,2) , "%")
+        fig_conf_bullet = bullet_fig_metric(value_in = last_cfrisk ,
+                        previous_val = prev_val_cfrisk,
+                        title_text = "Confluence risk",
+                        ranges = [0, 0.25, 0.75, 1],
+                        format_num = ",.1%",
+                        log_scale = False
+                        )
+            
+        strl.plotly_chart(fig_conf_bullet, use_container_width=True)
 
-    fig_conf_bullet = bullet_fig_metric(value_in = last_cfrisk ,
-                    previous_val = prev_val_cfrisk,
-                    title_text = "Confluence risk",
-                    ranges = [0, 0.25, 0.75, 1],
-                    format_num = ",.1%",
-                    log_scale = False
-                    )
-        
-    strl.plotly_chart(fig_conf_bullet, use_container_width=True)
+        #Defines expander container
+        expander_cplots = strl.expander(label='Expand colored confluence risk history', expanded=True)
+        with expander_cplots:
 
-    #Defines expander container
-    expander_cplots = strl.expander(label='Expand colored confluence risk history', expanded=True)
-    with expander_cplots:
+            #Plotly colored chart
+            custom_cmap = [[0,"lawngreen"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"crimson"]]
+            strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%", color_map = custom_cmap), use_container_width=True)
+            
+        #Defines expander container
+        expander_bplots = strl.expander(label='Expand bounded confluence risk history', expanded=False)
+        with expander_bplots:
 
-        #Plotly colored chart
-        custom_cmap = [[0,"lawngreen"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"crimson"]]
-        strl.plotly_chart(colored_metric(df_data, "Confluence risk", ".1%", color_map = custom_cmap), use_container_width=True)
-        
-    #Defines expander container
-    expander_bplots = strl.expander(label='Expand bounded confluence risk history', expanded=False)
-    with expander_bplots:
+            # Plots confluence risk  
+            strl.plotly_chart(bounded_metric(df_data,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)
 
-        # Plots confluence risk  
-        strl.plotly_chart(bounded_metric(df_data,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False), use_container_width=True)
+else:
+    strl.warning("To access our exclusive content please register or login to your account.")
+
+#Adds sidebar auth
+sidebar_auth(authenticator)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")

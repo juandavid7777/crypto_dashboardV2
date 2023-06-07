@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as strl
+import streamlit_authenticator as stauth
 
 from streamlit_extras.buy_me_a_coffee import button
 from streamlit_extras.badges import badge
@@ -10,6 +11,7 @@ from datetime import date, timedelta
 import datetime
 
 from functions import plot_graphsV2, aws_crypto_api
+from functions_auth import sidebar_auth, load_config
 
 #Sets page configuration
 strl.set_page_config(layout="wide", page_title="BTC metrics - Sentiment", page_icon = "📊")
@@ -63,6 +65,19 @@ with col_bounded:
 with col_colored:
     strl.subheader("Colored distribution")
     plot_graphsV2(df_data, df_meta, colored = True)
+
+#Adds sidebar auth
+# Load the config.yaml file
+config = load_config()
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+sidebar_auth(authenticator)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")

@@ -1,0 +1,15 @@
+cookie:
+  expiry_days: 30
+  key: bitcointrends_key
+  name: bitcointrends
+credentials:
+  usernames:
+    juandavid7777:
+      email: juandavid7777@gmail.com
+      name: Juan David Barbosa
+      password: $2b$12$.vqJds3I9TTtgcfofCAzy.st.l6RL9.7UAw2MKbWNufLiylrpN1m2
+preauthorized:
+  emails:
+  - user1@gmail.com
+  - user2@gmail.com
+  - user3@gmail.com

@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as strl
+import streamlit_authenticator as stauth
 
 from streamlit_extras.buy_me_a_coffee import button
 from streamlit_extras.badges import badge
@@ -10,6 +11,7 @@ from datetime import date, timedelta
 import datetime
 
 from functions import aws_crypto_api, colored_metric, bounded_metric, bull_bear_classifier, ML_date_finder, ML_XY_dataselector, ML_model_traintest, ML_model_predict, ML_bull_bear_plot, soft_vote_ML, soft_vote_plot 
+from functions_auth import sidebar_auth, load_config
 
 #Sets page configuration
 strl.set_page_config(layout="wide", page_title="BTC metrics - Machine Learning", page_icon = "⚙️")
@@ -187,6 +189,19 @@ with col_MLgraphs:
 
         #Plots soft vote
         strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100), use_container_width=True)
+
+#Adds sidebar auth
+# Load the config.yaml file
+config = load_config()
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+sidebar_auth(authenticator)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
