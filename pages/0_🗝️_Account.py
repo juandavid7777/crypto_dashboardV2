@@ -15,7 +15,8 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
-strl.title('User account')  
+strl.title('User account')
+name, authentication_status, username = authenticator.login('Login for advanced metrics access', 'main')   
     
 #Basic session rendering
 if strl.session_state["authentication_status"]:
@@ -25,7 +26,7 @@ if strl.session_state["authentication_status"]:
 
 else:
     strl.warning("To access our exclusive content please register or login to your account.")
-    name, authentication_status, username = authenticator.login('Login for advanced metrics access', 'main') 
+    
     if strl.session_state["authentication_status"] is False:
         strl.error('Username/password is incorrect')
     else:
