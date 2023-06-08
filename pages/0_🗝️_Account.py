@@ -17,7 +17,7 @@ authenticator = stauth.Authenticate(
 
 strl.title('User account')
 if strl.session_state["authentication_status"] != True:
-    strl.warning("To access our exclusive content please register or login to your account.")
+    strl.success("To access our exclusive content please register or login to your account.")
 
 name, authentication_status, username = authenticator.login('Login for advanced metrics access', 'main')   
     
