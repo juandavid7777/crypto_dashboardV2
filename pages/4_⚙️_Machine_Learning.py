@@ -11,7 +11,7 @@ from datetime import date, timedelta
 import datetime
 
 from functions import aws_crypto_api, colored_metric, bounded_metric, bull_bear_classifier, ML_date_finder, ML_XY_dataselector, ML_model_traintest, ML_model_predict, ML_bull_bear_plot, soft_vote_ML, soft_vote_plot 
-from functions_auth import sidebar_auth, load_config
+from functions_auth import sidebar_auth, load_config, access_warning
 
 #Sets page configuration
 strl.set_page_config(layout="wide", page_title="BTC metrics - Machine Learning", page_icon = "⚙️")
@@ -33,6 +33,24 @@ with col3:
 # Summary
 colored_header(label = "", description = "", color_name="yellow-80")
 strl.caption("Customized indicator powered by Python Analytics")
+
+#Adds sidebar auth
+# Load the config.yaml file
+config = load_config()
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+sidebar_auth(authenticator)
+
+#Basic session rendering if connected
+render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
+                 'displaylogo': False}
+render = strl.session_state["authentication_status"]
 
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
@@ -166,7 +184,7 @@ with col_MLgraphs:
     with expander_MLSingleModel:
         #Plots prediction
         title = model_type + " confidence: " + str(round((accuracy*100), 2)) + " %"
-        strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, title), use_container_width=True)
+        strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, title), use_container_width=True, config = render_config)
 
     # strl.markdown("""---""")
     #Soft voting area ============================
@@ -188,20 +206,7 @@ with col_MLgraphs:
         df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = rolling_window)
 
         #Plots soft vote
-        strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100), use_container_width=True)
-
-#Adds sidebar auth
-# Load the config.yaml file
-config = load_config()
-
-authenticator = stauth.Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
-)
-sidebar_auth(authenticator)
+        strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100), use_container_width=True, config = render_config)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")

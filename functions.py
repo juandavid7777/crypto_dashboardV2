@@ -157,7 +157,7 @@ def market_data(date_today):
 
     return round(btc_price,1), round(eth_price, 1), round(btc_per,1), round(eth_per, 1), round(btc_mcap,1), round(eth_mcap,1), round(crypto_mcap,1)
 
-def colored_metric(df, metric_name, metric_format, color_map = "jet"):
+def colored_metric(df, metric_name, metric_format, color_map = "jet", interactive = True):
 
     fig = go.Figure()
 
@@ -177,6 +177,23 @@ def colored_metric(df, metric_name, metric_format, color_map = "jet"):
         marker=dict(size=3,color = df[metric_name],showscale=True, colorbar=dict(title = metric_name), colorscale= color_map), #[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]) #colorscale='Jet'
         # color_continuous_scale=["red", "green", "blue"]
         ),secondary_y=False)
+    
+    if interactive != True:
+
+        fig.update_layout(shapes=[dict(
+            type="rect",
+            xref="paper",
+            yref="paper",
+            x0 = 0,
+            y0= 0,
+            x1= 1,
+            y1= 1,
+            fillcolor="rgba(0, 0, 0, 0.95)",
+            layer="above",
+            line_width=0,
+                        )
+                        ]   
+                        )
 
     #Defines figure properties
     fig.update_layout(
@@ -192,7 +209,7 @@ def colored_metric(df, metric_name, metric_format, color_map = "jet"):
 
     return fig
 
-def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale = False):
+def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale = False, interactive = True):
 
     min_lim = range_vals[0]
     low_lim = range_vals[1]
@@ -254,6 +271,10 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
 
     #Adds secodnary title
     fig.update_yaxes(title_text=metric_name, secondary_y=True)
+
+    if interactive != True:
+
+        fig.add_hrect(y0=df[metric_name].min(), y1=df[metric_name].max(), line_width=0, fillcolor="rgba(0, 0, 0, 0.95)", opacity=1, secondary_y = True)
 
     return fig
 
@@ -481,7 +502,7 @@ def aws_crypto_api(url, metric, price_bool, normalize_bool, api_key, today_date)
 
     return df
 
-def plot_graphsV2(df_data, df_meta, colored = False):
+def plot_graphsV2(df_data, df_meta, render, render_config, colored = False, ):
 
      # Runs functions in loops
     for i, metric in enumerate(df_meta["metric_name"]):
@@ -496,10 +517,10 @@ def plot_graphsV2(df_data, df_meta, colored = False):
             range_vals = [df_plot[metric].min(), df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_plot[metric].max()]
 
         if colored == True:
-            strl.plotly_chart(colored_metric(df_plot, metric, df_meta.iloc[i]["format"]))
+            strl.plotly_chart(colored_metric(df_plot, metric, df_meta.iloc[i]["format"], interactive = render), config = render_config)
 
         else:
-            strl.plotly_chart(bounded_metric(df_plot, metric, range_vals, df_meta.iloc[i]["format"], log_scale = df_meta.iloc[i]["log_scale"] ))
+            strl.plotly_chart(bounded_metric(df_plot, metric, range_vals, df_meta.iloc[i]["format"], log_scale = df_meta.iloc[i]["log_scale"], interactive = render), config = render_config)
 
 
 #Function for soft voting ML

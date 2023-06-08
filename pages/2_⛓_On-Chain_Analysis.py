@@ -11,7 +11,7 @@ from datetime import date, timedelta
 import datetime
 
 from functions import plot_graphsV2, aws_crypto_api
-from functions_auth import sidebar_auth, load_config
+from functions_auth import sidebar_auth, load_config, access_warning
 
 #Sets page configuration
 strl.set_page_config(layout="wide", page_title="BTC metrics - On Chain", page_icon = "⛓")
@@ -33,6 +33,24 @@ with col3:
 # Summary
 colored_header(label = "", description = "", color_name="yellow-80")
 strl.caption("Indicator powered by Python Analytics")
+
+#Adds sidebar auth
+# Load the config.yaml file
+config = load_config()
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+sidebar_auth(authenticator)
+
+#Basic session rendering if connected
+render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
+                 'displaylogo': False} 
+render = strl.session_state["authentication_status"]
 
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
@@ -59,24 +77,13 @@ col_bounded, col_colored= strl.columns(2)
 
 with col_bounded:
     strl.subheader("Oscillators thresholds")
-    plot_graphsV2(df_data, df_meta, colored = False)
+    access_warning()
+    plot_graphsV2(df_data, df_meta, render, render_config, colored = False)
 
 with col_colored:
     strl.subheader("Colored distribution")
-    plot_graphsV2(df_data, df_meta, colored = True)
-
-#Adds sidebar auth
-# Load the config.yaml file
-config = load_config()
-
-authenticator = stauth.Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
-)
-sidebar_auth(authenticator)
+    access_warning()
+    plot_graphsV2(df_data, df_meta, render, render_config, colored = True)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
