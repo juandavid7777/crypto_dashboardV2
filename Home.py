@@ -75,6 +75,11 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
+#Basic session rendering if connected
+render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
+                 'displaylogo': False}
+render = strl.session_state["authentication_status"]
+
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
 api_key = strl.secrets["aws_api_token"]
@@ -207,12 +212,7 @@ with col_sent:
         strl.plotly_chart(fig, use_container_width=True)
 
 strl.markdown("""----""")
-
-#Basic session rendering if connected
-render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
-                 'displaylogo': False}
-render = strl.session_state["authentication_status"]
-    
+   
 #Calls all data
 metric = "All"
 price_bool = True
