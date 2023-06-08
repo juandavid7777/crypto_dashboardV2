@@ -15,18 +15,22 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
-strl.title('User account')
-
-if strl.session_state["authentication_status"] != True:
-    strl.warning("To access our exclusive content please register or login to your account.")
-
-else:
-
-    strl.success(f'Hi *{strl.session_state["name"]}*')
-    strl.success(f' You are logged in as: *{strl.session_state["username"]}*', icon="✅")
-    strl.success(f' Your  registered email is: *{config["credentials"]["usernames"][strl.session_state["username"]]["email"]}*', icon="📧") 
+strl.title('User account')  
     
 name, authentication_status, username = authenticator.login('Login for advanced metrics access', 'main')
+
+#Basic session rendering
+if strl.session_state["authentication_status"]:
+    strl.success(f'Hi *{strl.session_state["name"]}*')
+    strl.success(f' You are logged in as: *{strl.session_state["username"]}*', icon="✅")
+    strl.success(f' Your  registered email is: *{config["credentials"]["usernames"][strl.session_state["username"]]["email"]}*', icon="📧")
+
+else:
+    strl.warning("To access our exclusive content please register or login to your account.") 
+    if strl.session_state["authentication_status"] is False:
+        strl.error('Username/password is incorrect')
+    else:
+        strl.warning('Please enter your username and password')
 
 sidebar_auth(authenticator)
 auth_connected(authenticator, name, authentication_status, username, config)
