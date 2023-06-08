@@ -180,6 +180,7 @@ def colored_metric(df, metric_name, metric_format, color_map = "jet", interactiv
     
     if interactive != True:
 
+        dark_theme = "#262730" #"#0E1117" #"rgba(0, 0, 0, 0.95)"
         fig.update_layout(shapes=[dict(
             type="rect",
             xref="paper",
@@ -188,7 +189,8 @@ def colored_metric(df, metric_name, metric_format, color_map = "jet", interactiv
             y0= 0,
             x1= 1,
             y1= 1,
-            fillcolor="rgba(0, 0, 0, 0.95)",
+            fillcolor=dark_theme,
+            opacity = 0.98,
             layer="above",
             line_width=0,
                         )
@@ -274,7 +276,8 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
 
     if interactive != True:
 
-        fig.add_hrect(y0=df[metric_name].min(), y1=df[metric_name].max(), line_width=0, fillcolor="rgba(0, 0, 0, 0.95)", opacity=1, secondary_y = True)
+        dark_theme = "#262730" #"#0E1117" #"rgba(0, 0, 0, 0.95)"
+        fig.add_hrect(y0=df[metric_name].min(), y1=df[metric_name].max(), line_width=0, fillcolor=dark_theme, opacity=0.98, secondary_y = True)
 
     return fig
 
