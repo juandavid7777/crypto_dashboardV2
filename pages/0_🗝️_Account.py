@@ -34,5 +34,6 @@ else:
         strl.warning('Please enter your username and password')
 
 sidebar_auth(authenticator)
+strl.markdown("""---""")
 auth_connected(authenticator, name, authentication_status, username, config)
 auth_disconnected(authenticator, config)
