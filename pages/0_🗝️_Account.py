@@ -35,6 +35,6 @@ else:
 
 sidebar_auth(authenticator)
 strl.markdown("""---""")
-strl.write("Manage credentials")
+strl.header("Manage credentials")
 auth_connected(authenticator, name, authentication_status, username, config)
 auth_disconnected(authenticator, config)
