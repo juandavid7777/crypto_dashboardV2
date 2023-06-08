@@ -182,4 +182,4 @@ def auth_disconnected(authenticator, config):
 
 def access_warning():
     if strl.session_state["authentication_status"] != True:
-        strl.warning("To access our exclusive content please register or login to your account.")
+        strl.warning("To access our exclusive content please register or login to your free account.")
