@@ -209,10 +209,6 @@ def colored_metric(df, metric_name, metric_format, color_map = "jet", interactiv
         autosize=True,
     )
 
-    fig.update_layout(margin={"r":80,"t":60,"l":0,"b":0}, 
-                height=500, width=710, 
-                legend=dict(x=-.3, y=0.1))
-
     return fig
 
 def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale = False, interactive = True):
