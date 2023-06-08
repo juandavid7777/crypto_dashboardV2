@@ -26,6 +26,7 @@ if strl.session_state["authentication_status"]:
     strl.success(f'Hi *{strl.session_state["name"]}*')
     strl.success(f' You are logged in as: *{strl.session_state["username"]}*', icon="✅")
     strl.success(f' Your  registered email is: *{config["credentials"]["usernames"][strl.session_state["username"]]["email"]}*', icon="📧")
+    authenticator.logout('Logout', 'main', key='unique_key')
 
 else:   
     if strl.session_state["authentication_status"] is False:
