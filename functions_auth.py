@@ -117,7 +117,7 @@ def sidebar_auth(auth_out = False):
             authenticator.logout('Logout', 'main', key='unique_key')
     
     if auth_out == True:
-        return authenticator
+        return authenticator, config
 
 def auth_connected(authenticator, name, authentication_status, username, config):
 

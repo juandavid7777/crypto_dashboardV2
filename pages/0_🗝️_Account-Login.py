@@ -4,7 +4,7 @@ import streamlit_authenticator as stauth
 
 from functions_auth import load_config, auth_connected, auth_disconnected, sidebar_auth
 
-authenticator = sidebar_auth(auth_out = True)
+authenticator, config = sidebar_auth(auth_out = True)
 
 strl.title('User account')
 if strl.session_state["authentication_status"] != True:
