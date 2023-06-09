@@ -75,6 +75,9 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
+#Adds sidebar auth
+sidebar_auth(authenticator)
+
 #Basic session rendering if connected
 render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
                  'displaylogo': False}
@@ -307,9 +310,6 @@ with col_graphs:
         # Plots confluence risk
         access_warning()
         strl.plotly_chart(bounded_metric(df_data,"Confluence risk", [0,0.25, 0.75, 1], metric_format = ".1%", log_scale = False, interactive =  render), use_container_width=True, config = render_config)
-
-#Adds sidebar auth
-sidebar_auth(authenticator)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
