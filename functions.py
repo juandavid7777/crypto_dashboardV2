@@ -523,10 +523,10 @@ def plot_graphsV2(df_data, df_meta, render, render_config, colored = False, ):
             range_vals = [df_plot[metric].min(), df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_plot[metric].max()]
 
         if colored == True:
-            strl.plotly_chart(colored_metric(df_plot, metric, df_meta.iloc[i]["format"], interactive = render), config = render_config)
+            strl.plotly_chart(colored_metric(df_plot, metric, df_meta.iloc[i]["format"], interactive = render), use_container_width=True, config = render_config)
 
         else:
-            strl.plotly_chart(bounded_metric(df_plot, metric, range_vals, df_meta.iloc[i]["format"], log_scale = df_meta.iloc[i]["log_scale"], interactive = render), config = render_config)
+            strl.plotly_chart(bounded_metric(df_plot, metric, range_vals, df_meta.iloc[i]["format"], log_scale = df_meta.iloc[i]["log_scale"], interactive = render), use_container_width=True, config = render_config)
 
 
 #Function for soft voting ML
