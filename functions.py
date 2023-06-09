@@ -507,6 +507,7 @@ def aws_crypto_api(url, metric, price_bool, normalize_bool, api_key, today_date)
 
     return df
 
+@strl.cache_data
 def plot_graphsV2(df_data, df_meta, render, render_config, colored = False, ):
 
      # Runs functions in loops
