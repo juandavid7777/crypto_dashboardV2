@@ -4,18 +4,7 @@ import streamlit_authenticator as stauth
 
 from functions_auth import load_config, auth_connected, auth_disconnected, sidebar_auth
 
-# # Load the config.yaml file
-# config = load_config()
-
-# authenticator = stauth.Authenticate(
-#     config['credentials'],
-#     config['cookie']['name'],
-#     config['cookie']['key'],
-#     config['cookie']['expiry_days'],
-#     config['preauthorized']
-# )
-
-sidebar_auth()
+authenticator = sidebar_auth(auth_out = True)
 
 strl.title('User account')
 if strl.session_state["authentication_status"] != True:

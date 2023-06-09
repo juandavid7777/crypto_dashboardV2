@@ -95,7 +95,7 @@ def validate_useremail(email):
 # email = "admin$,$s@bitcointrends.appa"    
 # validate_useremail(email)
 
-def sidebar_auth():
+def sidebar_auth(auth_out = False):
 
         # Load the config.yaml file
     config = load_config()
@@ -115,6 +115,9 @@ def sidebar_auth():
         with strl.sidebar:
             strl.write(f'Welcome *{strl.session_state["name"]}*') 
             authenticator.logout('Logout', 'main', key='unique_key')
+    
+    if auth_out == True:
+        return authenticator
 
 def auth_connected(authenticator, name, authentication_status, username, config):
 
