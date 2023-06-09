@@ -15,6 +15,8 @@ authenticator = stauth.Authenticate(
     config['preauthorized']
 )
 
+sidebar_auth()
+
 strl.title('User account')
 if strl.session_state["authentication_status"] != True:
     strl.success("To access our exclusive content please register or login to your account.")
@@ -34,7 +36,6 @@ else:
     else:
         strl.warning('Please enter your username and password')
 
-sidebar_auth(authenticator)
 strl.markdown("""---""")
 strl.header("Manage credentials")
 auth_connected(authenticator, name, authentication_status, username, config)
