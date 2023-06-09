@@ -1,5 +1,6 @@
 import streamlit as strl
 import streamlit_authenticator as stauth
+from streamlit_extras.switch_page_button import switch_page
 
 import yaml
 
@@ -115,6 +116,11 @@ def sidebar_auth(auth_out = False):
         with strl.sidebar:
             strl.write(f'Welcome *{strl.session_state["name"]}*') 
             authenticator.logout('Logout', 'main', key='unique_key')
+
+    else:
+        login_button = strl.sidebar.button("Login")
+        if login_button:
+            switch_page("Account-Login")
     
     if auth_out == True:
         return authenticator, config
