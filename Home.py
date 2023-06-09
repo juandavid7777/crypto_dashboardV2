@@ -64,19 +64,8 @@ with col_price:
 #Adds metrics in columns
 strl.markdown("""---""")
 
-# Load the config.yaml file
-config = load_config()
-
-authenticator = stauth.Authenticate(
-    config['credentials'],
-    config['cookie']['name'],
-    config['cookie']['key'],
-    config['cookie']['expiry_days'],
-    config['preauthorized']
-)
-
-#Adds sidebar auth
-sidebar_auth(authenticator)
+#Adds side authenticator
+sidebar_auth()
 
 #Basic session rendering if connected
 render_config = {'staticPlot': not(strl.session_state["authentication_status"]),

@@ -34,6 +34,20 @@ with col3:
 colored_header(label = "", description = "", color_name="yellow-80")
 strl.caption("Customized indicator powered by Python Analytics")
 
+# Load the config.yaml file
+config = load_config()
+
+authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+
+#Adds sidebar auth
+sidebar_auth(authenticator)
+
 #Basic session rendering if connected
 render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
                  'displaylogo': False} 

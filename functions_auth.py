@@ -95,9 +95,20 @@ def validate_useremail(email):
 # email = "admin$,$s@bitcointrends.appa"    
 # validate_useremail(email)
 
-def sidebar_auth(authenticator):
-    # If user is connected
-           
+def sidebar_auth():
+
+        # Load the config.yaml file
+    config = load_config()
+
+    authenticator = stauth.Authenticate(
+        config['credentials'],
+        config['cookie']['name'],
+        config['cookie']['key'],
+        config['cookie']['expiry_days'],
+        config['preauthorized']
+                                        )
+
+    # If user is connected     
     if strl.session_state["authentication_status"]:
 
         #Add logout button
