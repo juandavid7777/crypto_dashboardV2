@@ -34,6 +34,9 @@ with col3:
 colored_header(label = "", description = "", color_name="yellow-80")
 strl.caption("Indicator powered by Python Analytics")
 
+#Adds side authenticator
+sidebar_auth()
+
 #Basic session rendering if connected
 render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
                  'displaylogo': False} 
