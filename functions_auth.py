@@ -121,8 +121,6 @@ def sidebar_auth(auth_out = False):
         login_button = strl.sidebar.button("Login")
         if login_button:
             switch_page("Account-Login")
-            strl.session_state.sidebar_state = 'collapsed' if strl.session_state.sidebar_state == 'expanded' else 'expanded'
-            strl.experimental_rerun()
 
     if auth_out == True:
         return authenticator, config

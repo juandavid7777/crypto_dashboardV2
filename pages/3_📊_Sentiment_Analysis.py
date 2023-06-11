@@ -14,7 +14,7 @@ from functions import plot_graphsV2, aws_crypto_api
 from functions_auth import sidebar_auth, load_config, access_warning
 
 #Sets page configuration
-strl.set_page_config(layout="wide", page_title="BTC metrics - Sentiment", page_icon = "📊")
+strl.set_page_config(layout="wide", page_title="₿trends - Sentiment", page_icon = "📊")
 
 # Title
 strl.image("sentiment_strip.png", use_column_width = True)

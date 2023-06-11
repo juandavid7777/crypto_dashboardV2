@@ -14,7 +14,7 @@ from functions import aws_crypto_api, colored_metric, bounded_metric, bull_bear_
 from functions_auth import sidebar_auth, load_config, access_warning
 
 #Sets page configuration
-strl.set_page_config(layout="wide", page_title="BTC metrics - Machine Learning", page_icon = "⚙️")
+strl.set_page_config(layout="wide", page_title="₿trends - Machine Learning", page_icon = "⚙️")
 
 # Title
 strl.image("ML.jpg", use_column_width = True)
