@@ -4,6 +4,12 @@ import streamlit_authenticator as stauth
 
 from functions_auth import load_config, auth_connected, auth_disconnected, sidebar_auth
 
+
+# Initialize a session state variable that tracks the sidebar state (either 'expanded' or 'collapsed').
+if 'sidebar_state' not in strl.session_state:
+    strl.session_state.sidebar_state = 'expanded'
+strl.set_page_config(initial_sidebar_state=strl.session_state.sidebar_state, layout="wide", page_title="₿itcointrends - Account", page_icon = "🗝️")
+
 authenticator, config = sidebar_auth(auth_out = True)
 
 strl.title('User account')
