@@ -161,7 +161,7 @@ def auth_disconnected(authenticator, config):
         expander_registerUser= strl.expander(label='User Registration', expanded=False)
         with expander_registerUser:
             try:
-                if authenticator.register_user('', preauthorization=True):
+                if authenticator.register_user('', preauthorization=False):
 
                     save_config(config)
                     strl.success('User registered successfully')
