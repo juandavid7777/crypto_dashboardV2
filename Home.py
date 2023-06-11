@@ -15,8 +15,13 @@ import datetime
 from functions import bullet_fig_metric, market_data, aws_crypto_api, colored_metric, bounded_metric
 from functions_auth import credentials_email, load_config, save_config, auth_connected, auth_disconnected, sidebar_auth, access_warning
 
+
+# Initialize a session state variable that tracks the sidebar state (either 'expanded' or 'collapsed').
+if 'sidebar_state' not in strl.session_state:
+    strl.session_state.sidebar_state = 'expanded'
+
 # Sets page configuration
-strl.set_page_config(layout="wide", page_title="₿itcointrends", page_icon = "🚀")
+strl.set_page_config(initial_sidebar_state=strl.session_state.sidebar_state, layout="wide", page_title="₿itcointrends", page_icon = "🚀")
 
 #Gets latest price data
 date_today = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
