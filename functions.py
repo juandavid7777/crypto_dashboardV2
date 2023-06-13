@@ -390,7 +390,7 @@ def ML_model_predict(model, df, selected_variables, start_date, model_name = "bu
     return df_new
 
 @strl.cache_data
-def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title"):
+def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title", interactive = True):
 
     df_in["bull_bear_cat"] = df_in["bull_bear_pred"]
     
@@ -473,6 +473,25 @@ def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title"):
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
                        showarrow=False, textangle = 90, text="Unclassified data")
     
+    if interactive != True:
+
+        dark_theme = "#262730" #"#0E1117" #"rgba(0, 0, 0, 0.95)"
+        fig.update_layout(shapes=[dict(
+            type="rect",
+            xref="paper",
+            yref="paper",
+            x0 = 0,
+            y0= 0,
+            x1= 1,
+            y1= 1,
+            fillcolor=dark_theme,
+            opacity = 0.70,
+            layer="above",
+            line_width=0,
+                        )
+                        ]   
+                        )
+
     #Updates figure
     fig.update_layout(
         title = title + " - " + df_in["bull_bear_cat"].iloc[-1] + " trend",
@@ -580,7 +599,7 @@ def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date,
     return df_allclassified, df_accuracy
 
 @strl.cache_data
-def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
+def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8, interactive = True):
 
     #Creates copy of trend  
     df_in["bull_bear_cat"] = df_in["bull_bear"]
@@ -729,6 +748,25 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8):
                        font=dict(color='#ffaf1a'),  # Set the color of the text to orange
                        secondary_y=True)
     
+    if interactive != True:
+
+        dark_theme = "#262730" #"#0E1117" #"rgba(0, 0, 0, 0.95)"
+        fig.update_layout(shapes=[dict(
+            type="rect",
+            xref="paper",
+            yref="paper",
+            x0 = 0,
+            y0= 0,
+            x1= 1,
+            y1= 1,
+            fillcolor=dark_theme,
+            opacity = 0.65,
+            layer="above",
+            line_width=0,
+                        )
+                        ]   
+                        )
+
     #Updates figure
     fig.update_layout(
         title = "Multi-vote confidence: " + str(round((soft_vote_accuracy*100), 2)) + " % - " + df["bull_bear_pred_cat"].iloc[-1] + " trend",
