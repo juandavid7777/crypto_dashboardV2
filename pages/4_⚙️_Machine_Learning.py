@@ -174,6 +174,7 @@ with col_MLgraphs:
     with expander_MLSingleModel:
         #Plots prediction
         title = model_type + " confidence: " + str(round((accuracy*100), 2)) + " %"
+        access_warning()
         strl.plotly_chart(ML_bull_bear_plot(df_new, start_date, mid_date, end_date, title, interactive = render), use_container_width=True, config = render_config)
 
     # strl.markdown("""---""")
@@ -196,6 +197,7 @@ with col_MLgraphs:
         df_soft_vote, df_accuracy = soft_vote_ML(df_classified, selected_variables, model_type_list, start_date, mid_date, end_date, rolling_vote_window = rolling_window)
 
         #Plots soft vote
+        access_warning()
         strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100, interactive = render), use_container_width=True, config = render_config)
 
 #Final comments
