@@ -604,6 +604,9 @@ def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date,
 @strl.cache_data
 def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8, interactive = True):
 
+    if interactive != True:
+        interactive = False
+
     #Creates copy of trend  
     df_in["bull_bear_cat"] = df_in["bull_bear"]
     df_in["bull_bear_pred_cat"] = df_in["bull_bear_pred"]
@@ -728,17 +731,17 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8, 
     fig.add_vline(x=start_date, line_width=2, line_dash="dashdot", line_color="grey")
     fig.add_annotation(x=start_date, xanchor = "left",
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
-                       showarrow=False, textangle = 90,  text="Training data")
+                       showarrow=False, textangle = 90,  text="Training data", visible = interactive)
 
     fig.add_vline(x=mid_date, line_width=2, line_dash="dashdot", line_color="grey")
     fig.add_annotation(x=mid_date, xanchor = "left",
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
-                       showarrow=False, textangle = 90,  text="Test data")
+                       showarrow=False, textangle = 90,  text="Test data", visible = interactive)
 
     fig.add_vline(x=end_date, line_width=2, line_dash="dashdot", line_color="grey")
     fig.add_annotation(x=end_date, xanchor = "left",
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
-                       showarrow=False, textangle = 90, text="Unclassified data")
+                       showarrow=False, textangle = 90, text="Unclassified data", visible = interactive)
     
     fig.add_hline(y=conf_threshold*100, line_width=1.5, line_dash="dot", line_color="orange", secondary_y=True)
     fig.add_annotation(y=conf_threshold*0.87,
@@ -749,7 +752,9 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8, 
                        textangle = 0,
                        text="Conf. Threshold: " + str(conf_threshold*100) + "%",
                        font=dict(color='#ffaf1a'),  # Set the color of the text to orange
-                       secondary_y=True)
+                       secondary_y=True,
+                       visible = interactive
+                       )
     
     if interactive != True:
 
