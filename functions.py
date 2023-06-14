@@ -461,17 +461,17 @@ def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title", in
     fig.add_vline(x=start_date, line_width=2, line_dash="dash", line_color="grey")
     fig.add_annotation(x=start_date, xanchor = "left",
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
-                       showarrow=False, textangle = 90,  text="Training data")
+                       showarrow=False, textangle = 90,  text="Training data", visible = interactive)
 
     fig.add_vline(x=mid_date, line_width=2, line_dash="dash", line_color="grey")
     fig.add_annotation(x=mid_date, xanchor = "left",
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
-                       showarrow=False, textangle = 90,  text="Test data")
+                       showarrow=False, textangle = 90,  text="Test data", visible = interactive)
 
     fig.add_vline(x=end_date, line_width=2, line_dash="dash", line_color="grey")
     fig.add_annotation(x=end_date, xanchor = "left",
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
-                       showarrow=False, textangle = 90, text="Unclassified data")
+                       showarrow=False, textangle = 90, text="Unclassified data", visible = interactive)
     
     if interactive != True:
 
