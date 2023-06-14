@@ -392,6 +392,9 @@ def ML_model_predict(model, df, selected_variables, start_date, model_name = "bu
 @strl.cache_data
 def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title", interactive = True):
 
+    if interactive != True:
+        interactive = False
+
     df_in["bull_bear_cat"] = df_in["bull_bear_pred"]
     
     #Encodes bull bear
@@ -461,7 +464,7 @@ def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title", in
     fig.add_vline(x=start_date, line_width=2, line_dash="dash", line_color="grey")
     fig.add_annotation(x=start_date, xanchor = "left",
                        y = 1, yref = "paper", yanchor = "top", secondary_y=True,
-                       showarrow=False, textangle = 90,  text="Training data", visible = False)
+                       showarrow=False, textangle = 90,  text="Training data", visible = interactive)
 
     fig.add_vline(x=mid_date, line_width=2, line_dash="dash", line_color="grey")
     fig.add_annotation(x=mid_date, xanchor = "left",
