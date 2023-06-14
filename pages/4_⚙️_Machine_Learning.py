@@ -41,6 +41,7 @@ sidebar_auth()
 render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
                  'displaylogo': False}
 render = strl.session_state["authentication_status"]
+strl.write(render)
 
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
