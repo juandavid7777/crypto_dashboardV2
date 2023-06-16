@@ -205,12 +205,12 @@ with col_sent:
         strl.plotly_chart(fig, use_container_width=True)
 
 #Gets csv file for download
-strl.markdown("###### Download all the metrics as CSV")
+strl.markdown("###### Download all the metrics history as CSV")
 
 
 csv = convert_df_tocsv(df_data)
 strl.download_button(
-    label="Download metrics as CSV",
+    label="Download",
     data=csv,
     file_name='crypto_metrics.csv',
     mime='text/csv',
