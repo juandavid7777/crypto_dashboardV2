@@ -2,6 +2,10 @@
 import streamlit as strl
 import streamlit_authenticator as stauth
 
+from streamlit_extras.buy_me_a_coffee import button
+from streamlit_extras.badges import badge
+from streamlit_extras.colored_header import colored_header 
+
 from functions_auth import load_config, auth_connected, auth_disconnected, sidebar_auth
 
 
@@ -32,3 +36,22 @@ strl.markdown("""---""")
 strl.header("Manage credentials")
 auth_connected(authenticator, name, authentication_status, username, config)
 auth_disconnected(authenticator, config)
+
+#Final comments
+colored_header(label = "", description = "", color_name="yellow-80")
+strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions.")
+
+col1, col2, col3, col4 = strl.columns([1.5, 1.5, 5, 4])
+
+with col1:
+    badge(type="twitter", name="barbosa83")
+with col2:
+    badge(type="buymeacoffee", name="juandavid7E")
+with col3:
+    strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
+
+button(username="juandavid7E",
+       text = "Buy me a coffee",
+       bg_color = '#FFDD00',
+    #    emoji = "🍺",
+       floating=False, width=220)
