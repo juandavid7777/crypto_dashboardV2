@@ -205,7 +205,7 @@ with col_sent:
         strl.plotly_chart(fig, use_container_width=True)
 
 #Gets csv file for download
-strl.markdown("###### Download all the metrics history as CSV")
+strl.markdown("###### Access all the metrics history as CSV")
 
 
 csv = convert_df_tocsv(df_data)
