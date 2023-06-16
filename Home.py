@@ -40,6 +40,12 @@ with col3:
 
 strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable price cycles since its inception. These cycles often exhibit patterns influenced by various factors. One approach to understand and predict these cycles is by utilizing the concept of Bitcoin halving which defines a repetitive fundamental change which results in a reiteration of certain market dynamics. Building on this idea, a comprehensive analysis of nine metrics has been conducted, encompassing technical, on-chain, and sentiment indicators. By incorporating information from multiple sources, we implement a data-driven Machine Learning methodology to identify repeating patterns and map the market’s trend within the current cycle.")
 
+#Adds side authenticator
+authenticator, config = sidebar_auth(auth_out = True)
+#Gets number of users
+nos_users = len(config["credentials"]["usernames"])
+strl.caption("Bitcointrends community " + str(nos_users))
+
 # Summary market
 colored_header(label = "", description = "", color_name="yellow-80")
 strl.header("Market summary")
@@ -65,9 +71,6 @@ with col_price:
 
 #Adds metrics in columns
 strl.markdown("""---""")
-
-#Adds side authenticator
-sidebar_auth()
 
 #Basic session rendering if connected
 render_config = {'staticPlot': not(strl.session_state["authentication_status"]),

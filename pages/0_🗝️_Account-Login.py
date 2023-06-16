@@ -58,8 +58,6 @@ button(username="juandavid7E",
     #    emoji = "🍺",
        floating=False, width=220)
 
-#Gets number of users
-nos_users = len(config["credentials"]["usernames"])
-strl.caption("Bitcointrends community " + str(nos_users))
+
 
 
