@@ -205,7 +205,7 @@ with col_sent:
         strl.plotly_chart(fig, use_container_width=True)
 
 #Gets csv file
-strl.markdown("##### Download all the metrics as CSV")
+strl.markdown("###### Download all the metrics as CSV")
 access_warning()
 if strl.session_state["authentication_status"]:
     csv = convert_df_tocsv(df_data)
@@ -215,6 +215,7 @@ if strl.session_state["authentication_status"]:
         data=csv,
         file_name='crypto_metrics.csv',
         mime='text/csv',
+        disabled = not strl.session_state["authentication_status"]
     )
 
 strl.markdown("""----""")
