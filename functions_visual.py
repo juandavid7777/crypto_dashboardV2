@@ -1,6 +1,5 @@
 import streamlit as strl
 
-
 def clean_image():
     hide_streamlit_style = """
                 <style>
