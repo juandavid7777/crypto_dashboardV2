@@ -32,3 +32,5 @@ strl.markdown("""---""")
 strl.header("Manage credentials")
 auth_connected(authenticator, name, authentication_status, username, config)
 auth_disconnected(authenticator, config)
+
+strl.write(config)
