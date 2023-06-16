@@ -15,6 +15,7 @@ from email.mime.multipart import MIMEMultipart
 from email_validator import validate_email, EmailNotValidError
 
 #Load config
+@strl.cache_data
 def load_config():
     
      # Create connection object and retrieve file contents.
