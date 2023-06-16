@@ -58,8 +58,8 @@ button(username="juandavid7E",
     #    emoji = "🍺",
        floating=False, width=220)
 
-
+#Gets number of users
 nos_users = len(config["credentials"]["usernames"])
 strl.write("Current Bitcointrends regular users: ", nos_users)
-strl.write(config["credentials"]["usernames"])
+
 
