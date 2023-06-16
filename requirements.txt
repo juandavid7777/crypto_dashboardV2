@@ -1,10 +1,10 @@
-scikit-learn==1.2.2
-pandas==2.0.2
-streamlit==1.23.1
-streamlit-extras==0.2.7
-numpy==1.24.3
-plotly==5.14.1
-datetime ==4.3
+scikit-learn == 1.2.2
+panda s== 2.0.2
+streamlit == 1.23.1
+streamlit-extras == 0.2.7
+numpy == 1.24.3
+plotly == 5.14.1
+datetime == 4.3
 scipy == 1.10.1
 requests == 2.31.0
 altair == 4.2.2
@@ -14,7 +14,6 @@ s3fs #== 0.4.2
 git+https://github.com/streamlit/files-connection
 boto3 #== 1.26.154
 botocore #== 1.29.15
-yaml
-json
+yaml ==0.2.5
 
 #os < 3.10
