@@ -226,19 +226,7 @@ def yaml_to_json():
     with open('.streamlit/config.json', 'w') as json_file:
         json.dump(configuration, json_file)
         
-    output = json.dumps(json.load(open('.streamlit/config.json')), indent=2)
-    print(output)
-
-def yaml_to_json():
-
-    with open('.streamlit/config.yaml', 'r') as file:
-        configuration = yaml.safe_load(file)
-
-    with open('.streamlit/config.json', 'w') as json_file:
-        json.dump(configuration, json_file)
-        
-    output = json.dumps(json.load(open('.streamlit/config.json')), indent=2)
-    print(output)
+    print("yaml converted to json")
 
 def json_to_yaml():
     with open('.streamlit/config.json', 'r') as file:
@@ -247,8 +235,7 @@ def json_to_yaml():
     with open('.streamlit/config.yaml', 'w') as yaml_file:
         yaml.dump(configuration, yaml_file)
 
-    with open('.streamlit/config.yaml', 'r') as yaml_file:
-        print(yaml_file.read())
+    print("yaml converted to json")
 
 def save_config_aws():
 
@@ -275,5 +262,6 @@ def save_config_aws():
     # from streamlit import caching
     strl.cache_data.clear()
     strl.experimental_rerun()
+    print("AWS Userbase data updated")
 
     os.remove(".streamlit/config.json") 
