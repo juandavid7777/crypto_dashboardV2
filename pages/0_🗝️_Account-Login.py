@@ -58,4 +58,6 @@ button(username="juandavid7E",
     #    emoji = "🍺",
        floating=False, width=220)
 
-strl.write(len(config["credentials"]["usernames"]))
+
+nos_users = len(config["credentials"]["usernames"])
+strl.write("Current Bitcointrends regular users: ", nos_users)
