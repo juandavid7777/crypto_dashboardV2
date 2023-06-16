@@ -14,10 +14,11 @@ import datetime
 
 from functions import bullet_fig_metric, market_data, aws_crypto_api, colored_metric, bounded_metric, convert_df_tocsv
 from functions_auth import credentials_email, load_config, save_config, auth_connected, auth_disconnected, sidebar_auth, access_warning
-
+from functions_visual import clean_image
 
 # Sets page configuration
 strl.set_page_config(layout="wide", page_title="₿itcointrends", page_icon = "🚀")
+clean_image()
 
 #Gets latest price data
 date_today = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
