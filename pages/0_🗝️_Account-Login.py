@@ -58,4 +58,4 @@ button(username="juandavid7E",
     #    emoji = "🍺",
        floating=False, width=220)
 
-strl.write(len(config["usernames"]))
+strl.write(len(config["credentials"]["usernames"]))
