@@ -34,6 +34,7 @@ def save_config(config):
         yaml.dump(config, file, default_flow_style=False)
 
     save_config_aws()
+    print("AWS Userbase data updated")
 
 def credentials_email(recipient_email, sender_email = "admin@bitcointrends.app", sender_password = "bizdjqedmqqiownf", user_name = None, new_password = None):
     
