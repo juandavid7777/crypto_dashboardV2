@@ -14,5 +14,7 @@ s3fs #== 0.4.2
 git+https://github.com/streamlit/files-connection
 boto3 #== 1.26.154
 botocore #== 1.29.15
+yaml
+json
 
 #os < 3.10
