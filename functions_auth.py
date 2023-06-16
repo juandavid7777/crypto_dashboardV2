@@ -1,8 +1,12 @@
 import streamlit as strl
 import streamlit_authenticator as stauth
 from streamlit_extras.switch_page_button import switch_page
+from st_files_connection import FilesConnection
 
 import yaml
+import json
+import boto3
+import os
 
 import smtplib
 from email.mime.text import MIMEText
@@ -12,14 +16,23 @@ from email_validator import validate_email, EmailNotValidError
 
 #Load config
 def load_config():
-    with open('.streamlit/config.yaml') as file:
-        config = yaml.safe_load(file)
-    return config
+    
+     # Create connection object and retrieve file contents.
+    conn = strl.experimental_connection('s3', type=FilesConnection)
+    json_config = conn.read(strl.secrets["BUCKET"]+"/config.json", input_format = "json", ttl=600)
+    
+    #Saves config info as yaml
+    with open('.streamlit/config.yaml', 'w') as yaml_file:
+        yaml.dump(json_config, yaml_file)
+
+    return json_config
 
 # Save the config.yaml file
 def save_config(config):
     with open('.streamlit/config.yaml', 'w') as file:
         yaml.dump(config, file, default_flow_style=False)
+
+    save_config_aws()
 
 def credentials_email(recipient_email, sender_email = "admin@bitcointrends.app", sender_password = "bizdjqedmqqiownf", user_name = None, new_password = None):
     
@@ -203,3 +216,63 @@ def auth_disconnected(authenticator, config):
 def access_warning():
     if strl.session_state["authentication_status"] != True:
         strl.warning("To access our exclusive content please register or login to your free account.")
+
+def yaml_to_json():
+
+    with open('.streamlit/config.yaml', 'r') as file:
+        configuration = yaml.safe_load(file)
+
+    with open('.streamlit/config.json', 'w') as json_file:
+        json.dump(configuration, json_file)
+        
+    output = json.dumps(json.load(open('.streamlit/config.json')), indent=2)
+    print(output)
+
+def yaml_to_json():
+
+    with open('.streamlit/config.yaml', 'r') as file:
+        configuration = yaml.safe_load(file)
+
+    with open('.streamlit/config.json', 'w') as json_file:
+        json.dump(configuration, json_file)
+        
+    output = json.dumps(json.load(open('.streamlit/config.json')), indent=2)
+    print(output)
+
+def json_to_yaml():
+    with open('.streamlit/config.json', 'r') as file:
+        configuration = json.load(file)
+
+    with open('.streamlit/config.yaml', 'w') as yaml_file:
+        yaml.dump(configuration, yaml_file)
+
+    with open('.streamlit/config.yaml', 'r') as yaml_file:
+        print(yaml_file.read())
+
+def save_config_aws():
+
+    #Saves config back to json
+    yaml_to_json()
+    #Loads config file to aws
+    #Sets AWS client connection
+    s3 = boto3.client(
+            service_name="s3",
+            region_name= strl.secrets["AWS_DEFAULT_REGION"],
+            aws_access_key_id=strl.secrets["AWS_ACCESS_KEY_ID"],
+            aws_secret_access_key=strl.secrets["AWS_SECRET_ACCESS_KEY"],
+        )
+
+    name_file = "config.json"
+    bucket = strl.secrets["BUCKET"]
+
+    s3.upload_file(
+        Filename = ".streamlit/config.json",
+        Bucket = bucket,
+        Key = name_file
+    )
+
+    # from streamlit import caching
+    strl.cache_data.clear()
+    strl.experimental_rerun()
+
+    os.remove(".streamlit/config.json") 
