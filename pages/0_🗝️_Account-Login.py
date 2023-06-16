@@ -57,3 +57,5 @@ button(username="juandavid7E",
        bg_color = '#FFDD00',
     #    emoji = "🍺",
        floating=False, width=220)
+
+strl.write(len(config["usernames"]))
