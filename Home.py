@@ -206,7 +206,7 @@ with col_sent:
 
 #Gets csv file for download
 strl.markdown("###### Download all the metrics as CSV")
-access_warning()
+
 
 csv = convert_df_tocsv(df_data)
 strl.download_button(
@@ -216,6 +216,7 @@ strl.download_button(
     mime='text/csv',
     disabled = not strl.session_state["authentication_status"]
 )
+access_warning()
 
 strl.markdown("""----""")
    
