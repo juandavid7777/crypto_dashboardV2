@@ -12,7 +12,7 @@ import yaml
 from datetime import date, timedelta
 import datetime
 
-from functions import bullet_fig_metric, market_data, aws_crypto_api, colored_metric, bounded_metric
+from functions import bullet_fig_metric, market_data, aws_crypto_api, colored_metric, bounded_metric, convert_df_tocsv
 from functions_auth import credentials_email, load_config, save_config, auth_connected, auth_disconnected, sidebar_auth, access_warning
 
 
@@ -203,6 +203,18 @@ with col_sent:
                     )
         
         strl.plotly_chart(fig, use_container_width=True)
+
+#Gets csv file
+access_warning()
+if strl.session_state["authentication_status"]:
+    csv = convert_df_tocsv(df_data)
+
+    strl.download_button(
+        label="Download metrics as CSV",
+        data=csv,
+        file_name='crypto_metrics.csv',
+        mime='text/csv',
+    )
 
 strl.markdown("""----""")
    

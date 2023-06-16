@@ -794,3 +794,8 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8, 
                      gridcolor = '#bdbdbd')
 
     return fig
+
+@st.cache
+def convert_df_tocsv(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
