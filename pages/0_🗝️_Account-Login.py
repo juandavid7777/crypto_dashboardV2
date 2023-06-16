@@ -61,3 +61,5 @@ button(username="juandavid7E",
 
 nos_users = len(config["credentials"]["usernames"])
 strl.write("Current Bitcointrends regular users: ", nos_users)
+strl.write(config["credentials"]["usernames"])
+
