@@ -12,9 +12,11 @@ import datetime
 
 from functions import plot_graphsV2, aws_crypto_api
 from functions_auth import sidebar_auth, load_config, access_warning
+from functions_visual import clean_image
 
 #Sets page configuration
 strl.set_page_config(layout="wide", page_title="₿trends - On Chain", page_icon = "⛓")
+clean_image()
 
 # Title
 strl.image("onchain_strip.png", use_column_width = True)

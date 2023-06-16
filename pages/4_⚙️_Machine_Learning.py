@@ -12,9 +12,11 @@ import datetime
 
 from functions import aws_crypto_api, colored_metric, bounded_metric, bull_bear_classifier, ML_date_finder, ML_XY_dataselector, ML_model_traintest, ML_model_predict, ML_bull_bear_plot, soft_vote_ML, soft_vote_plot 
 from functions_auth import sidebar_auth, load_config, access_warning
+from functions_visual import clean_image
 
 #Sets page configuration
 strl.set_page_config(layout="wide", page_title="₿trends - Machine Learning", page_icon = "⚙️")
+clean_image()
 
 # Title
 strl.image("ML.jpg", use_column_width = True)
