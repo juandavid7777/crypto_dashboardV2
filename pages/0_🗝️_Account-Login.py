@@ -41,7 +41,7 @@ auth_disconnected(authenticator, config)
 
 #Gets number of users
 nos_users = len(config["credentials"]["usernames"])
-strl.caption("Bitcointrends community " + str(nos_users))
+strl.caption("Bitcointrends community  " + str(nos_users))
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
