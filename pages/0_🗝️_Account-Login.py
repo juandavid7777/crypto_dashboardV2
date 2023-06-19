@@ -17,7 +17,7 @@ authenticator, config = sidebar_auth(auth_out = True)
 
 strl.title('User account')
 if strl.session_state["authentication_status"] != True:
-    strl.success("To access our exclusive content please register or login to your account.")
+    strl.info("To access our exclusive content please register or login to your account.")
 
 name, authentication_status, username = authenticator.login('Login for advanced metrics access', 'main')   
     
