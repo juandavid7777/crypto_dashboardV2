@@ -39,10 +39,6 @@ strl.header("Manage credentials")
 auth_connected(authenticator, name, authentication_status, username, config)
 auth_disconnected(authenticator, config)
 
-#Gets number of users
-nos_users = len(config["credentials"]["usernames"])
-strl.caption("Bitcointrends community  " + str(nos_users))
-
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
 strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions.")
