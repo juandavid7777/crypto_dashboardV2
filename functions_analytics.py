@@ -1,3 +1,5 @@
+import streamlit as strl
+
 import pathlib
 from bs4 import BeautifulSoup
 import logging
