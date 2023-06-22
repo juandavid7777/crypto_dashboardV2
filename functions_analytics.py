@@ -11,13 +11,13 @@ def inject_ga():
 
     GA_JS = """
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LD1PSDLK2H"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLYYFBB2ZD"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-LD1PSDLK2H');
+        gtag('config', 'G-JLYYFBB2ZD');
     </script>
     """
 
