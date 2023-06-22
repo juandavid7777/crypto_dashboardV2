@@ -8,9 +8,11 @@ from streamlit_extras.colored_header import colored_header
 
 from functions_auth import load_config, auth_connected, auth_disconnected, sidebar_auth
 from functions_visual import clean_image
+from functions_analytics import inject_ga
 
 
 strl.set_page_config(layout="wide", page_title="₿trends - Account", page_icon = "🗝️")
+inject_ga()
 clean_image()
 
 authenticator, config = sidebar_auth(auth_out = True)

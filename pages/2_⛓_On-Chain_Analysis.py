@@ -13,9 +13,11 @@ import datetime
 from functions import plot_graphsV2, aws_crypto_api
 from functions_auth import sidebar_auth, load_config, access_warning
 from functions_visual import clean_image
+from functions_analytics import inject_ga
 
 #Sets page configuration
 strl.set_page_config(layout="wide", page_title="₿trends - On Chain", page_icon = "⛓")
+inject_ga()
 clean_image()
 
 # Title
