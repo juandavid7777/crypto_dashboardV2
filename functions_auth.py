@@ -215,7 +215,7 @@ def auth_disconnected(authenticator, config):
             try:
                 username_forgot_username, email_forgot_username = authenticator.forgot_username('')
                 strl.write(email_forgot_username, 1) 
-                strl.write(config["credentials"][username_forgot_username]["email"])
+                strl.write(config["credentials"][username_forgot_username]["email"], 2)
                 if username_forgot_username:
 
                     strl.success('Username sent securely to registered email')
