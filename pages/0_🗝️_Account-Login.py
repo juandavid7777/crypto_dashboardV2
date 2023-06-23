@@ -38,6 +38,8 @@ else:
 
 strl.markdown("""---""")
 strl.header("Register / Forgot password / Forgot username")
+strl.write(config["credentials"]["usernames"].keys())
+
 auth_connected(authenticator, name, authentication_status, username, config)
 auth_disconnected(authenticator, config)
 
