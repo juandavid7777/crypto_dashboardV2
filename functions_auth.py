@@ -220,6 +220,7 @@ def auth_disconnected(authenticator, config):
                     credentials_email(email_forgot_username, user_name = username_forgot_username)
                     
                 else:
+                    strl.write(email_forgot_username, config["credentials"][username_forgot_username]["email"])
                     if email_forgot_username == config["credentials"][username_forgot_username]["email"]: 
                         strl.info('Valid email')
                     elif email_forgot_username == None:
