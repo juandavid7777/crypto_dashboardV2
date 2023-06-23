@@ -181,7 +181,6 @@ def auth_disconnected(authenticator, config):
                     strl.success('User registered successfully')
                     save_config(config)
                     
-
             except Exception as e:
                 strl.error(e)
 
@@ -197,7 +196,10 @@ def auth_disconnected(authenticator, config):
                     save_config(config)
                     
                 else:
-                    strl.error('Username not found')
+                    if username_forgot_pw in config["credentials"]["usernames"].keys(): 
+                        strl.info('Valid username')
+                    else:
+                        strl.error('Username not found')
             except Exception as e:
                 strl.error(e)
 
