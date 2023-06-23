@@ -214,8 +214,7 @@ def auth_disconnected(authenticator, config):
         with expander_forgotUsername:
             try:
                 username_forgot_username, email_forgot_username = authenticator.forgot_username('')
-                strl.write(email_forgot_username, 1) 
-                # strl.write(config["credentials"][username_forgot_username]["email"], 2)
+
                 if username_forgot_username:
 
                     strl.success('Username sent securely to registered email')
@@ -227,7 +226,7 @@ def auth_disconnected(authenticator, config):
                         strl.info('Please enter a valid email')
                         pass
                     else:
-                        strl.error('Email not found: '+ email_forgot_username)
+                        strl.error('Email '+ email_forgot_username + " not found in our records.")
 
             except Exception as e:
                 strl.error(e)
