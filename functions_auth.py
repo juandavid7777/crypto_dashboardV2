@@ -196,7 +196,7 @@ def auth_disconnected(authenticator, config):
                     save_config(config)
                     
                 else:
-                    str.write(username_forgot_pw)
+                    
                     if username_forgot_pw in config["credentials"]["usernames"].keys(): 
                         strl.info('Valid username')
                     else:
