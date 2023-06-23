@@ -149,8 +149,9 @@ def auth_connected(authenticator, name, authentication_status, username, config)
             try:
                 if authenticator.reset_password(username, 'Reset Password'):
                     
-                    save_config(config)
                     strl.success('Password modified successfully')
+                    save_config(config)
+                    
 
             except Exception as e:
                 strl.error(e)
