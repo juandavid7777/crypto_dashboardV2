@@ -214,7 +214,7 @@ def auth_disconnected(authenticator, config):
         with expander_forgotUsername:
             try:
                 username_forgot_username, email_forgot_username = authenticator.forgot_username('')
-                strl.write(email_forgot_username) 
+                strl.write(email_forgot_username, 1) 
                 strl.write(config["credentials"][username_forgot_username]["email"])
                 if username_forgot_username:
 
