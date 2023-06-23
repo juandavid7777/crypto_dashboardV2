@@ -222,7 +222,7 @@ def auth_disconnected(authenticator, config):
                     
                 else:
                     
-                    if email_forgot_username == None:
+                    if email_forgot_username == "":
                         strl.info('Please enter a valid email')
                         pass
                     else:
