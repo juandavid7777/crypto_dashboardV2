@@ -229,7 +229,7 @@ def auth_disconnected(authenticator, config):
                         strl.error('Email not found')
 
             except Exception as e:
-                strl.error("Error", e)
+                strl.error(e)
 
 def access_warning():
     if strl.session_state["authentication_status"] != True:
