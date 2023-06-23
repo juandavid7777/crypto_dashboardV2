@@ -214,13 +214,14 @@ def auth_disconnected(authenticator, config):
         with expander_forgotUsername:
             try:
                 username_forgot_username, email_forgot_username = authenticator.forgot_username('')
+                strl.write(email_forgot_username, config["credentials"][username_forgot_username]["email"])
                 if username_forgot_username:
 
                     strl.success('Username sent securely to registered email')
                     credentials_email(email_forgot_username, user_name = username_forgot_username)
                     
                 else:
-                    strl.write(email_forgot_username, config["credentials"][username_forgot_username]["email"])
+                    
                     if email_forgot_username == config["credentials"][username_forgot_username]["email"]: 
                         strl.info('Valid email')
                     elif email_forgot_username == None:
