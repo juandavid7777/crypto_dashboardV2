@@ -222,14 +222,14 @@ def auth_disconnected(authenticator, config):
                 else:
                     if email_forgot_username == config["credentials"][username_forgot_username]["email"]: 
                         strl.info('Valid email')
-                    elif username_forgot_pw == None:
+                    elif email_forgot_username == None:
                         # strl.info('Valid email')
                         pass
                     else:
                         strl.error('Email not found')
 
             except Exception as e:
-                strl.error(e)
+                strl.error("Error", e)
 
 def access_warning():
     if strl.session_state["authentication_status"] != True:
