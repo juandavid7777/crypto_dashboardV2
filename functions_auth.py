@@ -162,9 +162,9 @@ def auth_connected(authenticator, name, authentication_status, username, config)
             try:
                 if authenticator.update_user_details(username, 'Update user details'):
 
-                    save_config(config)
                     strl.success('Entries updated successfully')
-
+                    save_config(config)
+                    
             except Exception as e:
                 strl.error(e)
 
@@ -178,8 +178,9 @@ def auth_disconnected(authenticator, config):
             try:
                 if authenticator.register_user('', preauthorization=False):
 
-                    save_config(config)
                     strl.success('User registered successfully')
+                    save_config(config)
+                    
 
             except Exception as e:
                 strl.error(e)
@@ -191,9 +192,10 @@ def auth_disconnected(authenticator, config):
                 username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('')
                 if username_forgot_pw:
 
+                    strl.success('New password sent securely')
                     credentials_email(email_forgot_password, user_name = username_forgot_pw, new_password = random_password)
                     save_config(config)
-                    strl.success('New password sent securely')
+                    
 
                 else:
                     strl.error('Username not found')
@@ -207,8 +209,9 @@ def auth_disconnected(authenticator, config):
                 username_forgot_username, email_forgot_username = authenticator.forgot_username('')
                 if username_forgot_username:
 
+                    strl.success('Username sent securely to registered email')
                     credentials_email(email_forgot_username, user_name = username_forgot_username)
-                    strl.success('Username sent securely')
+                    
                     
                 else:
                     strl.error('Email not found')
@@ -263,6 +266,5 @@ def save_config_aws():
     # from streamlit import caching
     strl.cache_data.clear()
     strl.experimental_rerun()
-    print("AWS Userbase data updated")
-
+    
     os.remove(".streamlit/config.json") 
