@@ -196,7 +196,6 @@ def auth_disconnected(authenticator, config):
                     credentials_email(email_forgot_password, user_name = username_forgot_pw, new_password = random_password)
                     save_config(config)
                     
-
                 else:
                     strl.error('Username not found')
             except Exception as e:
@@ -211,7 +210,6 @@ def auth_disconnected(authenticator, config):
 
                     strl.success('Username sent securely to registered email')
                     credentials_email(email_forgot_username, user_name = username_forgot_username)
-                    
                     
                 else:
                     strl.error('Email not found')

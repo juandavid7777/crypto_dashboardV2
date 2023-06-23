@@ -37,7 +37,7 @@ else:
         strl.warning('Please enter your username and password')
 
 strl.markdown("""---""")
-strl.header("Manage credentials")
+strl.header("Register / Forgot password / Forgot username")
 auth_connected(authenticator, name, authentication_status, username, config)
 auth_disconnected(authenticator, config)
 
