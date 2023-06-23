@@ -229,7 +229,7 @@ def auth_disconnected(authenticator, config):
                         # strl.info('Valid email')
                         pass
                     else:
-                        strl.error('Email not found')
+                        strl.error('Email not found: '+ email_forgot_username)
 
             except Exception as e:
                 strl.error(e)
