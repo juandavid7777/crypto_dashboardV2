@@ -189,7 +189,6 @@ def auth_disconnected(authenticator, config):
         with expander_forgotPassword:
             try:
                 username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('')
-                strl.write(username_forgot_pw)
                 if username_forgot_pw:
 
                     strl.success('New password sent securely')
@@ -200,6 +199,10 @@ def auth_disconnected(authenticator, config):
                     
                     if username_forgot_pw in config["credentials"]["usernames"].keys(): 
                         strl.info('Valid username')
+                    
+                    elif username_forgot_pw == None:
+                        strl.info('Please input a valid username')
+
                     else:
                         strl.error('Username not found')
             except Exception as e:
