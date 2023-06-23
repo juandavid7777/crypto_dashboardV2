@@ -201,7 +201,7 @@ def auth_disconnected(authenticator, config):
                         strl.info('Valid username')
                     
                     elif username_forgot_pw == None:
-                        strl.info('Please input a valid username')
+                        strl.info('Valid username')
 
                     else:
                         strl.error('Username not found')
@@ -219,7 +219,13 @@ def auth_disconnected(authenticator, config):
                     credentials_email(email_forgot_username, user_name = username_forgot_username)
                     
                 else:
-                    strl.error('Email not found')
+                    if email_forgot_username == config["credentials"][username_forgot_username]["email"]: 
+                        strl.info('Valid email')
+                    elif username_forgot_pw == None:
+                        strl.info('Valid email')
+                    else:
+                        strl.error('Email not found')
+
             except Exception as e:
                 strl.error(e)
 
