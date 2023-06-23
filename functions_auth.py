@@ -189,6 +189,7 @@ def auth_disconnected(authenticator, config):
         with expander_forgotPassword:
             try:
                 username_forgot_pw, email_forgot_password, random_password = authenticator.forgot_password('')
+                strl.write(username_forgot_pw)
                 if username_forgot_pw:
 
                     strl.success('New password sent securely')
