@@ -210,9 +210,15 @@ with col_MLgraphs:
                            "Testing accuracy": strl.column_config.NumberColumn(
                                "Testing accuracy",
                                help="Accuracy of the model only over the unseen test data",
-                               format="%p",
-        )
-    },)
+                               format=".2%",
+                               ),
+                            "Total accuracy": strl.column_config.NumberColumn(
+                               "Testing accuracy",
+                               help="Accuracy of the model over all the classified data",
+                               format=".2%",
+                               ),
+                               },
+    )
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
