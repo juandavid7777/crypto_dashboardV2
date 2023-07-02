@@ -204,6 +204,7 @@ with col_MLgraphs:
         #Plots soft vote
         access_warning()
         strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100, interactive = render), use_container_width=True, config = render_config)
+        strl.write(df_accuracy)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
