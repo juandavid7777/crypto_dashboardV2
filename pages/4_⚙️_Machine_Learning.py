@@ -208,7 +208,7 @@ with col_MLgraphs:
         display_df = df_accuracy*100
         display_df = df_accuracy.applymap(lambda x: "{:.2f}%".format(x))
 
-        strl.dataframe(df_accuracy*100, use_container_width=True,
+        strl.dataframe(display_df, use_container_width=True,
                        column_config={
                            "Testing accuracy": strl.column_config.NumberColumn(
                                "Testing accuracy (%)",
