@@ -208,6 +208,18 @@ with col_MLgraphs:
         display_df = df_accuracy*100
         display_df = display_df.applymap(lambda x: "{:.2f}%".format(x))
 
+        # Apply CSS styling to center align the dataframe
+        dataframe_style = """
+        <style>
+        .dataframe td {
+            text-align: center;
+        }
+        </style>
+        """
+
+        # Display the dataframe with centered values
+        strl.markdown(dataframe_style, unsafe_allow_html=True)
+
         strl.dataframe(display_df, use_container_width=True,
                        column_config={
                            "Testing accuracy": strl.column_config.Column(
