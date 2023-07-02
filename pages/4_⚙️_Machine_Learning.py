@@ -206,20 +206,18 @@ with col_MLgraphs:
         strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100, interactive = render), use_container_width=True, config = render_config)
         strl.markdown("##### Machine Learning Models accuracy:")
         display_df = df_accuracy*100
-        display_df = df_accuracy.applymap(lambda x: "{:.2f}%".format(x))
+        display_df = display_df.applymap(lambda x: "{:.2f}%".format(x))
         strl.write(display_df)
 
         strl.dataframe(display_df, use_container_width=True,
                        column_config={
-                           "Testing accuracy": strl.column_config.NumberColumn(
+                           "Testing accuracy": strl.column_config.Column(
                                "Testing accuracy (%)",
                                help="Accuracy of the model only over the unseen test data",
-                            #    format="%.2f%",
                                ),
-                            "Total accuracy": strl.column_config.NumberColumn(
+                            "Total accuracy": strl.column_config.Column(
                                "Testing accuracy (%)",
                                help="Accuracy of the model over all the classified data",
-                            #    format="%.2f%",
                                ),
                                },
     )
