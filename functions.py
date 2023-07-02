@@ -173,7 +173,9 @@ def colored_metric(df, metric_name, metric_format, range_vals = None, color_map 
         mid_lim1 = (low_lim + high_lim)*1/3 + low_lim
         mid_lim2 = (low_lim + high_lim)*2/3 + low_lim
 
-        color_map = [[min_lim,"lawngreen"],[low_lim,"greenyellow"], [mid_lim1,"lemonchiffon"], [mid_lim2,"sandybrown"], [high_lim,"lightcoral"], [max_lim,"crimson"]]
+        # color_map = [[min_lim,"lawngreen"],[low_lim,"greenyellow"], [mid_lim1,"lemonchiffon"], [mid_lim2,"sandybrown"], [high_lim,"lightcoral"], [max_lim,"crimson"]]
+        color_map = [[min_lim,"lawngreen"], [max_lim,"crimson"]]
+
 
     fig = go.Figure()
 
