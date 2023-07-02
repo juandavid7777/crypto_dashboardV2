@@ -160,24 +160,24 @@ def market_data(date_today):
 @strl.cache_data
 def colored_metric(df, metric_name, metric_format, range_vals = None, color_map = "jet", interactive = True):
 
-    if range_vals != None:
+    # if range_vals != None:
         
-        min_lim = range_vals[0]
-        low_lim = range_vals[1]
-        high_lim = range_vals[2]
-        max_lim = range_vals[3]
+    #     min_lim = range_vals[0]
+    #     low_lim = range_vals[1]
+    #     high_lim = range_vals[2]
+    #     max_lim = range_vals[3]
        
-        #Preprocessing inputs
-        mid_lim1 = (low_lim + high_lim)*1/3 + low_lim
-        mid_lim2 = (low_lim + high_lim)*2/3 + low_lim
+    #     #Preprocessing inputs
+    #     mid_lim1 = (low_lim + high_lim)*1/3 + low_lim
+    #     mid_lim2 = (low_lim + high_lim)*2/3 + low_lim
 
-        n_low = low_lim/(max_lim - min_lim)
-        n_high = high_lim/(max_lim - min_lim)
-        n_mid1 = mid_lim1 /(max_lim - min_lim)
-        n_mid2 = mid_lim2 /(max_lim - min_lim)
+    #     n_low = low_lim/(max_lim - min_lim)
+    #     n_high = high_lim/(max_lim - min_lim)
+    #     n_mid1 = mid_lim1 /(max_lim - min_lim)
+    #     n_mid2 = mid_lim2 /(max_lim - min_lim)
 
-        # color_map = [[min_lim,"lawngreen"],[low_lim,"greenyellow"], [mid_lim1,"lemonchiffon"], [mid_lim2,"sandybrown"], [high_lim,"lightcoral"], [max_lim,"crimson"]]
-        color_map = [[0,"lawngreen"],[n_low,"greenyellow"], [n_mid1,"lemonchiffon"], [n_mid2,"sandybrown"], [n_high,"lightcoral"], [1,"crimson"]]
+    #     # color_map = [[min_lim,"lawngreen"],[low_lim,"greenyellow"], [mid_lim1,"lemonchiffon"], [mid_lim2,"sandybrown"], [high_lim,"lightcoral"], [max_lim,"crimson"]]
+    #     color_map = [[0,"lawngreen"],[n_low,"greenyellow"], [n_mid1,"lemonchiffon"], [n_mid2,"sandybrown"], [n_high,"lightcoral"], [1,"crimson"]]
         
 
 
