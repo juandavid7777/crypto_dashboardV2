@@ -158,7 +158,7 @@ def market_data(date_today):
     return round(btc_price,1), round(eth_price, 1), round(btc_per,1), round(eth_per, 1), round(btc_mcap,1), round(eth_mcap,1), round(crypto_mcap,1)
 
 @strl.cache_data
-def colored_metric(df, metric_name, metric_format, color_map = "jet", interactive = True):
+def colored_metric(df, metric_name, metric_format, color_map = [[0,"lawngreen"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"crimson"]], interactive = True):
 
     fig = go.Figure()
 
@@ -252,7 +252,7 @@ def bounded_metric(df, metric_name, range_vals, metric_format = ".1f", log_scale
         hovertemplate='<br>'.join([
                 '%{customdata:' + metric_format + '}',
             ]),
-        marker=dict(size=3,color = "mediumblue")
+        marker=dict(size=3,color = "orange")
         ),secondary_y=True)
 
     #Colors areas
