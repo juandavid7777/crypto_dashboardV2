@@ -208,7 +208,7 @@ with col_MLgraphs:
         #Displays teh accuracy of the models
         strl.markdown("###### Machine Learning Models accuracy:")
         display_df = df_accuracy*100
-        display_df = display_df.applymap(lambda x: "{:.1f}%".format(x))
+        display_df = display_df.applymap(lambda x: "{:.2f}%".format(x))
 
         strl.dataframe(display_df, use_container_width=True,
                        column_config={
