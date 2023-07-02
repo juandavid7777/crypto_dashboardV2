@@ -205,7 +205,14 @@ with col_MLgraphs:
         access_warning()
         strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100, interactive = render), use_container_width=True, config = render_config)
         strl.markdown("##### Machine Learning Models accuracy:")
-        strl.dataframe(df_accuracy, use_container_width=True)
+        strl.dataframe(df_accuracy, use_container_width=True,
+                       column_config={
+                           "Testing accuracy": strl.column_config.NumberColumn(
+                               "Testing accuracy",
+                               help="Accuracy of the model only over the unseen test data",
+                               format="%p",
+        )
+    },)
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
