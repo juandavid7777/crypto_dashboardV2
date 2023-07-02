@@ -585,7 +585,8 @@ def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date,
                                 "Total acc.": [accuracy_all],                            
                               })
         
-        cleanup_nums[model_type] = {'bull': accuracy_test, 'bear': -accuracy_test}
+        # cleanup_nums[model_type] = {'bull': accuracy_test, 'bear': -accuracy_test}
+        cleanup_nums[model_type] = {'bull': 1, 'bear': -1}
         df_accuracy = pd.concat([df_accuracy,df_temp], ignore_index=True)
         
     # Numeric classification    
