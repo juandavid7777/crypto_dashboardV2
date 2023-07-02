@@ -581,8 +581,8 @@ def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date,
                                         )
         
         df_temp = pd.DataFrame({"Model":[model_type],
-                                "Test acc.": [accuracy_test],
-                                "Total acc.": [accuracy_all],                            
+                                "Testing accuracy": [accuracy_test],
+                                "Total accuracy": [accuracy_all],                            
                               })
         
         # cleanup_nums[model_type] = {'bull': accuracy_test, 'bear': -accuracy_test}
@@ -599,6 +599,7 @@ def soft_vote_ML(df_classified, selected_variables, model_type_list, start_date,
 
     #Defines bar graphs and bull bear trend
     df_allclassified["bar_vote"] = (abs(df_allclassified["rolling_vote"])/2)+0.5
+    df_accuracy = df_accuracy.set_index("Model")
 
     return df_allclassified, df_accuracy
 
