@@ -22,7 +22,7 @@ clean_image()
 
 # Title
 strl.image("technical_strip.png", use_column_width = True)
-strl.title("Bitcoin: Technical metrics")
+strl.title("Technical Analysis: Bitcoin price trends and perspectives")
 
 # Donations
 strl.write("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Stay tunned, and keep accumulating!")

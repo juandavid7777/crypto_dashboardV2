@@ -22,6 +22,7 @@ clean_image()
 
 # Title
 strl.image("ML.jpg", use_column_width = True)
+strl.title("Machine Learning Analysis: a Bitcoin perspective mapped with artifical inteligence")
 
 # Donations
 strl.write("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Stay tunned, and keep accumulating!")

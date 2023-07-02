@@ -22,6 +22,7 @@ clean_image()
 
 # Title
 strl.image("sentiment_strip.png", use_column_width = True)
+strl.title("Sentiment Analysis: social media and general public feeling about Bitcoin")
 
 # Donations
 strl.write("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Stay tunned, and keep accumulating!")
