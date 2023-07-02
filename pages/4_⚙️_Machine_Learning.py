@@ -217,7 +217,7 @@ with col_MLgraphs:
                                help="Accuracy of the model only over the unseen test data",
                                ),
                             "Total accuracy": strl.column_config.Column(
-                               "Testing accuracy (%)",
+                               "Total accuracy (%)",
                                help="Accuracy of the model over all the classified data",
                                ),
                                },
