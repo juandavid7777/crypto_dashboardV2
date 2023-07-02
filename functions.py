@@ -158,7 +158,22 @@ def market_data(date_today):
     return round(btc_price,1), round(eth_price, 1), round(btc_per,1), round(eth_per, 1), round(btc_mcap,1), round(eth_mcap,1), round(crypto_mcap,1)
 
 @strl.cache_data
-def colored_metric(df, metric_name, metric_format, color_map = [[0,"lawngreen"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"crimson"]], interactive = True):
+def colored_metric(df, metric_name, metric_format, range_vals = None, color_map = "jet", interactive = True):
+
+    if range_vals != None:
+        
+        min_lim = range_vals[0]
+        low_lim = range_vals[1]
+        high_lim = range_vals[2]
+        max_lim = range_vals[3]
+
+        
+        
+        #Preprocessing inputs
+        mid_lim1 = (low_lim + high_lim)*1/3 + low_lim
+        mid_lim2 = (low_lim + high_lim)*2/3 + low_lim
+
+        color_map = [[min_lim,"lawngreen"],[low_lim,"greenyellow"], [mid_lim1,"lemonchiffon"], [mid_lim2,"sandybrown"], [high_lim,"lightcoral"], [max_lim,"crimson"]]
 
     fig = go.Figure()
 
@@ -545,7 +560,7 @@ def plot_graphsV2(df_data, df_meta, render, render_config, colored = False, ):
             range_vals = [df_plot[metric].min(), df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_plot[metric].max()]
 
         if colored == True:
-            strl.plotly_chart(colored_metric(df_plot, metric, df_meta.iloc[i]["format"], interactive = render), use_container_width=True, config = render_config)
+            strl.plotly_chart(colored_metric(df_plot, metric, df_meta.iloc[i]["format"], range_vals = range_vals interactive = render), use_container_width=True, config = render_config)
 
         else:
             strl.plotly_chart(bounded_metric(df_plot, metric, range_vals, df_meta.iloc[i]["format"], log_scale = df_meta.iloc[i]["log_scale"], interactive = render), use_container_width=True, config = render_config)
