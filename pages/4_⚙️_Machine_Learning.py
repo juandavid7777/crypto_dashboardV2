@@ -208,14 +208,14 @@ with col_MLgraphs:
         strl.dataframe(df_accuracy*100, use_container_width=True,
                        column_config={
                            "Testing accuracy": strl.column_config.NumberColumn(
-                               "Testing accuracy",
+                               "Testing accuracy (%)",
                                help="Accuracy of the model only over the unseen test data",
-                               format="%.2f %",
+                               format="%.2f",
                                ),
                             "Total accuracy": strl.column_config.NumberColumn(
-                               "Testing accuracy",
+                               "Testing accuracy (%)",
                                help="Accuracy of the model over all the classified data",
-                               format="%.2f %",
+                               format="%.2f",
                                ),
                                },
     )
