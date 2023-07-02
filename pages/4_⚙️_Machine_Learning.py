@@ -204,21 +204,11 @@ with col_MLgraphs:
         #Plots soft vote
         access_warning()
         strl.plotly_chart(soft_vote_plot(df_soft_vote, start_date, mid_date, end_date, conf_threshold = conf_threshold/100, interactive = render), use_container_width=True, config = render_config)
+        
+        #Displays teh accuracy of the models
         strl.markdown("###### Machine Learning Models accuracy:")
         display_df = df_accuracy*100
-        display_df = display_df.applymap(lambda x: "{:.2f}%".format(x))
-
-        # Apply CSS styling to center align the dataframe
-        dataframe_style = """
-        <style>
-        .dataframe td {
-            text-align: center;
-        }
-        </style>
-        """
-
-        # Display the dataframe with centered values
-        strl.markdown(dataframe_style, unsafe_allow_html=True)
+        display_df = display_df.applymap(lambda x: "{:.1f}%".format(x))
 
         strl.dataframe(display_df, use_container_width=True,
                        column_config={
