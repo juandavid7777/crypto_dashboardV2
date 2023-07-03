@@ -21,7 +21,7 @@ inject_ga()
 clean_image()
 
 # Title
-strl.image("sentiment_strip.png", use_column_width = True)
+strl.image("sentiment_plain.png", use_column_width = True)
 strl.title("Sentiment Analysis: social media and general public feeling about Bitcoin")
 
 # Donations

@@ -21,7 +21,7 @@ inject_ga()
 clean_image()
 
 # Title
-strl.image("technical_strip.png", use_column_width = True)
+strl.image("technical_plain.png", use_column_width = True)
 strl.title("Technical Analysis: Bitcoin price trends and perspectives")
 
 # Donations

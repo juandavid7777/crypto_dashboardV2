@@ -7,7 +7,35 @@ credentials:
     juandavid7777:
       email: juandavid7777@gmail.com
       name: Juan David Barbosa
-      password: $2b$12$.vqJds3I9TTtgcfofCAzy.st.l6RL9.7UAw2MKbWNufLiylrpN1m2
+      password: $2b$12$IS4P/i8T7XeHr2nSfT/ese0P3e.QqR8711VKpERhRrv/2S6EcGucC
+    quajada:
+      email: quajada@hotmail.com
+      name: Nicolas
+      password: $2b$12$Y1LeUnf.uIZkkv7DWKm2suofPIDkfTAfZ3n47Q05Jiv3s5wpSEruK
+    user1_username:
+      email: user1@gmail.com
+      name: user1_name
+      password: $2b$12$J8ArVCqepnM58V8w52SAQeEhiOWjcbj.XEWTCSQ6qdh1uISqiCThu
+    user2_username:
+      email: user2@gmail.com
+      name: user2_name
+      password: $2b$12$nAhfYglWAZk9gQo3DAelK.jFPoKC6F5peGUviXjSZiSrTXSZNiKwy
+    user3_username:
+      email: user3_username@gmail.com
+      name: user3_name
+      password: $2b$12$XxcayfAX633p8vP5e/NCLeCQXPBb1CquahncOfQVJE6e5VHu8T/4O
+    user4_username:
+      email: user4_username@gmail.com
+      name: user4_name
+      password: $2b$12$1ScuDqP7EJwKU9BAfBdB6uky6/hoIaVajaZjOOrU2xRsDM1WfN7Qe
+    user5_username:
+      email: user5_username@gmail.com
+      name: user5_name
+      password: $2b$12$1OK7T7SRZ83u.suUEY/g7eSU8ymgrPA/A/FDvZVb0gtXPHWe5HW2K
+    user6_username:
+      email: user6_username@gmail.com
+      name: user6_name
+      password: $2b$12$eB7rcpZXcWHk/2F/yefzAe.xg0A/YKdehc7zWvz7pxDrIhyYnVeFS
 preauthorized:
   emails:
   - user1@gmail.com
