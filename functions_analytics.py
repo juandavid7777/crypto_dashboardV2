@@ -17,7 +17,7 @@ def inject_ga():
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-JLYYFBB2ZD');
+        gtag('config', 'G-JLYYFBB2ZD', { 'debug_mode':true });
     </script>
     """
 
