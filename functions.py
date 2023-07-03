@@ -157,27 +157,27 @@ def market_data(date_today):
 
     return round(btc_price,1), round(eth_price, 1), round(btc_per,1), round(eth_per, 1), round(btc_mcap,1), round(eth_mcap,1), round(crypto_mcap,1)
 
-@strl.cache_data
-def colored_metric(df, metric_name, metric_format, range_vals = None, color_map = "jet", interactive = True):
+# @strl.cache_data
+def colored_metric(df, metric_name, metric_format, range_vals = None, color_map = "viridis", interactive = True):
 
-    # if range_vals != None:
+    if range_vals:
         
-    #     min_lim = range_vals[0]
-    #     low_lim = range_vals[1]
-    #     high_lim = range_vals[2]
-    #     max_lim = range_vals[3]
+        min_lim = range_vals[0]
+        low_lim = range_vals[1]
+        high_lim = range_vals[2]
+        max_lim = range_vals[3]
        
-    #     #Preprocessing inputs
-    #     mid_lim1 = (low_lim + high_lim)*1/3 + low_lim
-    #     mid_lim2 = (low_lim + high_lim)*2/3 + low_lim
+        #Preprocessing inputs
+        mid_lim1 = (high_lim - low_lim)*1/3 + low_lim
+        mid_lim2 = (high_lim - low_lim)*2/3 + low_lim
 
-    #     n_low = low_lim/(max_lim - min_lim)
-    #     n_high = high_lim/(max_lim - min_lim)
-    #     n_mid1 = mid_lim1 /(max_lim - min_lim)
-    #     n_mid2 = mid_lim2 /(max_lim - min_lim)
-
-    #     # color_map = [[min_lim,"lawngreen"],[low_lim,"greenyellow"], [mid_lim1,"lemonchiffon"], [mid_lim2,"sandybrown"], [high_lim,"lightcoral"], [max_lim,"crimson"]]
-    #     color_map = [[0,"lawngreen"],[n_low,"greenyellow"], [n_mid1,"lemonchiffon"], [n_mid2,"sandybrown"], [n_high,"lightcoral"], [1,"crimson"]]
+        n_low = (low_lim-min_lim)/(max_lim - min_lim)
+        n_high = (high_lim-min_lim)/(max_lim - min_lim)
+        n_mid1 = (mid_lim1-min_lim) /(max_lim - min_lim)
+        n_mid2 = (mid_lim2-min_lim) /(max_lim - min_lim)
+    
+        # strl.write(range_vals)
+        color_map = [[0,"lawngreen"],[n_low,"greenyellow"], [n_mid1,"lemonchiffon"], [n_mid2,"sandybrown"], [n_high,"lightcoral"], [1,"crimson"]]
 
     fig = go.Figure()
 
@@ -194,13 +194,12 @@ def colored_metric(df, metric_name, metric_format, range_vals = None, color_map 
                 '$%{y:'+'.1f'+'}',
                 metric_name + ': %{customdata:' + metric_format + '}',
             ]),
-        marker=dict(size=3,color = df[metric_name],showscale=True, colorbar=dict(title = metric_name), colorscale= color_map), #[[0, 'rgb(0,0,255)'], [1, 'rgb(255,0,0)']]) #colorscale='Jet'
-        # color_continuous_scale=["red", "green", "blue"]
+        marker=dict(size=3,color = df[metric_name],showscale=True, colorbar=dict(title = metric_name), colorscale= color_map),
         ),secondary_y=False)
     
     if interactive != True:
 
-        dark_theme = "#262730" #"#0E1117" #"rgba(0, 0, 0, 0.95)"
+        dark_theme = "#262730"
         fig.update_layout(shapes=[dict(
             type="rect",
             xref="paper",
@@ -548,7 +547,7 @@ def aws_crypto_api(url, metric, price_bool, normalize_bool, api_key, today_date)
 
     return df
 
-@strl.cache_data
+# @strl.cache_data
 def plot_graphsV2(df_data, df_meta, render, render_config, colored = False, ):
 
      # Runs functions in loops
