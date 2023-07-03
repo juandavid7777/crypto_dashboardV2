@@ -157,8 +157,8 @@ def market_data(date_today):
 
     return round(btc_price,1), round(eth_price, 1), round(btc_per,1), round(eth_per, 1), round(btc_mcap,1), round(eth_mcap,1), round(crypto_mcap,1)
 
-# @strl.cache_data
-def colored_metric(df, metric_name, metric_format, range_vals = None, color_map = "viridis", interactive = True):
+@strl.cache_data
+def colored_metric(df, metric_name, metric_format, range_vals = None, color_map = "jet", interactive = True):
 
     if range_vals:
         
@@ -176,7 +176,6 @@ def colored_metric(df, metric_name, metric_format, range_vals = None, color_map 
         n_mid1 = (mid_lim1-min_lim) /(max_lim - min_lim)
         n_mid2 = (mid_lim2-min_lim) /(max_lim - min_lim)
     
-        # strl.write(range_vals)
         color_map = [[0,"lawngreen"],[n_low,"greenyellow"], [n_mid1,"lemonchiffon"], [n_mid2,"sandybrown"], [n_high,"lightcoral"], [1,"crimson"]]
 
     fig = go.Figure()
@@ -547,7 +546,7 @@ def aws_crypto_api(url, metric, price_bool, normalize_bool, api_key, today_date)
 
     return df
 
-# @strl.cache_data
+@strl.cache_data
 def plot_graphsV2(df_data, df_meta, render, render_config, colored = False, ):
 
      # Runs functions in loops
@@ -557,7 +556,8 @@ def plot_graphsV2(df_data, df_meta, render, render_config, colored = False, ):
 
         # Defines ranges to be used
         if df_meta.iloc[i]["custom_limit"] == True:
-            range_vals = [df_meta.iloc[i]["min"], df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_meta.iloc[i]["max"]]
+            # range_vals_custom = [df_meta.iloc[i]["min"], df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_meta.iloc[i]["max"]]
+            range_vals = [df_plot[metric].min(), df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_plot[metric].max()]
 
         else:
             range_vals = [df_plot[metric].min(), df_meta.iloc[i]["low"], df_meta.iloc[i]["high"], df_plot[metric].max()]
