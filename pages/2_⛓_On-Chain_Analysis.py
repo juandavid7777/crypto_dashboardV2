@@ -21,7 +21,7 @@ inject_ga()
 clean_image()
 
 # Title
-strl.image("onchain_plain.png", use_column_width = True)
+strl.image("images/onchain_plain.png", use_column_width = True)
 strl.title("On-Chain Analysis: Bitcoin blockchain movements and distribution")
 
 # Donations

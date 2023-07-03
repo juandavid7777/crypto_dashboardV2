@@ -27,7 +27,7 @@ date_today = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 btc_price, eth_price, btc_per, eth_per, btc_mcap, eth_mcap, crypto_mcap = market_data(date_today = date_today)
 
 # Title
-strl.image("bitcoin_plain.png", use_column_width = True)
+strl.image("images/bitcoin_plain.png", use_column_width = True)
 strl.title("Bitcoin: A data science approach")
 
 # Donations

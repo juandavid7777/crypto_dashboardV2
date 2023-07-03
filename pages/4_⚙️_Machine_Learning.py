@@ -21,7 +21,7 @@ inject_ga()
 clean_image()
 
 # Title
-strl.image("ML_plain.png", use_column_width = True)
+strl.image("images/ML_plain.png", use_column_width = True)
 strl.title("Machine Learning Analysis: a Bitcoin perspective mapped with artifical inteligence")
 
 # Donations
