@@ -12,6 +12,10 @@ credentials:
       email: quajada@hotmail.com
       name: Nicolas
       password: $2b$12$Y1LeUnf.uIZkkv7DWKm2suofPIDkfTAfZ3n47Q05Jiv3s5wpSEruK
+    user11_username:
+      email: user11@gmail.com
+      name: user11_name
+      password: $2b$12$ewusZ6vAhrvYHCm6Z8neAeMHEhgpoKKdXpf0N52BRJElUCMNfXJ9m
     user1_username:
       email: user1@gmail.com
       name: user1_name
