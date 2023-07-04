@@ -28,7 +28,7 @@ btc_price, eth_price, btc_per, eth_per, btc_mcap, eth_mcap, crypto_mcap = market
 
 # Title
 strl.image("images/bitcoin_plain.png", use_column_width = True)
-strl.title("Bitcoin: A data science approach")
+strl.title("Bitcoin: through a data science lense")
 
 # Donations
 strl.subheader("Unlock the potential of data science and Bitcoin analysis to create a brighter financial future for all. Stay tunned, and keep accumulating!")
