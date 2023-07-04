@@ -765,12 +765,12 @@ def soft_vote_plot(df_in, start_date, mid_date, end_date, conf_threshold = 0.8, 
     
     fig.add_hline(y=conf_threshold*100, line_width=1.5, line_dash="dot", line_color="orange", secondary_y=True)
     fig.add_annotation(y=conf_threshold*0.87,
-                       x=0.05,
+                       x=0.02,
                        xref='paper',
                        yref='y',
                        showarrow=False,
                        textangle = 0,
-                       text="Conf. Threshold: " + str(conf_threshold*100) + "%",
+                       text="Majority threshold: " + str(conf_threshold*100) + "%",
                        font=dict(color='#ffaf1a'),  # Set the color of the text to orange
                        secondary_y=True,
                        visible = interactive
