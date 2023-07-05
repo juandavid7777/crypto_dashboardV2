@@ -8,7 +8,6 @@ import shutil
 def inject_ga():
     GA_ID = "google_analytics"
 
-
     GA_JS = """
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLYYFBB2ZD"></script>
@@ -19,7 +18,6 @@ def inject_ga():
 
         gtag('config', 'G-JLYYFBB2ZD', { 'debug_mode':true });
     </script>
-
     """
 
     # Insert the script in the head tag of the static template inside your virtual
