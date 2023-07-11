@@ -322,7 +322,7 @@ with col_graphs:
 
 #Final comments
 colored_header(label = "", description = "", color_name="yellow-80")
-strl.write("Have you found this useful? Your donation will support our research and pave the way for innovative solutions.")
+strl.write("Have you found this useful? We try to keep our analyses as a free service, however our data provider has increased its monthly fees more than 26 times which makes it impossible to fund from our own pocket. Your donation will support our research and pave the way for innovative solutions.")
 
 col1, col2, col3, col4 = strl.columns([1.5, 1.5, 5, 4])
 
