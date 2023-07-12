@@ -529,7 +529,7 @@ def ML_bull_bear_plot(df_in, start_date, mid_date, end_date, title = "Title", in
     return fig
 
 # ===========FUNCTIONS V2=========================
-@strl.cache_data
+# @strl.cache_data
 def aws_crypto_api(url, metric, price_bool, normalize_bool, api_key, today_date):
     
     params = (("metric",metric),
