@@ -32,7 +32,7 @@ strl.title("Bitcoin: through a data science lense")
 
 # Donations
 strl.subheader("As of June 2023 we lost our main data provider due to unreasonable increase in their fees. We use to run this on 30 USD every month from our own pocket, now they charge 800 USD. We are working on a solution around it, so for now stay calm and explore the data before that date until we come up with a better solution. Stay tuned, and keep accumulating!")
-strl.markdown("##### Unlock the potential of data science and Bitcoin analysis to create a brighter financial future for all.")
+
 col1, col2, col3, col4 = strl.columns([1.5, 1.5, 5, 4])
 
 with col1:
@@ -41,7 +41,7 @@ with col2:
     badge(type="buymeacoffee", name="juandavid7E")
 with col3:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
-
+strl.markdown("#### Unlock the potential of data science and Bitcoin analysis to create a brighter financial future for all.")
 strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable price cycles since its inception. These cycles often exhibit patterns influenced by various factors. One approach to understand and predict these cycles is by utilizing the concept of Bitcoin halving which defines a repetitive fundamental change which results in a reiteration of certain market dynamics. Building on this idea, a comprehensive analysis of nine metrics has been conducted, encompassing technical, on-chain, and sentiment indicators. By incorporating information from multiple sources, we implement a data-driven Machine Learning methodology to identify repeating patterns and map the market’s trend within the current cycle.")
 
 #Adds side authenticator
