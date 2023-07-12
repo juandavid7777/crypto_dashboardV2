@@ -70,7 +70,7 @@ strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable pric
 custom_cmap = [[0,"green"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"red"]]
 
 halving_date = datetime.datetime.now().date()+ timedelta(days=df_data.iloc[-1]["Days until halving"])        
-strl.markdown("#### Next Bitcoin halving expected on " + str(halving_date))
+strl.markdown("#### Next Bitcoin halving expected on " + str(halving_date) + ". Can you see the pattern within cother cycles?")
 
 strl.plotly_chart(colored_metric(df_data, "Days until halving", '.0f', color_map = custom_cmap, interactive = True), use_container_width=True)
 
@@ -259,8 +259,7 @@ with col_buttons:
         strl.subheader("Technical")
         var_timechannel = strl.checkbox('Time channel', value = True)
         var_MAlograt = strl.checkbox('MA log rat', value = True)
-        var_daysuntilhalving = strl.checkbox('Days until halving', value = False)
-
+        
             #Onchain
         strl.subheader("On-chain")
         var_nupl = strl.checkbox('NUPL', value = True)
@@ -268,7 +267,7 @@ with col_buttons:
         var_puellmultiple = strl.checkbox('Puell Multiple', value = True)
         var_thermocap = strl.checkbox('Thermocap rat.', value = True)
         var_supplyprofit = strl.checkbox('Supply in profit', value = True)
-        
+        var_daysuntilhalving = strl.checkbox('Days until halving', value = False)
 
             #Sentiment
         strl.subheader("Sentiment")
