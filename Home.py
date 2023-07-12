@@ -103,8 +103,6 @@ strl.caption("Bullet figures below show the current value of the metric and the 
 
 strl.write(df_metadata)
 
-strl.write(df_data)
-
 col_tech, col_onchain, col_sent = strl.columns(3)
 
 # Technical
