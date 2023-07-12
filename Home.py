@@ -64,12 +64,12 @@ df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_ke
 strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable price cycles since its inception. These cycles often exhibit patterns influenced by various factors. One approach to understand and predict these cycles is by utilizing the concept of Bitcoin halving which defines a repetitive fundamental change which results in a reiteration of certain market dynamics. Building on this idea, a comprehensive analysis of nine metrics has been conducted, encompassing technical, on-chain, and sentiment indicators. By incorporating information from multiple sources, we implement a data-driven Machine Learning methodology to identify repeating patterns and map the market’s trend within each Bitcoin's halving cycle.")
 custom_cmap = [[0,"green"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"red"]]
 
+#Finds next halving data
 halving_date = datetime.datetime.now().date()+ timedelta(days=df_data.iloc[-1]["Days until halving"])        
 strl.markdown("#### The next Bitcoin halving is expected on " + str(halving_date) + ". Can you see the pattern within other previous cycles?")
 
-strl.plotly_chart(colored_metric(df_data, "Days until halving", '.0f', color_map = custom_cmap, interactive = True), use_container_width=True)
-
-
+#Plots halving fig
+strl.plotly_chart(colored_metric(df_data, "Days until halving", '.0f', color_map = "jet", interactive = True), use_container_width=True)
 
 #Adds side authenticator
 sidebar_auth()
