@@ -69,6 +69,7 @@ halving_date = datetime.datetime.now().date()+ timedelta(days=df_data.iloc[-1]["
 strl.markdown("#### The next Bitcoin halving is expected on " + str(halving_date) + ". Can you see the pattern within other previous cycles?")
 
 #Plots halving fig
+strl.write(df_data.describe())
 strl.plotly_chart(colored_metric(df_data, "Days until halving", '.0f', color_map = "jet", interactive = True), use_container_width=True)
 
 #Adds side authenticator
