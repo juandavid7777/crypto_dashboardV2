@@ -101,8 +101,6 @@ strl.header("Metrics")
 strl.write("The selected oscillating metrics consist of two technical indicators derived purely from price movements, five on-chain indicators based on wallet movements within the blockchain, and two sentiment indicators utilizing information extracted from social media platforms. Future work will add new metrics that follow an oscillating cyclic pattern that relates to the Bitcoin repeating dynamics. Common cyclic peaks (red), valleys (green) and mid-cycle (yellow & orange) areas can be identified in individual metrics, however, a confluence approach should be implemented to reduce the risk when classifying the market trend.")
 strl.caption("Bullet figures below show the current value of the metric and the cycle area where has been mapped. For a historic visualization of each metric, check the Technical, On-chain and Sentiment sections. (Peak: red , Bottom: green, Mid-cycle: yellow & orange)")
 
-strl.write(df_metadata)
-
 col_tech, col_onchain, col_sent = strl.columns(3)
 
 # Technical
@@ -251,6 +249,7 @@ with col_buttons:
         strl.subheader("Technical")
         var_timechannel = strl.checkbox('Time channel', value = True)
         var_MAlograt = strl.checkbox('MA log rat', value = True)
+        var_daysuntilhalving = strl.checkbox('Days until halving', value = False)
 
             #Onchain
         strl.subheader("On-chain")
@@ -259,6 +258,7 @@ with col_buttons:
         var_puellmultiple = strl.checkbox('Puell Multiple', value = True)
         var_thermocap = strl.checkbox('Thermocap rat.', value = True)
         var_supplyprofit = strl.checkbox('Supply in profit', value = True)
+        
 
             #Sentiment
         strl.subheader("Sentiment")
@@ -274,7 +274,8 @@ dict_var_bool = {"NUPL":var_nupl,
                 'Time channel':var_timechannel,
                 'MA log rat':var_MAlograt,
                 'Fear and Greed':var_fg,
-                'Fear and Greed MA':var_fgMA
+                'Fear and Greed MA':var_fgMA,
+                'Days until halving':var_daysuntilhalving
                 }
 
 #Creates a list of variables that are selected true
