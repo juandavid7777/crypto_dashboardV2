@@ -31,7 +31,7 @@ strl.image("images/bitcoin_plain.png", use_column_width = True)
 strl.title("Bitcoin: through a data science lense")
 
 # Donations
-strl.subheader("As of June 2023 we lost our main data provider due to unreasonable increase in their fees. We use to run this on 30 USD every month from our own pocket, now they charge 800 USD. We are working on a solution around it, so for now stay calm and explore the data before that date until we come up with a better solution. Stay tuned, and keep accumulating!")
+strl.subheader("As of June 30th 2023 we lost our main data provider due to unreasonable increase in their fees. We used to run this app on 30 USD every month from our own pocket, while now they charge 800 USD which is impossible to bear with a free service. We are working on a solution to keep our low cost analyses services, but for now, stay calm and explore the until June 30th 2023. Stay tuned, and keep accumulating!")
 
 col1, col2, col3, col4 = strl.columns([1.5, 1.5, 5, 4])
 
