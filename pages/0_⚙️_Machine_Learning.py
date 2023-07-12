@@ -85,6 +85,8 @@ with col_MLinputs:
     varML_puellmultiple = strl.checkbox('Puell Multiple', key = 'Puell Multiple_ML', value = True)
     varML_thermocap = strl.checkbox('Thermocap rat.', key = 'Thermocap rat._ML', value = True)
     varML_supplyprofit = strl.checkbox('Supply in profit', key = 'Supply in profit_ML', value = True)
+    varML_daysuntilhalving = strl.checkbox('Days until halving', key = 'Days until halving_ML', value = False)
+
 
         #Sentiment
     strl.write("Sentiment")
@@ -102,7 +104,8 @@ dict_varML_bool = {"NUPL":varML_nupl,
                  'Time channel':varML_timechannel,
                  'MA log rat':varML_MAlograt,
                  'Fear and Greed':varML_fg,
-                 'Fear and Greed MA':varML_fgMA
+                 'Fear and Greed MA':varML_fgMA,
+                 'Days until halving':varML_daysuntilhalving
                  }
 
 #Creates a list of variables that are selected true

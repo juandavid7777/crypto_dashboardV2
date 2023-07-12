@@ -31,7 +31,8 @@ strl.image("images/bitcoin_plain.png", use_column_width = True)
 strl.title("Bitcoin: through a data science lense")
 
 # Donations
-strl.subheader("As of June 30th 2023 we lost our main data provider due to unreasonable increase in their fees. We used to run this app on 30 USD every month from our own pocket, while now they charge 800 USD which is impossible to bear with a free service. We are working on a solution to keep our low cost analyses services, but for now, stay calm and explore the data until June 30th 2023. Stay tuned, and keep accumulating!")
+strl.subheader("Unlocking the Potential of Bitcoin Cycles: A Data Science and Machine Learning Approach. Stay tuned, and keep accumulating!")
+# strl.subheader("As of June 30th 2023 we lost our main data provider due to unreasonable increase in their fees. We used to run this app on 30 USD every month from our own pocket, while now they charge 800 USD which is impossible to bear with a free service. We are working on a solution to keep our low cost analyses services, but for now, stay calm and explore the data until June 30th 2023. Stay tuned, and keep accumulating!")
 
 col1, col2, col3, col4 = strl.columns([1.5, 1.5, 5, 4])
 
@@ -41,8 +42,39 @@ with col2:
     badge(type="buymeacoffee", name="juandavid7E")
 with col3:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
-strl.markdown("#### Unlock the potential of data science and Bitcoin analysis to create a brighter financial future for all.")
-strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable price cycles since its inception. These cycles often exhibit patterns influenced by various factors. One approach to understand and predict these cycles is by utilizing the concept of Bitcoin halving which defines a repetitive fundamental change which results in a reiteration of certain market dynamics. Building on this idea, a comprehensive analysis of nine metrics has been conducted, encompassing technical, on-chain, and sentiment indicators. By incorporating information from multiple sources, we implement a data-driven Machine Learning methodology to identify repeating patterns and map the market’s trend within the current cycle.")
+
+#Sets API general parameters
+aws_api_url = strl.secrets["aws_api_url"]
+api_key = strl.secrets["aws_api_token"]
+date_today = datetime.datetime.now().strftime("%Y-%m-%d")
+
+#Calls metadata
+metric = "Metadata"
+price_bool = False
+normalize_bool = False
+df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key, date_today)
+
+#Calls all data
+metric = "All"
+price_bool = True
+normalize_bool = False
+df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key,date_today)
+
+#Basic session rendering if connected
+render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
+                 'displaylogo': False}
+render = strl.session_state["authentication_status"]
+
+#Writes intro with intial image
+strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable price cycles since its inception. These cycles often exhibit patterns influenced by various factors. One approach to understand and predict these cycles is by utilizing the concept of Bitcoin halving which defines a repetitive fundamental change which results in a reiteration of certain market dynamics. Building on this idea, a comprehensive analysis of nine metrics has been conducted, encompassing technical, on-chain, and sentiment indicators. By incorporating information from multiple sources, we implement a data-driven Machine Learning methodology to identify repeating patterns and map the market’s trend within each Bitcoin's halving cycle.")
+custom_cmap = [[0,"green"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"red"]]
+
+halving_date = datetime.datetime.now().date()+ timedelta(days=df_data.iloc[-1]["Days until halving"])        
+strl.markdown("#### Next Bitcoin halving expected on " + str(halving_date))
+
+strl.plotly_chart(colored_metric(df_data, "Days until halving", '.0f', color_map = custom_cmap, interactive = True), use_container_width=True)
+
+
 
 #Adds side authenticator
 sidebar_auth()
@@ -72,28 +104,6 @@ with col_price:
 
 #Adds metrics in columns
 strl.markdown("""---""")
-
-#Basic session rendering if connected
-render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
-                 'displaylogo': False}
-render = strl.session_state["authentication_status"]
-
-#Sets API general parameters
-aws_api_url = strl.secrets["aws_api_url"]
-api_key = strl.secrets["aws_api_token"]
-date_today = datetime.datetime.now().strftime("%Y-%m-%d")
-
-#Calls metadata
-metric = "Metadata"
-price_bool = False
-normalize_bool = False
-df_metadata = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key, date_today)
-
-#Calls all data
-metric = "All"
-price_bool = True
-normalize_bool = False
-df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key,date_today)
 
 #Plots bullet data metrics
 strl.header("Metrics")
