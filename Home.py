@@ -70,7 +70,7 @@ strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable pric
 custom_cmap = [[0,"green"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"red"]]
 
 halving_date = datetime.datetime.now().date()+ timedelta(days=df_data.iloc[-1]["Days until halving"])        
-strl.markdown("#### Next Bitcoin halving expected on " + str(halving_date) + ". Can you see the pattern within cother cycles?")
+strl.markdown("#### Next Bitcoin halving expected on " + str(halving_date) + ". Can you see the pattern within other previous cycles?")
 
 strl.plotly_chart(colored_metric(df_data, "Days until halving", '.0f', color_map = custom_cmap, interactive = True), use_container_width=True)
 
