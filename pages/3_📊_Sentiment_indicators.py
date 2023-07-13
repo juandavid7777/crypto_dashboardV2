@@ -43,9 +43,9 @@ strl.caption("Indicator powered by Alternative.me and Python Analytics")
 sidebar_auth()
 
 #Basic session rendering if connected
-render_config = {'staticPlot': not(strl.session_state["authentication_status"]),
+render_config = {'staticPlot': False,
                  'displaylogo': False} 
-render = strl.session_state["authentication_status"]
+render = True
 
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
