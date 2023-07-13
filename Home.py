@@ -32,6 +32,8 @@ strl.title("Bitcoin: through a data science lense")
 
 # Donations
 strl.subheader("Unlocking the Potential of Bitcoin Cycles: A Data Science and Machine Learning Approach. Stay tuned, and keep accumulating!")
+strl.write("Based in the Bitcointrends Medium article [link](https://medium.com/@juandavid7777/unlocking-the-potential-of-bitcoin-cycles-a-data-science-and-machine-learning-approach-5cad521518ce)")
+
 # strl.subheader("As of June 30th 2023 we lost our main data provider due to unreasonable increase in their fees. We used to run this app on 30 USD every month from our own pocket, while now they charge 800 USD which is impossible to bear with a free service. We are working on a solution to keep our low cost analyses services, but for now, stay calm and explore the data until June 30th 2023. Stay tuned, and keep accumulating!")
 
 col1, col2, col3, col4 = strl.columns([1.5, 1.5, 5, 4])
