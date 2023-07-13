@@ -72,12 +72,10 @@ col_bounded, col_colored= strl.columns(2)
 
 with col_bounded:
     strl.subheader("Oscillators thresholds")
-    access_warning()
     plot_graphsV2(df_data, df_meta, render, render_config, colored = False)
 
 with col_colored:
     strl.subheader("Colored distribution")
-    access_warning()
     plot_graphsV2(df_data, df_meta, render, render_config, colored = True)
 
 #Final comments
