@@ -67,8 +67,9 @@ strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable pric
 custom_cmap = [[0,"green"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"red"]]
 
 #Finds next halving data
-halving_date = datetime.datetime.now().date()+ timedelta(days=df_data.iloc[-1]["Days until halving"])        
-strl.markdown("#### The next Bitcoin halving is expected on " + str(halving_date) + ". Can you see the pattern within other previous cycles?")
+days_until_halving = df_data.iloc[-1]["Days until halving"]
+halving_date = datetime.datetime.now().date()+ timedelta(days=days_until_halving)        
+strl.markdown("#### The next Bitcoin halving is expected on " + str(halving_date) + ". " + str(days_until_halving) + " more days to come. Can you spot the repeating patterns within other previous cycles?")
 
 #Plots halving fig
 #Basic session rendering if connected
