@@ -46,6 +46,7 @@ with col3:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
 
 colored_header(label = "", description = "", color_name="yellow-80")
+strl.header("Bitcoin halving's effect on price")
 
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
