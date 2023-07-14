@@ -45,6 +45,8 @@ with col2:
 with col3:
     strl.caption("₿: 3EbH7JPSTGqSzyKKAijgva1ffXaY6JWk34")
 
+colored_header(label = "", description = "", color_name="yellow-80")
+
 #Sets API general parameters
 aws_api_url = strl.secrets["aws_api_url"]
 api_key = strl.secrets["aws_api_token"]
@@ -80,7 +82,7 @@ strl.markdown("##### The next Bitcoin halving is expected on " + str(round(days_
 sidebar_auth()
 
 # Summary market
-colored_header(label = "", description = "", color_name="yellow-80")
+strl.markdown("----")
 strl.header("Market summary")
 strl.caption("Powered by CoinGecko and Python Analytics")
 
