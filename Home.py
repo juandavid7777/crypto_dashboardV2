@@ -69,7 +69,7 @@ custom_cmap = [[0,"green"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sand
 #Finds next halving data
 days_until_halving = df_data.iloc[-1]["Days until halving"]
 halving_date = datetime.datetime.now().date()+ timedelta(days=days_until_halving)        
-strl.markdown("#### The next Bitcoin halving is expected on " + str(round(days_until_halving,0)) + " more days (" +  str(halving_date) + "). Can you spot the repeating patterns within other previous cycles?")
+strl.markdown("##### The next Bitcoin halving is expected on " + str(round(days_until_halving,0)) + " more days (" +  str(halving_date) + "). Can you spot the repeating patterns within other previous cycles?")
 
 #Plots halving fig
 #Basic session rendering if connected
