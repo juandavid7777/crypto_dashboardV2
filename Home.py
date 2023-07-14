@@ -28,10 +28,10 @@ btc_price, eth_price, btc_per, eth_per, btc_mcap, eth_mcap, crypto_mcap = market
 
 # Title
 strl.image("images/bitcoin_plain.png", use_column_width = True)
-strl.title("Bitcoin: through a data science lense")
+# strl.title("Bitcoin: through a data science lense")
 
 # Donations
-strl.subheader("Unlocking the Potential of Bitcoin Cycles: A Data Science and Machine Learning Approach. Stay tuned, and keep accumulating!")
+strl.title("Unlocking the Potential of Bitcoin Cycles: A Data Science and Machine Learning Approach")
 strl.write("Based on the Bitcointrends Medium article [link](https://medium.com/@juandavid7777/unlocking-the-potential-of-bitcoin-cycles-a-data-science-and-machine-learning-approach-5cad521518ce)")
 
 # strl.subheader("As of June 30th 2023 we lost our main data provider due to unreasonable increase in their fees. We used to run this app on 30 USD every month from our own pocket, while now they charge 800 USD which is impossible to bear with a free service. We are working on a solution to keep our low cost analyses services, but for now, stay calm and explore the data until June 30th 2023. Stay tuned, and keep accumulating!")
@@ -63,7 +63,7 @@ normalize_bool = False
 df_data = aws_crypto_api(aws_api_url, metric, price_bool, normalize_bool, api_key,date_today)
 
 #Writes intro with intial image
-strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable price cycles since its inception. These cycles often exhibit patterns influenced by various factors. One approach to understand and predict these cycles is by utilizing the concept of Bitcoin halving which defines a repetitive fundamental change which results in a reiteration of certain market dynamics. Building on this idea, a comprehensive analysis of nine metrics has been conducted, encompassing technical, on-chain, and sentiment indicators. By incorporating information from multiple sources, we implement a data-driven Machine Learning methodology to identify repeating patterns and map the market’s trend within each Bitcoin's halving cycle.")
+strl.write("Bitcoin, the pioneering cryptocurrency, has experienced notable price cycles since its inception. These cycles often exhibit patterns influenced by various factors. One approach to understand and predict these cycles is by utilizing the concept of Bitcoin halving which defines a repetitive fundamental change which results in a reiteration of certain market dynamics. Building on this idea, a comprehensive analysis of nine metrics has been conducted, encompassing technical, on-chain, and sentiment indicators. By incorporating information from multiple sources, we implement a data-driven Machine Learning methodology to identify repeating patterns and map the market’s trend within each Bitcoin's halving cycle. Stay tuned, and keep accumulating!")
 custom_cmap = [[0,"green"],[0.2,"greenyellow"], [0.4,"lemonchiffon"], [0.6,"sandybrown"], [0.8,"lightcoral"], [1,"red"]]
 
 #Plots halving fig
