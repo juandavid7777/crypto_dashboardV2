@@ -26,6 +26,8 @@ strl.title("Technical Analysis: Bitcoin price trends and perspectives")
 
 # Donations
 strl.write("Unlock the potential of data science and bitcoin analysis to create a brighter financial future for all. Stay tunned, and keep accumulating!")
+strl.write("Based on the Bitcointrends Medium article [link](https://medium.com/@juandavid7777/unlocking-the-potential-of-bitcoin-cycles-a-data-science-and-machine-learning-approach-5cad521518ce)")
+
 col1, col2, col3, col4 = strl.columns([1.5, 1.5, 5, 4])
 
 with col1:
